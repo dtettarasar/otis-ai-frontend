@@ -8,7 +8,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 ### Build the file for the connection with the backend API
 
-build the file 'vue-client/src/backend.config.js' and make sure it follows the structure below: 
+build the file '/src/backend.config.js' and make sure it follows the structure below: 
 
 ~~~
 const backendConfig = {
