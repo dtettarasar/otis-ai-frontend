@@ -2,7 +2,7 @@
 
     
     <div>
-        <h2>This is the home content</h2>
+        <h2>This is the homepage content</h2>
     </div>
     
 
