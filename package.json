@@ -1,11 +1,15 @@
 {
   "name": "otis-ai-vue-client",
   "version": "0.0.0",
+  "description": "Frontend for Otis AI",
+  "main": "server.js",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "node server.js",
+    "postinstall": "npm run build",
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
@@ -16,6 +20,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chai": "^5.1.1",
+    "express": "^4.19.2",
     "js-cookie": "^3.0.5",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
