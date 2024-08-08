@@ -10,18 +10,11 @@ import backendConfig from './backend.config';
 
 const app = createApp(App);
 
-let backendUrl;
-
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-   backendUrl = backendConfig.development;
-} else {
-   backendUrl = backendConfig.production;
-}
-
-// console.log('backendUrl: ');
-// console.log(backendUrl);
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 app.config.globalProperties.$backendUrl = backendUrl;
+
+console.log('backendUrl: ', backendUrl);
 
 app.use(router);
 app.use(store);
