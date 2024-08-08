@@ -6,8 +6,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import backendConfig from './backend.config';
-
 const app = createApp(App);
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;

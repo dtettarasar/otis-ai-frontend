@@ -29,7 +29,6 @@
 <script>
 
     import { mapState } from 'vuex';
-    import { createArticleTrigger } from '@/custom_modules/createArticleTrigger';
 
     export default {
         name: 'UserAccountBanner',
