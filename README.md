@@ -6,17 +6,12 @@ This template should help get you started developing with Vue 3 in Vite.
 
 ## Vue client parameters
 
-### Build the file for the connection with the backend API
+### Build the files for the connection with the backend API
 
-build the file '/src/backend.config.js' and make sure it follows the structure below: 
+Build the files .env.development and .env.production at the root of the folder, and put in it the link to the backend API. It should follows the format below, for both files
 
 ~~~
-const backendConfig = {
-    development: 'http://127.0.0.1/',
-    production: 'http://api.example.com'
-};
-  
-export default backendConfig;
+VITE_BACKEND_URL=https://api.example.app/
 ~~~
 
 ### Deployment Instructions for Traditional Servers
