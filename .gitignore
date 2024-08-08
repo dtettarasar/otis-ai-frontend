@@ -28,6 +28,3 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-
-# Ignore config file for backend url
-src/backend.config.js
