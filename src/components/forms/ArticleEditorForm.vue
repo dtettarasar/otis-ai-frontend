@@ -249,6 +249,12 @@
 
             },
 
+            retrieveUserCreditBalanceUrl() {
+
+              return this.$backendUrl + 'front-api/user-credit-balance';
+
+            },
+
             formattedDates() {
 
               return {
@@ -316,6 +322,10 @@
                   // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
 
                   await this.testRetrieveArticleData(response.data.articleId);
+                  
+                  // Update credit balance here
+                  await this.getUserCreditBalance();
+
                   this.addArticleObj(this.articleObj);
                   this.isViewMode = true;
 
@@ -365,8 +375,6 @@
               this.articleObj.creationDate = response.data.articleCreationDate;
               this.articleObj.lastModifDate = response.data.articleLastModifiedDate;
 
-              // Update credit balance here
-
             } else {
 
               this.articleObj.retrievedStatus = response.data.retrievedStatus;
@@ -380,6 +388,40 @@
           }
 
           console.log('end of testRetrieveArticleData method');
+
+        },
+
+        async getUserCreditBalance() {
+
+          console.log('init getUserCreditBalance method');
+
+          const accessToken = Cookies.get('accessToken');
+          console.log("accessToken in getUserCreditBalance method: ");
+          console.log(accessToken);
+
+          try {
+
+            const response = await axios.get(this.retrieveUserCreditBalanceUrl, {
+
+              params : {
+
+                accessToken: accessToken
+
+              }
+
+            });
+
+            console.log('response.data: ')
+            console.log(response.data);
+
+
+          } catch (error) {
+
+            console.error(err);
+
+          }
+
+          console.log('end of getUserCreditBalance method');
 
         },
 
