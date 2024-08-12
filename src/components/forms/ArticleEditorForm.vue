@@ -365,6 +365,8 @@
               this.articleObj.creationDate = response.data.articleCreationDate;
               this.articleObj.lastModifDate = response.data.articleLastModifiedDate;
 
+              // Update credit balance here
+
             } else {
 
               this.articleObj.retrievedStatus = response.data.retrievedStatus;
