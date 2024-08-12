@@ -274,7 +274,7 @@
 
       methods: {
 
-        ...mapActions(['setDeleteArticleId', 'addArticleObj']),
+        ...mapActions(['setDeleteArticleId', 'addArticleObj', 'refreshUserCreditBalance']),
 
         async saveArticle() {
 
@@ -414,10 +414,16 @@
             console.log('response.data: ')
             console.log(response.data);
 
+            if (response.data.newCreditBalance || response.data.newCreditBalance === 0) {
+
+              this.refreshUserCreditBalance(response.data.newCreditBalance);
+
+            }
+
 
           } catch (error) {
 
-            console.error(err);
+            console.error(error);
 
           }
 
