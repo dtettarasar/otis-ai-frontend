@@ -160,6 +160,8 @@ export default createStore({
       refreshUserCreditBalance(state, userCreditBalance) {
 
         state.credit = userCreditBalance;
+        console.log('user credit balance updated in store');
+        console.log(`new balance: ${state.credit}`);
 
       },
 
