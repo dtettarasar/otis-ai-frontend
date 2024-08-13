@@ -208,8 +208,13 @@ describe('ArticleEditorForm.vue', () => {
 
         expect(wrapper.vm.articleObj.id).toBe(null); // Vérifier que l'ID est null au début
 
+        // Créer des spies pour les méthodes
+        const getUserCreditBalanceSpy = vi.spyOn(wrapper.vm, 'getUserCreditBalance');
+        const addArticleObjSpy = vi.spyOn(wrapper.vm, 'addArticleObj');
+
         await wrapper.vm.generateArticle();
         await flushPromises();
+
 
         // Tester les infos de l'article enregistré dans le composant
         expect(wrapper.vm.articleObj.id).toBe('test_id');
@@ -223,6 +228,16 @@ describe('ArticleEditorForm.vue', () => {
 
         // vérifier que le composant passe en mode visualisation une fois l'article généré
         expect(wrapper.vm.isViewMode).toBe(true);
+
+        // vérifier que la méthode this.getUserCreditBalance(); est bien appelé après l'execution de generateArticle();
+        expect(getUserCreditBalanceSpy).toHaveBeenCalled();
+
+        // vérifier que la méthode this.addArticleObj(this.articleObj); est bien executé après l'execution de generateArticle();
+        expect(addArticleObjSpy).toHaveBeenCalledWith(wrapper.vm.articleObj);
+
+        // Restaurer les spies
+        getUserCreditBalanceSpy.mockRestore();
+        addArticleObjSpy.mockRestore();
 
     });
 
