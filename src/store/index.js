@@ -157,6 +157,14 @@ export default createStore({
         state.deleteArticleId = null;
       },
 
+      refreshUserCreditBalance(state, userCreditBalance) {
+
+        state.credit = userCreditBalance;
+        console.log('user credit balance updated in store');
+        console.log(`new balance: ${state.credit}`);
+
+      },
+
   },
   // actions sert aux appels API et les méthodes que l'on appelle depuis les components pour interagir avec les données du store
   actions: {
@@ -262,6 +270,12 @@ export default createStore({
 
       clearDeleteArticleId({ commit }) {
         commit('clearDeleteArticleID');
+      },
+
+      refreshUserCreditBalance({commit}, userCreditBalance) {
+
+        commit('refreshUserCreditBalance', userCreditBalance);
+
       },
 
   }

@@ -249,6 +249,12 @@
 
             },
 
+            retrieveUserCreditBalanceUrl() {
+
+              return this.$backendUrl + 'front-api/user-credit-balance';
+
+            },
+
             formattedDates() {
 
               return {
@@ -268,7 +274,7 @@
 
       methods: {
 
-        ...mapActions(['setDeleteArticleId', 'addArticleObj']),
+        ...mapActions(['setDeleteArticleId', 'addArticleObj', 'refreshUserCreditBalance']),
 
         async saveArticle() {
 
@@ -316,6 +322,10 @@
                   // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
 
                   await this.testRetrieveArticleData(response.data.articleId);
+                  
+                  // Update credit balance here
+                  await this.getUserCreditBalance();
+
                   this.addArticleObj(this.articleObj);
                   this.isViewMode = true;
 
@@ -378,6 +388,46 @@
           }
 
           console.log('end of testRetrieveArticleData method');
+
+        },
+
+        async getUserCreditBalance() {
+
+          console.log('init getUserCreditBalance method');
+
+          const accessToken = Cookies.get('accessToken');
+          console.log("accessToken in getUserCreditBalance method: ");
+          console.log(accessToken);
+
+          try {
+
+            const response = await axios.get(this.retrieveUserCreditBalanceUrl, {
+
+              params : {
+
+                accessToken: accessToken
+
+              }
+
+            });
+
+            console.log('response.data: ')
+            console.log(response.data);
+
+            if (response.data.newCreditBalance || response.data.newCreditBalance === 0) {
+
+              this.refreshUserCreditBalance(response.data.newCreditBalance);
+
+            }
+
+
+          } catch (error) {
+
+            console.error(error);
+
+          }
+
+          console.log('end of getUserCreditBalance method');
 
         },
 
