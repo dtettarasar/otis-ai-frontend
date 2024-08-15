@@ -178,6 +178,7 @@
     import axios from 'axios';
     import Cookies from 'js-cookie';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
+    import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
   
     export default {
         
@@ -342,7 +343,15 @@
                   await this.testRetrieveArticleData(response.data.articleId);
                   
                   // Update credit balance here
-                  await this.getUserCreditBalance();
+                  // await this.getUserCreditBalance();
+
+                  const userCreditBalance = await getUserCreditBalance();
+
+                  if (userCreditBalance) {
+
+                    this.refreshUserCreditBalance(userCreditBalance);
+
+                  }
 
                   this.addArticleObj(this.articleObj);
                   this.isViewMode = true;
@@ -421,46 +430,6 @@
 
         },
 
-        async getUserCreditBalance() {
-
-          console.log('init getUserCreditBalance method');
-
-          const accessToken = Cookies.get('accessToken');
-          console.log("accessToken in getUserCreditBalance method: ");
-          console.log(accessToken);
-
-          try {
-
-            const response = await axios.get(this.retrieveUserCreditBalanceUrl, {
-
-              params : {
-
-                accessToken: accessToken
-
-              }
-
-            });
-
-            console.log('response.data: ')
-            console.log(response.data);
-
-            if (response.data.newCreditBalance || response.data.newCreditBalance === 0) {
-
-              this.refreshUserCreditBalance(response.data.newCreditBalance);
-
-            }
-
-
-          } catch (error) {
-
-            console.error(error);
-
-          }
-
-          console.log('end of getUserCreditBalance method');
-
-        },
-
         addKeywords() {
 
           console.log('init add keywords method');
@@ -532,6 +501,14 @@
       async mounted() {
 
         const articleId = this.$route.params.id;
+
+        const userCreditBalance = await getUserCreditBalance();
+
+        if (userCreditBalance) {
+
+          this.refreshUserCreditBalance(userCreditBalance);
+
+        }
 
         if (articleId) {
 
