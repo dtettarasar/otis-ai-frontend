@@ -30,6 +30,8 @@
     import { mapState } from 'vuex';
     import BuyCreditsForm from '@/components/forms/BuyCreditsForm.vue'
 
+    import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
+
     export default {
 
         name: 'CreditSection',
@@ -54,6 +56,7 @@
 
         mounted() {
             //console.log(this.username);
+            getUserCreditBalance();
         },
 
         beforeCreate() {
