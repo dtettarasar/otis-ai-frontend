@@ -3,17 +3,27 @@ import axios from 'axios';
 
 export async function getUserCreditBalance() {
 
+    const isDevMode = process.env.NODE_ENV !== 'production';
+
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const retrieveUserCreditBalanceUrl = backendUrl + 'front-api/user-credit-balance';
 
-    // console.log('init the custom module getUserCreditBalance()');
-    // console.log(`backendUrl in the custom module getUserCreditBalance(): ${backendUrl}`);
-    // console.log(`retrieveUserCreditBalanceUrl in the custom module getUserCreditBalance(): ${retrieveUserCreditBalanceUrl}`);
+    if (isDevMode) {
+
+        console.log('init the custom module getUserCreditBalance()');
+        // console.log(`backendUrl in the custom module getUserCreditBalance(): ${backendUrl}`);
+        // console.log(`retrieveUserCreditBalanceUrl in the custom module getUserCreditBalance(): ${retrieveUserCreditBalanceUrl}`);
+
+    }
 
     const accessToken = Cookies.get('accessToken');
-    
-    // console.log("accessToken in getUserCreditBalance() module: ");
-    // console.log(accessToken);
+
+    if (isDevMode) {
+
+        // console.log("accessToken in getUserCreditBalance() module: ");
+        // console.log(accessToken);
+
+    }
 
     try {
 
@@ -27,8 +37,12 @@ export async function getUserCreditBalance() {
 
         });
 
-        // console.log('response.data: ')
-        // console.log(response.data);
+        if (isDevMode) {
+
+            console.log('response.data: ');
+            console.log(response.data);
+
+        }
         
         if (response.data.newCreditBalance || response.data.newCreditBalance === 0) {
 

@@ -268,6 +268,12 @@
 
             deleteArticleModalId() {
                 return `delete-article-${this.articleObj.id}`
+            },
+
+            isDevMode() {
+
+              return process.env.NODE_ENV !== 'production';
+
             }
 
       },
@@ -278,20 +284,29 @@
 
         async saveArticle() {
 
-          console.log('init save article method');
+          // console.log('init save article method');
           this.isViewMode = true;
 
         },
 
         async generateArticle() {
 
-          console.log('init generate article method');
-          console.log('articleObj: ');
-          console.log(toRaw(this.articleObj));
+          if (this.isDevMode) {
+
+            console.log('init generate article method');
+            console.log('articleObj: ');
+            console.log(toRaw(this.articleObj));
+
+          }
 
           const accessToken = Cookies.get('accessToken');
-          console.log("accessToken:");
-          console.log(accessToken);
+
+          if (this.isDevMode) {
+
+            console.log("accessToken:");
+            console.log(accessToken);
+
+          }
 
           if (!this.descParamOk && !this.keyWordsParamOk) {
 
@@ -310,12 +325,15 @@
                     articleLang: this.articleObj.language,
                     articleKeywords: this.articleObj.keywordArr
                 });
+                
+                if (this.isDevMode) {
 
-                console.log("response data:");
-                console.log(response.data);
+                  console.log("response data:");
+                  console.log(response.data);
+                  console.log("article id: ");
+                  console.log(response.data.articleId);
 
-                console.log("article id: ");
-                console.log(response.data.articleId);
+                }
 
                 if (response.data.articleId) {
 
@@ -343,7 +361,11 @@
 
         async testRetrieveArticleData(articleId) {
 
-          console.log('init the testRetrieveArticleData method');
+          if (this.isDevMode) {
+
+            console.log('init the testRetrieveArticleData method');
+
+          }
 
           const accessToken = Cookies.get('accessToken');
 
@@ -360,8 +382,12 @@
 
             });
 
-            console.log('response.data: ')
-            console.log(response.data);
+            if (this.isDevMode) {
+
+              console.log('response.data: ');
+              console.log(response.data);
+
+            }
 
             if (response.data.retrievedStatus !== null) {
 
@@ -387,7 +413,11 @@
 
           }
 
-          console.log('end of testRetrieveArticleData method');
+          if (this.isDevMode) {
+
+            console.log('end of testRetrieveArticleData method');
+
+          }
 
         },
 
