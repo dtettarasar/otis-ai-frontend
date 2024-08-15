@@ -54,9 +54,18 @@
 
         },
 
-        mounted() {
+        async mounted() {
             //console.log(this.username);
-            getUserCreditBalance();
+            
+            const userCreditBalance = await getUserCreditBalance();
+
+
+            if (process.env.NODE_ENV !== 'production') {
+
+                console.log(`userCreditBalance: ${userCreditBalance}`);
+
+            }
+
         },
 
         beforeCreate() {
