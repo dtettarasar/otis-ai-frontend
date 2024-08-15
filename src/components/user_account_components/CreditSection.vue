@@ -27,7 +27,7 @@
 
 <script>
 
-    import { mapState } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
     import BuyCreditsForm from '@/components/forms/BuyCreditsForm.vue'
 
     import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
@@ -56,13 +56,19 @@
 
         async mounted() {
             //console.log(this.username);
-            
+
             const userCreditBalance = await getUserCreditBalance();
 
 
             if (process.env.NODE_ENV !== 'production') {
 
                 console.log(`userCreditBalance: ${userCreditBalance}`);
+
+            }
+
+            if (userCreditBalance) {
+
+                this.refreshUserCreditBalance(userCreditBalance);
 
             }
 
@@ -75,6 +81,8 @@
         },
 
         methods: {
+
+            ...mapActions(['refreshUserCreditBalance']),
 
         }
 
