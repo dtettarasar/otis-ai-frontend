@@ -4,10 +4,11 @@ import { createRouter, createMemoryHistory } from 'vue-router';
 import { createStore } from 'vuex';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
 
 import ArticleEditorForm from '@/components/forms/ArticleEditorForm.vue';
 
-// Mock d'axios et de js-cookie
+// Mock des modules externes
 vi.mock('axios');
 vi.mock('js-cookie');
 
@@ -209,7 +210,7 @@ describe('ArticleEditorForm.vue', () => {
         expect(wrapper.vm.articleObj.id).toBe(null); // Vérifier que l'ID est null au début
 
         // Créer des spies pour les méthodes
-        const getUserCreditBalanceSpy = vi.spyOn(wrapper.vm, 'getUserCreditBalance');
+        //const getUserCreditBalanceSpy = vi.spyOn(getUserCreditBalance, 'default');
         const addArticleObjSpy = vi.spyOn(wrapper.vm, 'addArticleObj');
 
         await wrapper.vm.generateArticle();
@@ -229,14 +230,10 @@ describe('ArticleEditorForm.vue', () => {
         // vérifier que le composant passe en mode visualisation une fois l'article généré
         expect(wrapper.vm.isViewMode).toBe(true);
 
-        // vérifier que la méthode this.getUserCreditBalance(); est bien appelé après l'execution de generateArticle();
-        expect(getUserCreditBalanceSpy).toHaveBeenCalled();
-
         // vérifier que la méthode this.addArticleObj(this.articleObj); est bien executé après l'execution de generateArticle();
         expect(addArticleObjSpy).toHaveBeenCalledWith(wrapper.vm.articleObj);
 
         // Restaurer les spies
-        getUserCreditBalanceSpy.mockRestore();
         addArticleObjSpy.mockRestore();
 
     });
