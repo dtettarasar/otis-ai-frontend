@@ -52,12 +52,15 @@ export default createStore({
       },
 
       userInitialInfoSaved(state, userDataObj) {
+        
         state.userInitialInfoSaved = true;
         state.username = userDataObj.username;
         state.credit = userDataObj.credit
-        console.log("userInitialInfoSaved: " + state.userInitialInfoSaved);
-        console.log("username saved: " + state.username);
-        console.log("credit balance saved: " + state.credit);
+
+        // console.log("userInitialInfoSaved: " + state.userInitialInfoSaved);
+        // console.log("username saved: " + state.username);
+        // console.log("credit balance saved: " + state.credit);
+
       },
 
       setActiveModal(state, modalId) {
@@ -70,7 +73,7 @@ export default createStore({
 
       setCookieExpTime(state, cookieExpTimestamp) {
         state.cookieExpTimestamp = cookieExpTimestamp;
-        console.log("setCookieExpTime saved: " + state.cookieExpTimestamp);
+        // console.log("setCookieExpTime saved: " + state.cookieExpTimestamp);
       }, 
 
       setSessionCountdown(state, sessionCountdownTriggered) {
@@ -84,8 +87,8 @@ export default createStore({
       setArticleDataList(state, articleDataList) {
         
         state.articleDataList = articleDataList;
-        console.log('saved the article data list: '); 
-        console.log(state.articleDataList);
+        // console.log('saved the article data list: '); 
+        // console.log(state.articleDataList);
 
       },
 
@@ -160,8 +163,13 @@ export default createStore({
       refreshUserCreditBalance(state, userCreditBalance) {
 
         state.credit = userCreditBalance;
-        console.log('user credit balance updated in store');
-        console.log(`new balance: ${state.credit}`);
+
+        if (process.env.NODE_ENV !== 'production') {
+
+          console.log('user credit balance updated in store');
+          console.log(`new balance: ${state.credit}`);
+
+        }
 
       },
 
@@ -179,8 +187,8 @@ export default createStore({
         puis stocker le nom d'utilisateur dans le store Vuex.
         */
 
-        console.log('init the saveUsername action from vuex');
-        console.log(username); 
+        // console.log('init the saveUsername action from vuex');
+        // console.log(username); 
 
         commit('setUsername', username);
 
@@ -205,16 +213,16 @@ export default createStore({
       },
       updateUserLoggedIn({commit}, userLoggedIn) {
 
-        console.log('init the updateUserLoggedIn action from vuex');
-        console.log(userLoggedIn);
+        // console.log('init the updateUserLoggedIn action from vuex');
+        // console.log(userLoggedIn);
 
         commit('updateUserLoggedIn', userLoggedIn);
 
       },
       saveCookieExpTimestamp({commit}, cookieExpTimestamp) {
 
-        console.log('init the saveCookieExpTimestamp action from vuex');
-        console.log('cookieExpTimestamp: ' + cookieExpTimestamp);
+        // console.log('init the saveCookieExpTimestamp action from vuex');
+        // console.log('cookieExpTimestamp: ' + cookieExpTimestamp);
 
         commit('setCookieExpTime', cookieExpTimestamp);
 
@@ -234,7 +242,7 @@ export default createStore({
 
       saveArticleDataList({commit}, articleDataList) {
 
-        console.log('init the saveArticleDataList from the vuex store');
+        // console.log('init the saveArticleDataList from the vuex store');
         commit('setArticleDataList', articleDataList);
 
       },

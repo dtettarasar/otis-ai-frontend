@@ -178,6 +178,7 @@
     import axios from 'axios';
     import Cookies from 'js-cookie';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
+    import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
   
     export default {
         
@@ -268,7 +269,13 @@
 
             deleteArticleModalId() {
                 return `delete-article-${this.articleObj.id}`
-            }
+            },
+
+            isDevMode() {
+
+              return process.env.NODE_ENV !== 'production';
+
+            },
 
       },
 
@@ -278,20 +285,29 @@
 
         async saveArticle() {
 
-          console.log('init save article method');
+          // console.log('init save article method');
           this.isViewMode = true;
 
         },
 
         async generateArticle() {
 
-          console.log('init generate article method');
-          console.log('articleObj: ');
-          console.log(toRaw(this.articleObj));
+          if (this.isDevMode) {
+
+            console.log('init generate article method');
+            console.log('articleObj: ');
+            console.log(toRaw(this.articleObj));
+
+          }
 
           const accessToken = Cookies.get('accessToken');
-          console.log("accessToken:");
-          console.log(accessToken);
+
+          if (this.isDevMode) {
+
+            console.log("accessToken:");
+            console.log(accessToken);
+
+          }
 
           if (!this.descParamOk && !this.keyWordsParamOk) {
 
@@ -310,12 +326,15 @@
                     articleLang: this.articleObj.language,
                     articleKeywords: this.articleObj.keywordArr
                 });
+                
+                if (this.isDevMode) {
 
-                console.log("response data:");
-                console.log(response.data);
+                  console.log("response data:");
+                  console.log(response.data);
+                  console.log("article id: ");
+                  console.log(response.data.articleId);
 
-                console.log("article id: ");
-                console.log(response.data.articleId);
+                }
 
                 if (response.data.articleId) {
 
@@ -324,7 +343,15 @@
                   await this.testRetrieveArticleData(response.data.articleId);
                   
                   // Update credit balance here
-                  await this.getUserCreditBalance();
+                  // await this.getUserCreditBalance();
+
+                  const userCreditBalance = await getUserCreditBalance();
+
+                  if (userCreditBalance) {
+
+                    this.refreshUserCreditBalance(userCreditBalance);
+
+                  }
 
                   this.addArticleObj(this.articleObj);
                   this.isViewMode = true;
@@ -343,7 +370,11 @@
 
         async testRetrieveArticleData(articleId) {
 
-          console.log('init the testRetrieveArticleData method');
+          if (this.isDevMode) {
+
+            console.log('init the testRetrieveArticleData method');
+
+          }
 
           const accessToken = Cookies.get('accessToken');
 
@@ -360,8 +391,12 @@
 
             });
 
-            console.log('response.data: ')
-            console.log(response.data);
+            if (this.isDevMode) {
+
+              console.log('response.data: ');
+              console.log(response.data);
+
+            }
 
             if (response.data.retrievedStatus !== null) {
 
@@ -387,47 +422,11 @@
 
           }
 
-          console.log('end of testRetrieveArticleData method');
+          if (this.isDevMode) {
 
-        },
-
-        async getUserCreditBalance() {
-
-          console.log('init getUserCreditBalance method');
-
-          const accessToken = Cookies.get('accessToken');
-          console.log("accessToken in getUserCreditBalance method: ");
-          console.log(accessToken);
-
-          try {
-
-            const response = await axios.get(this.retrieveUserCreditBalanceUrl, {
-
-              params : {
-
-                accessToken: accessToken
-
-              }
-
-            });
-
-            console.log('response.data: ')
-            console.log(response.data);
-
-            if (response.data.newCreditBalance || response.data.newCreditBalance === 0) {
-
-              this.refreshUserCreditBalance(response.data.newCreditBalance);
-
-            }
-
-
-          } catch (error) {
-
-            console.error(error);
+            console.log('end of testRetrieveArticleData method');
 
           }
-
-          console.log('end of getUserCreditBalance method');
 
         },
 
@@ -502,6 +501,14 @@
       async mounted() {
 
         const articleId = this.$route.params.id;
+
+        const userCreditBalance = await getUserCreditBalance();
+
+        if (userCreditBalance) {
+
+          this.refreshUserCreditBalance(userCreditBalance);
+
+        }
 
         if (articleId) {
 

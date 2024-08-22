@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12">
 
-                <h2>You last articles</h2>
+                <h2>Your last articles</h2>
 
             </div>
         </div>

@@ -15,9 +15,11 @@
                 <a href="/article" class="btn btn-success">Create an article</a>
             </div>
 
+            <!--
             <div class="p-2 bd-highlight">
                 <button type="button" class="btn btn-light">My settings</button>
             </div>
+            -->
 
         </div>
         

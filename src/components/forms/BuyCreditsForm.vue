@@ -49,21 +49,32 @@
         },
 
         computed: {
+
             addCreditsBackEndUrl() {
                 return this.$backendUrl + 'front-api/user-add-credits';
             },
+
             accessToken() {
                 return Cookies.get('accessToken');
-            }
+            },
+
+            isDevMode() {
+                return process.env.NODE_ENV !== 'production';
+            },
+
         },
 
         methods: {
 
             async submitForm() {
 
-                console.log('init form submission');
-                console.log(this.creditQuantity);
-                console.log(this.addCreditsBackEndUrl);
+                if (this.isDevMode) {
+
+                    console.log('init form submission');
+                    console.log(this.creditQuantity);
+                    console.log(this.addCreditsBackEndUrl);
+
+                }
 
                 try {
 
@@ -72,8 +83,12 @@
                         accessToken: this.accessToken
                     });
 
-                    console.log("response data:")
-                    console.log(response.data);
+                    if (this.isDevMode) {
+
+                        console.log("response data:");
+                        console.log(response.data);
+
+                    }
 
                     if (response.data.checkoutSessionUrl) {
 

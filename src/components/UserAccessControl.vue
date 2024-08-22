@@ -175,7 +175,7 @@
 
             async getUserAllArticlesData(userIdObj) {
 
-                console.log("init getUserAllArticlesData method");
+                // console.log("init getUserAllArticlesData method");
 
                 const reqData = {
                     userId: userIdObj
@@ -186,7 +186,7 @@
                 })
                 .then(res => {
 
-                    console.log('Response from backend:', res.data.articleDataList);
+                    // console.log('Response from backend:', res.data.articleDataList);
 
                     if(res.data.articleDataList.length >= 1) {
 
@@ -201,7 +201,7 @@
 
                 });
 
-                console.log("end of getUserAllArticlesData method");
+                // console.log("end of getUserAllArticlesData method");
 
             },
 
