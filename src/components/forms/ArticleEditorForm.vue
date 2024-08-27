@@ -349,7 +349,11 @@
 
                   if (userCreditBalance) {
 
+                    console.log('init this.refreshUserCreditBalance from article editor component (after generating an article)');
+
                     this.refreshUserCreditBalance(userCreditBalance);
+
+                    console.log(`credit saved in store: ${this.credit}`);
 
                   }
 
@@ -506,13 +510,18 @@
 
         if (userCreditBalance) {
 
+          /*
           if (this.isDevMode) {
 
             console.log('init this.refreshUserCreditBalance from article editor component');
 
-          }
+          }*/
+
+          console.log('init this.refreshUserCreditBalance from article editor component');
 
           await this.refreshUserCreditBalance(userCreditBalance);
+
+          console.log(`credit saved in store: ${this.credit}`);
 
         }
 

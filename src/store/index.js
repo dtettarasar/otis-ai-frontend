@@ -164,12 +164,19 @@ export default createStore({
 
         state.credit = userCreditBalance;
 
+        console.log('user credit balance updated in store');
+        console.log(`new balance: ${state.credit}`);
+
+        /*
+
         if (process.env.NODE_ENV !== 'production') {
 
           console.log('user credit balance updated in store');
           console.log(`new balance: ${state.credit}`);
 
         }
+
+        */
 
       },
 
@@ -282,6 +289,7 @@ export default createStore({
 
       async refreshUserCreditBalance({commit}, userCreditBalance) {
 
+        console.log('refreshUserCreditBalance action triggered');
         commit('refreshUserCreditBalance', userCreditBalance);
 
       },
