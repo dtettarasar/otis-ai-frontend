@@ -506,7 +506,13 @@
 
         if (userCreditBalance) {
 
-          this.refreshUserCreditBalance(userCreditBalance);
+          if (this.isDevMode) {
+
+            console.log('init this.refreshUserCreditBalance from article editor component');
+
+          }
+
+          await this.refreshUserCreditBalance(userCreditBalance);
 
         }
 
