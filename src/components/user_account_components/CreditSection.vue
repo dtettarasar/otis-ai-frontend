@@ -65,22 +65,30 @@
 
             const userCreditBalance = await getUserCreditBalance();
 
-
+            /*
             if (this.isDevMode) {
 
                 console.log(`userCreditBalance: ${userCreditBalance}`);
 
             }
+            */
+
+            console.log(`userCreditBalance: ${userCreditBalance}`);
 
             if (userCreditBalance) {
 
+                /*
                 if (this.isDevMode) {
 
                     console.log('init this.refreshUserCreditBalance from credit section component');
 
-                }
+                }*/
+
+                console.log('init this.refreshUserCreditBalance from credit section component');
 
                 await this.refreshUserCreditBalance(userCreditBalance);
+
+                console.log(`credit saved in store: ${this.credit}`);
 
             }
 
