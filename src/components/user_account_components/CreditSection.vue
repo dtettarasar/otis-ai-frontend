@@ -50,7 +50,13 @@
 
         computed: {
             
-            ...mapState(['credit'])
+            ...mapState(['credit']),
+
+            isDevMode() {
+
+                return process.env.NODE_ENV !== 'production';
+
+            },
 
         },
 
@@ -60,7 +66,7 @@
             const userCreditBalance = await getUserCreditBalance();
 
 
-            if (process.env.NODE_ENV !== 'production') {
+            if (this.isDevMode) {
 
                 console.log(`userCreditBalance: ${userCreditBalance}`);
 
@@ -68,7 +74,13 @@
 
             if (userCreditBalance) {
 
-                this.refreshUserCreditBalance(userCreditBalance);
+                if (this.isDevMode) {
+
+                    console.log('init this.refreshUserCreditBalance from credit section component');
+
+                }
+
+                await this.refreshUserCreditBalance(userCreditBalance);
 
             }
 

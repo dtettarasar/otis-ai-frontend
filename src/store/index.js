@@ -280,7 +280,7 @@ export default createStore({
         commit('clearDeleteArticleID');
       },
 
-      refreshUserCreditBalance({commit}, userCreditBalance) {
+      async refreshUserCreditBalance({commit}, userCreditBalance) {
 
         commit('refreshUserCreditBalance', userCreditBalance);
 
