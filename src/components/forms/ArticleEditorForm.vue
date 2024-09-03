@@ -215,7 +215,8 @@
           isEditMode: false,
           isViewMode: false,
           isGenerateMode: false,
-          articleInCreation: false
+          articleInCreation: false,
+          noParamsAlert: false
 
         };
 
@@ -311,7 +312,10 @@
 
           if (!this.descParamOk && !this.keyWordsParamOk) {
 
+            console.log(`noParamsAlert value: ${this.noParamsAlert}`)
             console.log("error: no parameters");
+            this.noParamsAlert = true;
+            console.log(`noParamsAlert value: ${this.noParamsAlert}`)
 
           } else {
 
