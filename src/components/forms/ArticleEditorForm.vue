@@ -78,7 +78,12 @@
             <div v-if="credit">
 
               <p class="text-primary mt-2">You have <strong>{{ credit }}</strong> credit(s).</p>
+
               <button type="submit" class="btn btn-success">Use 1 credit to generate an article</button>
+
+              <p v-if="this.noParamsAlert" class="text-danger mt-2">
+                Give a description between <strong>1 and {{this.descriptionMaxLength}} character(s)</strong> or give between <strong>1 & {{this.keywordsLimit}} keyword(s)</strong>.
+              </p>
 
             </div>
 
