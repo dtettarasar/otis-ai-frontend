@@ -560,6 +560,7 @@
           /*
             TODO : créer un nouveau composant pour gérer séparement le view mode
             ce composant prendra en props l'id de l'article, pour ensuite récupérer les données de l'article depuis le store avec le getter
+            créer une nouvelle route view-article qui utilisera ce nouveau composant
           */
 
         } else {
