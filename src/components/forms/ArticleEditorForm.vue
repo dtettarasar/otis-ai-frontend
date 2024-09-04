@@ -61,6 +61,8 @@
 
             <p v-if="articleObj.keywordArr.length > 0" >Keyword(s) counter: <strong> {{ articleObj.keywordArr.length }} / {{ keywordsLimit }} </strong></p>
 
+            <p v-if="this.noKeywordAlert" class="text-danger mt-2">The keyword field should not be empty</p>
+
             <button v-on:click="addKeywords" type="button" class="btn btn-secondary">Add keywords</button>
 
           </div>
@@ -221,7 +223,8 @@
           isViewMode: false,
           isGenerateMode: false,
           articleInCreation: false,
-          noParamsAlert: false
+          noParamsAlert: false,
+          noKeywordAlert: false
 
         };
 
@@ -456,6 +459,7 @@
           } else if (!this.addKeyWrdField) {
 
             console.log('field should not be empty');
+            this.noKeywordAlert = true;
 
           } else if (this.addKeyWrdField.length > this.keywordMaxLength) {
 
@@ -465,6 +469,8 @@
 
             simplifiedKeyWord = this.addKeyWrdField.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
             this.articleObj.keywordArr.push(simplifiedKeyWord);
+
+            this.noKeywordAlert = false;
 
             console.log('keyword value: ');
             console.log(this.addKeyWrdField);
