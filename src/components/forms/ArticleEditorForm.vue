@@ -180,7 +180,7 @@
   <script>
 
     import { toRaw } from 'vue';
-    import { mapState, mapActions } from 'vuex';
+    import { mapState, mapActions, mapGetters } from 'vuex';
     import { Modal } from 'bootstrap';
     import axios from 'axios';
     import Cookies from 'js-cookie';
@@ -233,6 +233,10 @@
       computed: {
             
             ...mapState(['credit']),
+
+            ...mapGetters({
+              getArticleById: 'getArticleById'
+            }),
 
             keyWordsParamOk() {
 
@@ -536,7 +540,9 @@
 
           await this.refreshUserCreditBalance(userCreditBalance);
 
-          console.log(`credit saved in store: ${this.credit}`);
+          if (this.isDevMode) {
+            console.log(`credit saved in store: ${this.credit}`);
+          }
 
         }
 
@@ -546,6 +552,10 @@
           console.log('retrieving article data');
 
           await this.testRetrieveArticleData(articleId);
+
+          const articleFromStore = this.getArticleById(articleId);
+          console.log("articleFromStore");
+          console.log(articleFromStore);
 
         } else {
 
