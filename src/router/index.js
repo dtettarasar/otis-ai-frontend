@@ -30,7 +30,7 @@ const router = createRouter({
       component: AllUserArticlesView
     },
     {
-      path: '/view-article',
+      path: '/view-article/:id?',
       name: 'view article',
       component: ArticleView
     },

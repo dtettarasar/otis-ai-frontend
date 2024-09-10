@@ -38,6 +38,10 @@
 
         mounted() {
 
+            const articleId = this.$route.params.id;
+            console.log("article ID parameter: ");
+            console.log(articleId); 
+
         },
 
         beforeCreate() {
