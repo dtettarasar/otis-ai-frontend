@@ -5,7 +5,15 @@
         <h2>{{ username }} is connected to the View Article page</h2>
     </div>
     
-    <ArticleViewer articleId="testID"></ArticleViewer>
+    <div v-if="articleId">
+        <ArticleViewer :articleId="articleId"></ArticleViewer>
+    </div>
+
+    <div v-else>
+
+        <p>No article selected. Please choose an article to view its content.</p>
+
+    </div>
 
 </template>
 
@@ -34,13 +42,16 @@
 
             ...mapState(['username']),
 
+            articleId() {
+                return this.$route.params.id;
+            }
+
         },
 
         mounted() {
 
-            const articleId = this.$route.params.id;
             console.log("article ID parameter: ");
-            console.log(articleId); 
+            console.log(this.articleId); 
 
         },
 
