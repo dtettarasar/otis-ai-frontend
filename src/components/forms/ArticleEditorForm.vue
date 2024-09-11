@@ -232,7 +232,7 @@
 
       computed: {
             
-            ...mapState(['credit']),
+            ...mapState(['credit', 'articleDataList']),
 
             ...mapGetters({
               getArticleById: 'getArticleById'
@@ -523,6 +523,9 @@
 
       async mounted() {
 
+        console.log("all article data list: ");
+        console.log(toRaw(this.articleDataList));
+
         const articleId = this.$route.params.id;
 
         const userCreditBalance = await getUserCreditBalance();
@@ -568,6 +571,9 @@
           this.isGenerateMode = true;
 
         }
+
+        console.log("all article data list: ");
+        console.log(toRaw(this.articleDataList));
 
       }
     };
