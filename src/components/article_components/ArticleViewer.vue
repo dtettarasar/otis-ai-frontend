@@ -17,6 +17,13 @@
             }
         },
 
+        mounted() {
+
+            console.log('article ID passed as props in ArticleViewer Component:');
+            console.log(this.articleId);
+
+        },
+
     }
 
 </script>
