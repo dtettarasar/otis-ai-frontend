@@ -50,8 +50,12 @@
 
         mounted() {
 
-            console.log("article ID parameter: ");
-            console.log(this.articleId); 
+            if(this.articleId) {
+
+                console.log("article ID parameter: ");
+                console.log(this.articleId);
+
+            }
 
         },
 
