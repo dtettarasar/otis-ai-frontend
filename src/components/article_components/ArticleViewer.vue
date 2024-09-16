@@ -2,6 +2,14 @@
 
     <h3>This is the Article Viewer component</h3>
 
+    <p> {{ articleFromStore.title }}</p>
+
+    <div class="mt-4" >
+
+        <div v-html="articleFromStore.content"></div>
+
+    </div>
+
 </template>
 
 <script>
@@ -23,18 +31,6 @@
         data() {
 
             return {
-
-                articleObj : {
-
-                    title: '',
-                    description: '',
-                    keywordArr: [],
-                    language: 'en',
-                    content: '',
-                    creationDate: null,
-                    lastModifDate: null,
-
-                },
 
             }
 
