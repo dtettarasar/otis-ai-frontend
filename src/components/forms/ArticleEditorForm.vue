@@ -374,7 +374,7 @@
                   }
 
                   this.addArticleObj(this.articleObj);
-                  this.isViewMode = true;
+                  this.$router.push(`/view-article/${this.articleObj.id}`);
 
                 }
 
