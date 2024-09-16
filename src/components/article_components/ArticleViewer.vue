@@ -23,6 +23,13 @@
 
             </div>
 
+            <div class="d-flex flex-row">
+
+                <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
+                <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
+
+            </div>
+
         </div>
 
     </div>
@@ -33,12 +40,16 @@
 
     </div>
 
+    <DeleteArticleModal :redirection=false />
+
 </template>
 
 <script>
 
-    import {mapState, mapGetters} from 'vuex';
+    import {mapState, mapGetters, mapActions} from 'vuex';
     import { toRaw } from 'vue';
+    import { Modal } from 'bootstrap';
+    import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
 
     export default {
 
@@ -49,6 +60,12 @@
                 type: String,
                 required: true
             }
+        },
+
+        components: {
+
+            DeleteArticleModal,
+
         },
 
         data() {
@@ -108,6 +125,20 @@
 
                 }
 
+            }
+
+        },
+
+        methods: {
+
+            ...mapActions(['setDeleteArticleId']),
+
+            async deleteArticle() {
+               
+               this.setDeleteArticleId(this.articleId);
+               const myModal = new Modal(document.getElementById('deleteArticleModal'));
+               myModal.show();
+     
             }
 
         },
