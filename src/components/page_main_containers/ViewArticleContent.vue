@@ -52,8 +52,8 @@
 
             if(this.articleId) {
 
-                console.log("article ID parameter: ");
-                console.log(this.articleId);
+                // console.log("article ID parameter: ");
+                // console.log(this.articleId);
 
             }
 

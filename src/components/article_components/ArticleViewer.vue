@@ -20,6 +20,26 @@
             }
         },
 
+        data() {
+
+            return {
+
+                articleObj : {
+
+                    title: '',
+                    description: '',
+                    keywordArr: [],
+                    language: 'en',
+                    content: '',
+                    creationDate: null,
+                    lastModifDate: null,
+
+                },
+
+            }
+
+        },
+
         computed: {
 
             ...mapState(['articleDataList']),
@@ -40,14 +60,23 @@
 
                 console.log('article ID passed as props in ArticleViewer Component:');
                 console.log(this.articleId);
-
-                console.log("articleFromStore");
-                console.log(toRaw(this.articleFromStore));
+                
 
                 /*
                 console.log("all article data list: ");
                 console.log(toRaw(this.articleDataList));
                 */
+
+                if (this.articleFromStore) {
+
+                    console.log("article is retrieved from the store: ");
+                    console.log(toRaw(this.articleFromStore));
+
+                } else {
+
+                    console.log("article id is not valid");
+
+                }
 
             }
 
