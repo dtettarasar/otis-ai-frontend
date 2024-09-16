@@ -90,7 +90,7 @@
 
             articlePageLink() {
 
-                return `/article/${this.articleId}`;
+                return `/view-article/${this.articleId}`;
 
             },
 

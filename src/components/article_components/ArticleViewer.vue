@@ -42,10 +42,12 @@
                 console.log(this.articleId);
 
                 console.log("articleFromStore");
-                console.log(this.articleFromStore);
+                console.log(toRaw(this.articleFromStore));
 
+                /*
                 console.log("all article data list: ");
                 console.log(toRaw(this.articleDataList));
+                */
 
             }
 
