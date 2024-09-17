@@ -40,7 +40,7 @@
 
     </div>
 
-    <DeleteArticleModal :redirection=true />
+    <DeleteArticleModal @deletionConfirmed="articleDeleted" :redirection=false />
 
 </template>
 
@@ -166,7 +166,13 @@
                const myModal = new Modal(document.getElementById('deleteArticleModal'));
                myModal.show();
      
-            }
+            },
+
+            articleDeleted(donnees) {
+
+                console.log("Event reçu avec ces données : ", donnees);
+
+            },
 
         },
 
