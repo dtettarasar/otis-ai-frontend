@@ -2,11 +2,11 @@
 
     <h3>This is the Article Viewer component</h3>
 
-    <p> {{ articleFromStore.title }}</p>
+    <p> {{ articleObj.title }}</p>
 
     <div class="mt-2 p-5 bg-dark-subtle rounded" >
 
-        <h1>{{ articleFromStore.title }}</h1>
+        <h1>{{ articleObj.title }}</h1>
 
         <p class="fs-5 date-text"><strong>creation date:</strong> {{ formattedDates.creationDate }}</p>
         <p class="fs-5 date-text"><strong>last modification date:</strong> {{ formattedDates.lastModifDate }}</p>
@@ -17,7 +17,7 @@
 
             <div class="mb-2 d-flex justify-content-start flex-wrap">
 
-                <div class="badge m-1 p-1 bg-primary keyword-bdge d-flex flex-row" v-for="(keyword, index) in articleFromStore.keywordArr" :key="index">
+                <div class="badge m-1 p-1 bg-primary keyword-bdge d-flex flex-row" v-for="(keyword, index) in articleObj.keywordArr" :key="index">
                     <p class="fs-6 m-1 align-self-center">{{keyword}}</p>
                 </div>
 
@@ -36,11 +36,11 @@
 
     <div class="mt-4" >
 
-        <div v-html="articleFromStore.content"></div>
+        <div v-html="articleObj.content"></div>
 
     </div>
 
-    <DeleteArticleModal :redirection=false />
+    <DeleteArticleModal :redirection=true />
 
 </template>
 
@@ -72,6 +72,20 @@
 
             return {
 
+                articleObj: {
+
+                    id: null,
+                    title: '',
+                    description: '',
+                    keywordArr: [],
+                    language: '',
+                    content: '',
+                    creationDate: null,
+                    lastModifDate: null,
+                    errorMessages: null
+
+                },
+
             }
 
         },
@@ -92,8 +106,8 @@
 
                 return {
 
-                    creationDate: this.articleFromStore.creationDate ? new Date(this.articleFromStore.creationDate).toLocaleDateString() : '',
-                    lastModifDate: this.articleFromStore.lastModifDate ? new Date(this.articleFromStore.lastModifDate).toLocaleDateString() : '',
+                    creationDate: this.articleObj.creationDate ? new Date(this.articleObj.creationDate).toLocaleDateString() : '',
+                    lastModifDate: this.articleObj.lastModifDate ? new Date(this.articleObj.lastModifDate).toLocaleDateString() : '',
 
                 }
 
@@ -116,8 +130,21 @@
 
                 if (this.articleFromStore) {
 
-                    console.log("article is retrieved from the store: ");
-                    console.log(toRaw(this.articleFromStore));
+                    // console.log("article is retrieved from the store: ");
+                    // console.log(toRaw(this.articleFromStore));
+
+                    this.articleObj.id = this.articleFromStore.id;
+                    this.articleObj.title = this.articleFromStore.title;
+                    this.articleObj.description = this.articleFromStore.description;
+                    this.articleObj.content = this.articleFromStore.content;
+                    this.articleObj.language = this.articleFromStore.language;
+                    this.articleObj.keywordArr = this.articleFromStore.keywordArr;
+                    this.articleObj.creationDate = this.articleFromStore.creationDate;
+                    this.articleObj.lastModifDate = this.articleFromStore.lastModifDate;
+
+                    console.log("this.articleObj");
+                    console.log(toRaw(this.articleObj));
+                    
 
                 } else {
 
