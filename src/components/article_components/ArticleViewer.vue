@@ -86,6 +86,8 @@
 
                 },
 
+                deleteArticleModalInstance: null, // store the instance of the modal here
+
             }
 
         },
@@ -154,6 +156,9 @@
 
             }
 
+            // init the instance of the modal here : 
+            this.deleteArticleModalInstance = new Modal(document.getElementById('deleteArticleModal'));
+
         },
 
         methods: {
@@ -163,14 +168,27 @@
             async deleteArticle() {
                
                this.setDeleteArticleId(this.articleId);
-               const myModal = new Modal(document.getElementById('deleteArticleModal'));
-               myModal.show();
+               //const myModal = new Modal(document.getElementById('deleteArticleModal'));
+               // myModal.show();
+
+               this.deleteArticleModalInstance.show();
      
             },
 
-            articleDeleted(donnees) {
+            articleDeleted(data) {
 
-                console.log("Event reçu avec ces données : ", donnees);
+                console.log(data);
+
+                setTimeout(()=> {
+
+                    //this.$router.push('/user-account');
+                    //window.location.href = '/user-account';
+                    // const myModal = new Modal(document.getElementById('deleteArticleModal'));
+                    // myModal.hide();
+                    
+                    this.deleteArticleModalInstance.hide();
+
+                }, 2000);
 
             },
 
