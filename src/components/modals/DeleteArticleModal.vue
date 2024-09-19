@@ -157,6 +157,7 @@
                         this.deletionDone = true;
                         this.deletionConfirmed();
 
+                        /*
                         if (this.redirection) {
 
                             setTimeout(()=> {
@@ -164,7 +165,7 @@
                                 window.location.href = '/user-account';
                             }, 2000);
 
-                        }
+                        }*/
 
                     } else {
 

@@ -40,7 +40,7 @@
 
     </div>
 
-    <DeleteArticleModal @deletionConfirmed="articleDeleted" :redirection=false />
+    <DeleteArticleModal @deletionConfirmed="articleDeleted" :redirection=true />
 
 </template>
 
@@ -187,6 +187,7 @@
                     // myModal.hide();
                     
                     this.deleteArticleModalInstance.hide();
+                    this.$router.push('/user-account');
 
                 }, 2000);
 
