@@ -112,6 +112,7 @@
 
     <!--Article in View mode-->
 
+    <!--
     <div v-if="isViewMode && articleObj.retrievedStatus" >
 
       <div class="mt-2 p-5 bg-dark-subtle rounded" v-if="isViewMode && articleObj.retrievedStatus" >
@@ -135,11 +136,6 @@
 
             <div class="d-flex flex-row">
 
-              <!--
-              <button v-on:click="switchToEditMode" class="btn btn-success m-1 p-2"><i class="bi bi-pen-fill"></i> Edit Mode</button>
-              <button v-on:click="switchToViewMode" class="btn btn-primary m-1 p-2"><i class="bi bi-eye-fill"></i> View Mode</button>
-              -->
-
               <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
               <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
 
@@ -156,10 +152,7 @@
       </div>
 
     </div>
-
-    
-
-    
+    -->
 
     <!--End of Article in View mode-->
 
@@ -356,7 +349,7 @@
 
                   // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
 
-                  await this.testRetrieveArticleData(response.data.articleId);
+                  await this.retrieveArticleData(response.data.articleId);
                   
                   // Update credit balance here
                   // await this.getUserCreditBalance();
@@ -388,11 +381,11 @@
 
         },
 
-        async testRetrieveArticleData(articleId) {
+        async retrieveArticleData(articleId) {
 
           if (this.isDevMode) {
 
-            console.log('init the testRetrieveArticleData method');
+            console.log('init the retrieveArticleData method');
 
           }
 
@@ -444,7 +437,7 @@
 
           if (this.isDevMode) {
 
-            console.log('end of testRetrieveArticleData method');
+            console.log('end of retrieveArticleData method');
 
           }
 
