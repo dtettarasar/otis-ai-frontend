@@ -1,16 +1,4 @@
 <template>
-    
-    <div>
-
-      <div v-if="articleObj.retrievedStatus" >
-        <p v-if="isEditMode && articleObj">Editing Article ID: {{ articleObj.id }}</p>
-      </div>
-
-      <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
-      
-    </div>
-
-    <!--Article in Generate mode-->
 
     <div>
 
@@ -117,18 +105,11 @@
     import { mapState, mapActions, mapGetters } from 'vuex';
     import axios from 'axios';
     import Cookies from 'js-cookie';
-    import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
     import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
   
     export default {
         
       name: 'ArticleEditorForm.vue',
-
-      components: {
-
-        DeleteArticleModal,
-
-      },
 
       data() {
 
@@ -152,8 +133,6 @@
           keywordMaxLength: 30,
           descriptionMaxLength: 130,
           errorMessage: null,
-          isEditMode: false,
-          // isGenerateMode: false,
           articleInCreation: false,
           noParamsAlert: false,
           noKeywordAlert: false
@@ -430,8 +409,6 @@
         console.log("all article data list: ");
         console.log(toRaw(this.articleDataList));
 
-        //const articleId = this.$route.params.id;
-
         const userCreditBalance = await getUserCreditBalance();
 
         if (userCreditBalance) {
@@ -453,35 +430,11 @@
 
         }
 
-        /*
-        if (articleId) {
-
-          console.log('retrieving article data');
-
-          await this.testRetrieveArticleData(articleId);
-
-          const articleFromStore = this.getArticleById(articleId);
-          console.log("articleFromStore");
-          console.log(articleFromStore);
-
-          
-            TODO : créer un nouveau composant pour gérer séparement le view mode
-            ce composant prendra en props l'id de l'article, pour ensuite récupérer les données de l'article depuis le store avec le getter
-            créer une nouvelle route view-article qui utilisera ce nouveau composant
-          
-
-        } else {
-
-          this.isGenerateMode = true;
-
-        }
-
-        */
-
         console.log("all article data list: ");
         console.log(toRaw(this.articleDataList));
 
       }
+
     };
 
   </script>
