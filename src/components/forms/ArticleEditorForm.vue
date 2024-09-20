@@ -109,52 +109,6 @@
 
     </div>
 
-    <!--Article in View mode-->
-
-    <!--
-    <div v-if="isViewMode && articleObj.retrievedStatus" >
-
-      <div class="mt-2 p-5 bg-dark-subtle rounded" v-if="isViewMode && articleObj.retrievedStatus" >
-
-        <h1>{{ articleObj.title }}</h1>
-
-        <p class="fs-5 date-text"><strong>creation date:</strong> {{ formattedDates.creationDate }}</p>
-        <p class="fs-5 date-text"><strong>last modification date:</strong> {{ formattedDates.lastModifDate }}</p>
-
-        <div>
-
-            <p class="fs-5">keywords:</p>
-
-            <div class="mb-2 d-flex justify-content-start flex-wrap">
-
-              <div class="badge m-1 p-1 bg-primary keyword-bdge d-flex flex-row" v-for="(keyword, index) in articleObj.keywordArr" :key="index">
-                <p class="fs-6 m-1 align-self-center">{{keyword}}</p>
-              </div>
-
-            </div>
-
-            <div class="d-flex flex-row">
-
-              <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
-              <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
-
-            </div>
-
-        </div>
-
-      </div>
-
-      <div class="mt-4">
-      
-        <div v-html="articleObj.content" ></div>
-
-      </div>
-
-    </div>
-    -->
-
-    <!--End of Article in View mode-->
-
     <div v-if="articleObj.retrievedStatus" >
 
       <DeleteArticleModal :redirection=true />
@@ -212,7 +166,6 @@
           descriptionMaxLength: 130,
           errorMessage: null,
           isEditMode: false,
-          // isViewMode: false,
           isGenerateMode: false,
           articleInCreation: false,
           noParamsAlert: false,
@@ -288,15 +241,6 @@
 
         ...mapActions(['setDeleteArticleId', 'addArticleObj', 'refreshUserCreditBalance']),
 
-        /*
-        async saveArticle() {
-
-          // console.log('init save article method');
-          this.isViewMode = true;
-
-        },
-        */
-
         async generateArticle() {
 
           if (this.isDevMode) {
@@ -353,7 +297,6 @@
                   await this.retrieveArticleData(response.data.articleId);
                   
                   // Update credit balance here
-                  // await this.getUserCreditBalance();
 
                   const userCreditBalance = await getUserCreditBalance();
 
@@ -493,20 +436,6 @@
           console.log(toRaw(this.articleObj.keywordArr));
         },
 
-        switchToEditMode() {
-
-          console.log("switch to edit mode");
-
-        },
-
-        /*
-        switchToViewMode() {
-
-          console.log("switch to view mode");
-
-        },
-        */
-
         async deleteArticle() {
                
           this.setDeleteArticleId(this.articleObj.id);
@@ -547,7 +476,6 @@
 
         if (articleId) {
 
-          // this.isViewMode = true;
           console.log('retrieving article data');
 
           await this.testRetrieveArticleData(articleId);
