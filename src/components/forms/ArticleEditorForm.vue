@@ -4,7 +4,6 @@
 
       <div v-if="articleObj.retrievedStatus" >
         <p v-if="isEditMode && articleObj">Editing Article ID: {{ articleObj.id }}</p>
-        <p v-if="isViewMode && articleObj">Viewing Article ID: {{ articleObj.id }}</p>
       </div>
 
       <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
@@ -13,7 +12,7 @@
 
     <!--Article in Generate mode-->
 
-    <div v-if="!this.isViewMode">
+    <div>
 
       <p>Creating a New Article</p>
 
@@ -69,7 +68,7 @@
 
         </div>
 
-        <div v-if="!this.isViewMode" class="bg-dark-subtle rounded mt-4 mb-4 p-5">
+        <div class="bg-dark-subtle rounded mt-4 mb-4 p-5">
 
           <h2>Generate Text with AI</h2>
 
@@ -213,7 +212,7 @@
           descriptionMaxLength: 130,
           errorMessage: null,
           isEditMode: false,
-          isViewMode: false,
+          // isViewMode: false,
           isGenerateMode: false,
           articleInCreation: false,
           noParamsAlert: false,
@@ -289,12 +288,14 @@
 
         ...mapActions(['setDeleteArticleId', 'addArticleObj', 'refreshUserCreditBalance']),
 
+        /*
         async saveArticle() {
 
           // console.log('init save article method');
           this.isViewMode = true;
 
         },
+        */
 
         async generateArticle() {
 
@@ -498,11 +499,13 @@
 
         },
 
+        /*
         switchToViewMode() {
 
           console.log("switch to view mode");
 
         },
+        */
 
         async deleteArticle() {
                
@@ -544,7 +547,7 @@
 
         if (articleId) {
 
-          this.isViewMode = true;
+          // this.isViewMode = true;
           console.log('retrieving article data');
 
           await this.testRetrieveArticleData(articleId);
