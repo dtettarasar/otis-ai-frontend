@@ -228,10 +228,15 @@
 
           if (!this.descParamOk && !this.keyWordsParamOk) {
 
-            console.log(`noParamsAlert value: ${this.noParamsAlert}`)
-            console.log("error: no parameters");
+            if (this.isDevMode) {
+
+              console.log(`noParamsAlert value: ${this.noParamsAlert}`);
+              console.log("error: no parameters");
+              console.log(`noParamsAlert value: ${this.noParamsAlert}`);
+
+            }            
+
             this.noParamsAlert = true;
-            console.log(`noParamsAlert value: ${this.noParamsAlert}`)
 
           } else {
 
