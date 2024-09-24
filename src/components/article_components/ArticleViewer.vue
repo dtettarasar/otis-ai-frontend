@@ -49,7 +49,9 @@
     import {mapState, mapGetters, mapActions} from 'vuex';
     import { toRaw } from 'vue';
     import { Modal } from 'bootstrap';
+    import axios from 'axios';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
+    import Cookies from 'js-cookie';
 
     export default {
 
@@ -121,6 +123,12 @@
 
             },
 
+            retrieveArticleBackendUrl() {
+
+                return this.$backendUrl + 'front-api/retrieve-article-data';
+
+            },
+
         },
 
         mounted() {
@@ -159,7 +167,7 @@
                     // try here to retrieve the article with the id
                     this.retrieveArticleData(this.articleId);
 
-                    console.log("article id is not valid");
+                    //console.log("article id is not valid");
 
                 }
 
@@ -209,6 +217,46 @@
                     console.log('init the retrieveArticleData method');
                     console.log('try to retrieve the article with the following id: ');
                     console.log(articleId);
+
+                }
+
+                const accessToken = Cookies.get('accessToken');
+
+                try {
+
+                    const response = await axios.get(this.retrieveArticleBackendUrl, {
+
+                        params: {
+                            articleId: articleId,
+                            accessToken: accessToken
+                        }
+
+                    });
+
+                    if (this.isDevMode) {
+
+                        console.log('response.data: ');
+                        console.log(response.data);
+
+                    }
+
+                    if (response.data.retrievedStatus !== null) {
+
+                        this.articleObj.retrievedStatus = response.data.retrievedStatus;
+                        this.articleObj.id = response.data.articleId;
+                        this.articleObj.title = response.data.articleTitle;
+                        this.articleObj.description = response.data.articleDesc;
+                        this.articleObj.content = response.data.articleContent;
+                        this.articleObj.language = response.data.articleLang;
+                        this.articleObj.keywordArr = response.data.articleKeywords;
+                        this.articleObj.creationDate = response.data.articleCreationDate;
+                        this.articleObj.lastModifDate = response.data.articleLastModifiedDate;
+
+                    }
+
+                } catch(err) {
+
+                    console.log(err);
 
                 }
 
