@@ -38,9 +38,12 @@
 
     </div>
 
-    <div v-if="!articleObj.retrievedStatus">
+    <div class="mt-2 p-5 bg-dark-subtle rounded" v-if="!articleObj.retrievedStatus">
 
-        <strong>Article not found</strong>
+        <div class="d-flex flex-column justify-content-center">
+            <p class="text-center display-6"><i class="bi bi-exclamation-triangle-fill"></i></p>
+            <p class="display-6 text-center"><strong>Article not found</strong></p>
+        </div>
 
     </div>
 
