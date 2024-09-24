@@ -115,6 +115,12 @@
 
             },
 
+            isDevMode() {
+
+                return process.env.NODE_ENV !== 'production';
+
+            },
+
         },
 
         mounted() {
@@ -149,6 +155,9 @@
                     
 
                 } else {
+
+                    // try here to retrieve the article with the id
+                    this.retrieveArticleData(this.articleId);
 
                     console.log("article id is not valid");
 
@@ -190,6 +199,18 @@
                     this.$router.push('/user-account');
 
                 }, 2000);
+
+            },
+
+            async retrieveArticleData(articleId) {
+
+                if (this.isDevMode) {
+
+                    console.log('init the retrieveArticleData method');
+                    console.log('try to retrieve the article with the following id: ');
+                    console.log(articleId);
+
+                }
 
             },
 
