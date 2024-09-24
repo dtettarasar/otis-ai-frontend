@@ -2,9 +2,7 @@
 
     <h3>This is the Article Viewer component</h3>
 
-    <p> {{ articleObj.title }}</p>
-
-    <div class="mt-2 p-5 bg-dark-subtle rounded" >
+    <div v-if="articleObj.retrievedStatus" class="mt-2 p-5 bg-dark-subtle rounded" >
 
         <h1>{{ articleObj.title }}</h1>
 
@@ -34,9 +32,15 @@
 
     </div>
 
-    <div class="mt-4" >
+    <div v-if="articleObj.retrievedStatus" class="mt-4" >
 
         <div v-html="articleObj.content"></div>
+
+    </div>
+
+    <div v-if="!articleObj.retrievedStatus">
+
+        <strong>Article not found</strong>
 
     </div>
 
@@ -76,6 +80,7 @@
 
                 articleObj: {
 
+                    retrievedStatus: null,
                     id: null,
                     title: '',
                     description: '',
@@ -148,7 +153,7 @@
 
                     // console.log("article is retrieved from the store: ");
                     // console.log(toRaw(this.articleFromStore));
-
+                    this.articleObj.retrievedStatus = true;
                     this.articleObj.id = this.articleFromStore.id;
                     this.articleObj.title = this.articleFromStore.title;
                     this.articleObj.description = this.articleFromStore.description;
