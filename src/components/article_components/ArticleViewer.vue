@@ -21,6 +21,8 @@
 
             </div>
 
+            <KeywordsList articleId="this-is-id-param"/>
+
             <div class="d-flex flex-row">
 
                 <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
@@ -58,6 +60,7 @@
     import { Modal } from 'bootstrap';
     import axios from 'axios';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
+    import KeywordsList from './KeywordsList.vue';
     import Cookies from 'js-cookie';
 
     export default {
@@ -74,6 +77,7 @@
         components: {
 
             DeleteArticleModal,
+            KeywordsList,
 
         },
 
