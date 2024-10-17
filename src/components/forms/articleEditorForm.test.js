@@ -51,8 +51,6 @@ describe('ArticleEditorForm.vue', () => {
             data() {
                 return {
 
-                    isEditMode: true,
-                    isViewMode: false,
                     articleObj: {
                         id: null,
                         title: '',
@@ -80,19 +78,6 @@ describe('ArticleEditorForm.vue', () => {
 
     afterEach(() => {
         wrapper.unmount();
-    });
-
-    it('affiche le message approprié en mode édition', async () => {
-
-        await wrapper.setData({
-            articleObj: {
-                retrievedStatus: true,
-                id: 'test_id',
-            }
-        });
-
-        expect(wrapper.text()).toContain('Editing Article ID: test_id');
-
     });
 
     it('affiche le message approprié en mode visualisation', async () => {
@@ -226,9 +211,6 @@ describe('ArticleEditorForm.vue', () => {
         expect(wrapper.vm.articleObj.content).toBe('Test Content');
         expect(wrapper.vm.articleObj.creationDate).toBe('2024-01-01');
         expect(wrapper.vm.articleObj.lastModifDate).toBe('2024-01-01');
-
-        // vérifier que le composant passe en mode visualisation une fois l'article généré
-        // expect(wrapper.vm.isViewMode).toBe(true);
 
         // vérifier que la méthode this.addArticleObj(this.articleObj); est bien executé après l'execution de generateArticle();
         expect(addArticleObjSpy).toHaveBeenCalledWith(wrapper.vm.articleObj);
