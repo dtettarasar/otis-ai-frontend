@@ -21,7 +21,7 @@
 
             </div>
 
-            <KeywordsList :articleId="articleId"/>
+            <!--<KeywordsList :articleId="articleId"/>-->
 
             <div class="d-flex flex-row">
 
