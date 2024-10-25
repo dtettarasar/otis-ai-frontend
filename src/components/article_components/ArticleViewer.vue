@@ -169,6 +169,7 @@
                     this.articleObj.keywordArr = this.articleFromStore.keywordArr;
                     this.articleObj.creationDate = this.articleFromStore.creationDate;
                     this.articleObj.lastModifDate = this.articleFromStore.lastModifDate;
+                    this.articleObj.slug = this.articleFromStore.slug;
 
                     console.log("this.articleObj");
                     console.log(toRaw(this.articleObj));
