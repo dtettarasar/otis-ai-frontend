@@ -5,8 +5,8 @@
         <h2>{{ username }} is connected to the View Article page</h2>
     </div>
     
-    <div v-if="articleId">
-        <ArticleViewer :articleId="articleId"></ArticleViewer>
+    <div v-if="articleSlug">
+        <ArticleViewer :articleSlug="articleSlug"></ArticleViewer>
     </div>
 
     <div v-else>
@@ -44,16 +44,20 @@
 
             articleId() {
                 return this.$route.params.id;
+            },
+
+            articleSlug() {
+                return this.$route.params.slug;
             }
 
         },
 
         mounted() {
 
-            if(this.articleId) {
+            if(this.articleSlug) {
 
-                // console.log("article ID parameter: ");
-                // console.log(this.articleId);
+                console.log("article slug parameter from ViewArticleContent component: ");
+                console.log(this.articleSlug);
 
             }
 

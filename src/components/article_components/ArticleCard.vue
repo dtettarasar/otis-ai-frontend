@@ -207,11 +207,11 @@
             }
             */
 
-            console.log('init mounted event from article card component');
+            // console.log('init mounted event from article card component');
 
             if (this.articleFromStore) {
 
-                console.log(toRaw(this.articleFromStore));
+                // console.log(toRaw(this.articleFromStore));
 
                 this.articleObj.retrievedStatus = true;
                 this.articleObj.id = this.articleFromStore.id;

@@ -68,7 +68,7 @@
         name: 'ArticleViewer',
 
         props: {
-            articleId: {
+            articleSlug: {
                 type: String,
                 required: true
             }
@@ -117,7 +117,7 @@
             }),
 
             articleFromStore() {
-                return this.getArticleById(this.articleId);
+                return this.getArticleBySlug(this.articleSlug);
             },
 
             formattedDates() {
@@ -147,7 +147,15 @@
 
         mounted() {
 
-            if (this.articleId) {
+            console.log('init mounted event from article viewer component');
+
+            console.log('test getArticleBySlug');
+            console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
+            console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
+            const articleFoundBySlug = this.getArticleBySlug(this.articleSlug)
+            console.log(toRaw(articleFoundBySlug));
+
+            if (this.articleSlug) {
 
                 // console.log('article ID passed as props in ArticleViewer Component:');
                 // console.log(this.articleId);
@@ -177,19 +185,26 @@
                     // console.log("this.articleObj");
                     // console.log(toRaw(this.articleObj));
 
+                    /*
                     console.log('test getArticleBySlug');
                     console.log(`slug: ${this.articleObj.slug}`);
                     const articleFoundBySlug = this.getArticleBySlug(this.articleObj.slug)
                     console.log(toRaw(articleFoundBySlug));
+                    */
 
                     
 
                 } else {
 
                     // try here to retrieve the article with the id
-                    this.retrieveArticleData(this.articleId);
+                    //this.retrieveArticleData(this.articleId);
 
                     //console.log("article id is not valid");
+
+                    console.log('test getArticleBySlug after page reload');
+                    console.log(`slug: ${this.articleSlug}`);
+                    const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
+                    console.log(toRaw(articleFoundBySlug));
 
                 }
 
@@ -206,7 +221,7 @@
 
             async deleteArticle() {
                
-               this.setDeleteArticleId(this.articleId);
+               this.setDeleteArticleId(this.articleObj.id);
                //const myModal = new Modal(document.getElementById('deleteArticleModal'));
                // myModal.show();
 
