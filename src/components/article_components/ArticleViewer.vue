@@ -112,7 +112,8 @@
             ...mapState(['articleDataList']),
 
             ...mapGetters({
-              getArticleById: 'getArticleById'
+              getArticleById: 'getArticleById',
+              getArticleBySlug: 'getArticleBySlug',
             }),
 
             articleFromStore() {
@@ -148,8 +149,8 @@
 
             if (this.articleId) {
 
-                console.log('article ID passed as props in ArticleViewer Component:');
-                console.log(this.articleId);
+                // console.log('article ID passed as props in ArticleViewer Component:');
+                // console.log(this.articleId);
                 
 
                 /*
@@ -161,6 +162,7 @@
 
                     // console.log("article is retrieved from the store: ");
                     // console.log(toRaw(this.articleFromStore));
+
                     this.articleObj.retrievedStatus = true;
                     this.articleObj.id = this.articleFromStore.id;
                     this.articleObj.title = this.articleFromStore.title;
@@ -172,8 +174,13 @@
                     this.articleObj.lastModifDate = this.articleFromStore.lastModifDate;
                     this.articleObj.slug = this.articleFromStore.slug;
 
-                    console.log("this.articleObj");
-                    console.log(toRaw(this.articleObj));
+                    // console.log("this.articleObj");
+                    // console.log(toRaw(this.articleObj));
+
+                    console.log('test getArticleBySlug');
+                    const articleFoundBySlug = this.getArticleBySlug(this.articleObj.slug)
+                    console.log(toRaw(articleFoundBySlug));
+
                     
 
                 } else {
@@ -228,9 +235,9 @@
 
                 if (this.isDevMode) {
 
-                    console.log('init the retrieveArticleData method');
-                    console.log('try to retrieve the article with the following id: ');
-                    console.log(articleId);
+                    // console.log('init the retrieveArticleData method');
+                    // console.log('try to retrieve the article with the following id: ');
+                    // console.log(articleId);
 
                 }
 
@@ -249,8 +256,8 @@
 
                     if (this.isDevMode) {
 
-                        console.log('response.data: ');
-                        console.log(response.data);
+                        // console.log('response.data: ');
+                        // console.log(response.data);
 
                     }
 
