@@ -96,7 +96,8 @@
                     content: '',
                     creationDate: null,
                     lastModifDate: null,
-                    errorMessages: null
+                    errorMessages: null,
+                    slug: null,
 
                 },
 
