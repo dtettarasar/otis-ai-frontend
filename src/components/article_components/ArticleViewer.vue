@@ -178,6 +178,7 @@
                     // console.log(toRaw(this.articleObj));
 
                     console.log('test getArticleBySlug');
+                    console.log(`slug: ${this.articleObj.slug}`);
                     const articleFoundBySlug = this.getArticleBySlug(this.articleObj.slug)
                     console.log(toRaw(articleFoundBySlug));
 

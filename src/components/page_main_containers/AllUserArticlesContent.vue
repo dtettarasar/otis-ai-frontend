@@ -8,9 +8,9 @@
 
         <div class="row">
 
-            <div class="col-12 col-md-6 col-lg-4 mb-3" v-for="articleObj in reverseArticleList" :key="articleObj.id">
+            <div class="col-12 col-md-6 col-lg-4 mb-3" v-for="articleObj in reverseArticleList" :key="articleObj.slug">
 
-                <ArticleCard :articleId="articleObj.id" @delete-article="prepareToDelete"></ArticleCard>
+                <ArticleCard :articleSlug="articleObj.slug" @delete-article="prepareToDelete"></ArticleCard>
 
             </div>
 
