@@ -149,11 +149,18 @@
 
             console.log('init mounted event from article viewer component');
 
-            console.log('test getArticleBySlug');
-            console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
-            console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
+            console.log("article slug prop: ");
+            console.log(this.articleSlug);
+
+            console.log('verify article datas from the local storage: ');
+            const storedArticleDataList = localStorage.getItem('articleDataList');
+            console.log(storedArticleDataList);
+
+            // console.log('test getArticleBySlug');
+            // console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
+            // console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
             const articleFoundBySlug = this.getArticleBySlug(this.articleSlug)
-            console.log(toRaw(articleFoundBySlug));
+            // console.log(toRaw(articleFoundBySlug));
 
             if (this.articleSlug) {
 

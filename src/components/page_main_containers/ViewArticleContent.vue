@@ -56,8 +56,8 @@
 
             if(this.articleSlug) {
 
-                console.log("article slug parameter from ViewArticleContent component: ");
-                console.log(this.articleSlug);
+                // console.log("article slug parameter from ViewArticleContent component: ");
+                // console.log(this.articleSlug);
 
             }
 

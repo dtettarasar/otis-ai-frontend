@@ -91,8 +91,8 @@ export default createStore({
       setArticleDataList(state, articleDataList) {
         
         state.articleDataList = articleDataList;
-        console.log('saved the article data list: '); 
-        console.log(state.articleDataList);
+        // console.log('saved the article data list: '); 
+        // console.log(state.articleDataList);
 
       },
 

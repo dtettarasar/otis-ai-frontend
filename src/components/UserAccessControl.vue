@@ -193,6 +193,7 @@
                     if(res.data.articleDataList.length >= 1) {
 
                         await this.saveArticleDataList(res.data.articleDataList);
+                        await localStorage.setItem('articleDataList', JSON.stringify(res.data.articleDataList));
 
                     }
 
@@ -203,7 +204,7 @@
 
                 });
 
-                console.log("end of getUserAllArticlesData method");
+                // console.log("end of getUserAllArticlesData method");
 
             },
 
