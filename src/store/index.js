@@ -91,8 +91,8 @@ export default createStore({
       setArticleDataList(state, articleDataList) {
         
         state.articleDataList = articleDataList;
-        // console.log('saved the article data list: '); 
-        // console.log(state.articleDataList);
+        console.log('saved the article data list: '); 
+        console.log(state.articleDataList);
 
       },
 
@@ -251,7 +251,7 @@ export default createStore({
 
       },
 
-      saveArticleDataList({commit}, articleDataList) {
+      async saveArticleDataList({commit}, articleDataList) {
 
         // console.log('init the saveArticleDataList from the vuex store');
         commit('setArticleDataList', articleDataList);
