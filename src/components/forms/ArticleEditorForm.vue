@@ -348,6 +348,15 @@
 
                 console.log('Content after parse:', parsedArticleDataList);
 
+                console.log("add the new article created");
+
+                parsedArticleDataList.push(articleObj);
+
+                console.log("article array, after new article added: ");
+
+                console.log(parsedArticleDataList);
+
+
               } else {
 
                 console.log("parsed datas didn't returned an array");
