@@ -254,13 +254,39 @@
                 
                 if (this.isDevMode) {
 
-                  console.log("response data:");
-                  console.log(response.data);
-                  console.log("article id: ");
-                  console.log(response.data.articleId);
+                  // console.log("response data:");
+                  // console.log(response.data);
+                  // console.log("article id: ");
+                  // console.log(response.data.articleId);
 
                 }
 
+                if (response.data.articleData) {
+
+                  console.log("article Data: ");
+                  console.log(response.data.articleData);
+
+                  this.addArticleObj(response.data.articleData);
+
+                  // Todo : add the article in the localStorage. 
+
+                  // Update credit balance here
+
+                  const userCreditBalance = await getUserCreditBalance();
+
+                  if (userCreditBalance) {
+
+                    console.log('init this.refreshUserCreditBalance from article editor component (after generating an article)');
+
+                    this.refreshUserCreditBalance(userCreditBalance);
+
+                    console.log(`credit saved in store: ${this.credit}`);
+
+                  }
+
+                }
+
+                /*
                 if (response.data.articleId) {
 
                   // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
@@ -281,10 +307,11 @@
 
                   }
 
-                  this.addArticleObj(this.articleObj);
-                  this.$router.push(`/view-article/${this.articleObj.id}`);
+                  //this.addArticleObj(this.articleObj);
+                  //this.$router.push(`/view-article/${this.articleObj.id}`);
 
                 }
+                */
 
                 } catch (err) {
 
