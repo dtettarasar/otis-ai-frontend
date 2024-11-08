@@ -149,26 +149,22 @@
 
             console.log('init mounted event from article viewer component');
 
-            this.retrieveArticleFromLocalStorage(this.articleSlug);
-
             // console.log('test getArticleBySlug');
             // console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
             // console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
-            const articleFoundBySlug = this.getArticleBySlug(this.articleSlug)
+            const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
             // console.log(toRaw(articleFoundBySlug));
 
             if (this.articleSlug) {
-
-                // console.log('article ID passed as props in ArticleViewer Component:');
-                // console.log(this.articleId);
                 
+                const articlefromLocalStorage = this.retrieveArticleFromLocalStorage(this.articleSlug);
 
                 /*
                 console.log("all article data list: ");
                 console.log(toRaw(this.articleDataList));
                 */
 
-                if (this.articleFromStore) {
+                if (!articlefromLocalStorage && this.articleFromStore) {
 
                     // console.log("article is retrieved from the store: ");
                     // console.log(toRaw(this.articleFromStore));
@@ -320,18 +316,41 @@
                         console.log('Type after parse:', typeof parsedArticleDataList);
                         console.log('Content after parse:', parsedArticleDataList);
 
-                        // Find the article matching the slug
-                        const articleFound = parsedArticleDataList.find(article => article.slug === slug);
+                        // Check that the parsing result returned an array
+                        if (Array.isArray(parsedArticleDataList)) {
 
-                        if (articleFound) {
+                            // Find the article matching the slug
+                            const articleFound = parsedArticleDataList.find(article => article.slug === slug);
 
-                            console.log('Found article:', articleFound);
-                            return articleFound;
+                            if (articleFound) {
+
+                                console.log('Found article:', articleFound);
+                                
+                                this.articleObj.retrievedStatus = true;
+                                this.articleObj.id = articleFound.id;
+                                this.articleObj.title = articleFound.title;
+                                this.articleObj.description = articleFound.description;
+                                this.articleObj.content = articleFound.content;
+                                this.articleObj.language = articleFound.language;
+                                this.articleObj.keywordArr = articleFound.keywordArr;
+                                this.articleObj.creationDate = articleFound.creationDate;
+                                this.articleObj.lastModifDate = articleFound.lastModifDate;
+                                this.articleObj.slug = articleFound.slug;
+
+                                return true;
+
+                            } else {
+
+                                console.log('no article found');
+                                return null;
+
+                            }
+
 
                         } else {
 
-                            console.log('no article found');
-                            return null;
+                            console.log("parsed datas didn't returned an array");
+                            return null
 
                         }
 
@@ -339,6 +358,7 @@
 
                         console.log('Error when trying to parse the article data: '); 
                         console.log(err);
+                        return null;
 
                     }
 
