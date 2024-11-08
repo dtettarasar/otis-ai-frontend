@@ -356,6 +356,8 @@
 
                 console.log(parsedArticleDataList);
 
+                localStorage.setItem('articleDataList', JSON.stringify(parsedArticleDataList));
+
 
               } else {
 
