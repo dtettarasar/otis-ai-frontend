@@ -268,7 +268,9 @@
 
                   this.addArticleObj(response.data.articleData);
 
-                  // Todo : add the article in the localStorage. 
+                  // Todo : add the article in the localStorage.
+
+                  this.addArticleinLocalStorage(response.data.articleData);
 
                   // Update credit balance here
 
@@ -320,6 +322,17 @@
                 }
 
           }
+
+        },
+
+        addArticleinLocalStorage(articleObj) {
+
+          console.log('init addArticleinLocalStorage method');
+          console.log('article to add: ');
+          
+          console.log(articleObj);
+
+
 
         },
 
