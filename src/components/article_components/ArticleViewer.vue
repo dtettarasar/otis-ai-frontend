@@ -149,12 +149,7 @@
 
             console.log('init mounted event from article viewer component');
 
-            console.log("article slug prop: ");
-            console.log(this.articleSlug);
-
-            console.log('verify article datas from the local storage: ');
-            const storedArticleDataList = localStorage.getItem('articleDataList');
-            console.log(storedArticleDataList);
+            this.retrieveArticleFromLocalStorage(this.articleSlug);
 
             // console.log('test getArticleBySlug');
             // console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
@@ -301,6 +296,51 @@
                 } catch(err) {
 
                     console.log(err);
+
+                }
+
+            },
+
+            retrieveArticleFromLocalStorage(slug) {
+
+                console.log('init retrieveArticleFromLocalStorage method');
+
+                console.log("article slug prop: ");
+                console.log(slug);
+
+                const storedArticleDataList = localStorage.getItem('articleDataList');
+
+                if (storedArticleDataList) {
+
+                    try {
+
+                        // convert the string to an array of objects
+                        const parsedArticleDataList = JSON.parse(storedArticleDataList);
+                        
+                        console.log('Type after parse:', typeof parsedArticleDataList);
+                        console.log('Content after parse:', parsedArticleDataList);
+
+                        // Find the article matching the slug
+                        const articleFound = parsedArticleDataList.find(article => article.slug === slug);
+
+                        if (articleFound) {
+
+                            console.log('Found article:', articleFound);
+                            return articleFound;
+
+                        } else {
+
+                            console.log('no article found');
+                            return null;
+
+                        }
+
+                    } catch(err) {
+
+                        console.log('Error when trying to parse the article data: '); 
+                        console.log(err);
+
+                    }
 
                 }
 
