@@ -332,7 +332,39 @@
           
           console.log(articleObj);
 
+          const storedArticleDataList = localStorage.getItem('articleDataList');
 
+          if (storedArticleDataList) {
+
+            try {
+
+              // convert the string to an array of objects
+              const parsedArticleDataList = JSON.parse(storedArticleDataList);
+
+              console.log('Type after parse:', typeof parsedArticleDataList);
+
+              // Check that the parsing result returned an array
+              if (Array.isArray(parsedArticleDataList)) {
+
+                console.log('Content after parse:', parsedArticleDataList);
+
+              } else {
+
+                console.log("parsed datas didn't returned an array");
+                return false;
+
+              }
+
+
+            } catch (err) {
+
+              console.log('Error when trying to parse the article data: ');
+              console.log(err);
+              return false;
+
+            }
+
+          }
 
         },
 
