@@ -116,8 +116,6 @@
         return {
 
           articleObj: {
-            retrievedStatus: null,
-            id: null,
             title: '',
             description: '',
             keywordArr: [],
@@ -189,10 +187,6 @@
 
               }
 
-            },
-
-            deleteArticleModalId() {
-                return `delete-article-${this.articleObj.id}`
             },
 
             isDevMode() {
