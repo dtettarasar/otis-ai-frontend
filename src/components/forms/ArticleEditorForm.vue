@@ -288,38 +288,11 @@
 
                 }
 
-                /*
-                if (response.data.articleId) {
+              } catch (err) {
 
-                  // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
+                console.error(err);
 
-                  await this.retrieveArticleData(response.data.articleId);
-                  
-                  // Update credit balance here
-
-                  const userCreditBalance = await getUserCreditBalance();
-
-                  if (userCreditBalance) {
-
-                    console.log('init this.refreshUserCreditBalance from article editor component (after generating an article)');
-
-                    this.refreshUserCreditBalance(userCreditBalance);
-
-                    console.log(`credit saved in store: ${this.credit}`);
-
-                  }
-
-                  //this.addArticleObj(this.articleObj);
-                  //this.$router.push(`/view-article/${this.articleObj.id}`);
-
-                }
-                */
-
-                } catch (err) {
-
-                  console.error(err);
-
-                }
+              }
 
           }
 
@@ -375,68 +348,6 @@
               return false;
 
             }
-
-          }
-
-        },
-
-        async retrieveArticleData(articleId) {
-
-          if (this.isDevMode) {
-
-            console.log('init the retrieveArticleData method');
-
-          }
-
-          const accessToken = Cookies.get('accessToken');
-
-          try {
-
-            const response = await axios.get(this.retrieveArticleBackendUrl, {
-
-              params : {
-
-                articleId: articleId,
-                accessToken: accessToken
-
-              }
-
-            });
-
-            if (this.isDevMode) {
-
-              console.log('response.data: ');
-              console.log(response.data);
-
-            }
-
-            if (response.data.retrievedStatus !== null) {
-
-              this.articleObj.retrievedStatus = response.data.retrievedStatus
-              this.articleObj.id = response.data.articleId;
-              this.articleObj.title = response.data.articleTitle;
-              this.articleObj.description = response.data.articleDesc;
-              this.articleObj.content = response.data.articleContent;
-              this.articleObj.language = response.data.articleLang;
-              this.articleObj.keywordArr = response.data.articleKeywords;
-              this.articleObj.creationDate = response.data.articleCreationDate;
-              this.articleObj.lastModifDate = response.data.articleLastModifiedDate;
-
-            } else {
-
-              this.articleObj.retrievedStatus = response.data.retrievedStatus;
-
-            }
-
-          } catch(err) {
-
-            console.error(err);
-
-          }
-
-          if (this.isDevMode) {
-
-            console.log('end of retrieveArticleData method');
 
           }
 
