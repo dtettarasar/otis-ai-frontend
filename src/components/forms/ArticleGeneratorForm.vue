@@ -166,18 +166,6 @@
 
             },
 
-            retrieveArticleBackendUrl() {
-
-              return this.$backendUrl + 'front-api/retrieve-article-data';
-
-            },
-
-            retrieveUserCreditBalanceUrl() {
-
-              return this.$backendUrl + 'front-api/user-credit-balance';
-
-            },
-
             formattedDates() {
 
               return {
