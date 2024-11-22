@@ -6,7 +6,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
 
-import ArticleEditorForm from '@/components/forms/ArticleEditorForm.vue';
+import ArticleGeneratorForm from '@/components/forms/ArticleGeneratorForm.vue';
 
 // Mock des modules externes
 vi.mock('axios');
@@ -17,7 +17,7 @@ const router = createRouter({
 
     history: createMemoryHistory(),
     routes: [
-        { path: '/article/:id', component: ArticleEditorForm },
+        { path: '/article/:id', component: ArticleGeneratorForm },
     ],
 
 });
@@ -35,14 +35,14 @@ const store = createStore({
 
 });
 
-describe('ArticleEditorForm.vue', () => {
+describe('ArticleGeneratorForm.vue', () => {
 
     let wrapper;
 
     // fonction qui va créer le composant
     const createComponent = (data = {}) => {
 
-        return mount(ArticleEditorForm, {
+        return mount(ArticleGeneratorForm, {
 
             global: {
                 plugins: [store, router],
