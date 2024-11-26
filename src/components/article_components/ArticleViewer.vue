@@ -4,7 +4,7 @@
 
     <div v-if="articleObj.retrievedStatus" class="mt-2 p-5 bg-dark-subtle rounded" >
 
-        <h1>{{ articleObj.title }}</h1>
+        <h1 class="article-title">{{ articleObj.title }}</h1>
 
         <p class="fs-5 date-text"><strong>creation date:</strong> {{ formattedDates.creationDate }}</p>
         <p class="fs-5 date-text"><strong>last modification date:</strong> {{ formattedDates.lastModifDate }}</p>
