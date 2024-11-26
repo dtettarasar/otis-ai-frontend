@@ -282,10 +282,10 @@
 
         addArticleinLocalStorage(articleObj) {
 
-          console.log('init addArticleinLocalStorage method');
-          console.log('article to add: ');
+          // console.log('init addArticleinLocalStorage method');
+          // console.log('article to add: ');
           
-          console.log(articleObj);
+          // console.log(articleObj);
 
           const storedArticleDataList = localStorage.getItem('articleDataList');
 
@@ -296,20 +296,20 @@
               // convert the string to an array of objects
               const parsedArticleDataList = JSON.parse(storedArticleDataList);
 
-              console.log('Type after parse:', typeof parsedArticleDataList);
+              // console.log('Type after parse:', typeof parsedArticleDataList);
 
               // Check that the parsing result returned an array
               if (Array.isArray(parsedArticleDataList)) {
 
-                console.log('Content after parse:', parsedArticleDataList);
+                // console.log('Content after parse:', parsedArticleDataList);
 
-                console.log("add the new article created");
+                // console.log("add the new article created");
 
                 parsedArticleDataList.push(articleObj);
 
-                console.log("article array, after new article added: ");
+                // console.log("article array, after new article added: ");
 
-                console.log(parsedArticleDataList);
+                // console.log(parsedArticleDataList);
 
                 localStorage.setItem('articleDataList', JSON.stringify(parsedArticleDataList));
                 this.$router.push(`/view-article/${articleObj.slug}`);
@@ -317,7 +317,7 @@
 
               } else {
 
-                console.log("parsed datas didn't returned an array");
+                // console.log("parsed datas didn't returned an array");
                 return false;
 
               }
@@ -361,6 +361,7 @@
 
             this.noKeywordAlert = false;
 
+            /*
             console.log('keyword value: ');
             console.log(this.addKeyWrdField);
 
@@ -368,6 +369,7 @@
 
             console.log('keywordArr: ');
             console.log(toRaw(this.articleObj.keywordArr));
+            */
 
             this.addKeyWrdField = '';
 
@@ -378,18 +380,18 @@
         },
 
         removeKeyword(index) {
-          console.log('init remove keyword method');
+          // console.log('init remove keyword method');
           this.articleObj.keywordArr.splice(index, 1);
-          console.log('Updated keywordArr: ');
-          console.log(toRaw(this.articleObj.keywordArr));
+          // console.log('Updated keywordArr: ');
+          // console.log(toRaw(this.articleObj.keywordArr));
         },
 
       },
 
       async mounted() {
 
-        console.log("all article data list: ");
-        console.log(toRaw(this.articleDataList));
+        // console.log("all article data list: ");
+        // console.log(toRaw(this.articleDataList));
 
         const userCreditBalance = await getUserCreditBalance();
 
@@ -402,7 +404,7 @@
 
           }*/
 
-          console.log('init this.refreshUserCreditBalance from article editor component');
+          // console.log('init this.refreshUserCreditBalance from article editor component');
 
           await this.refreshUserCreditBalance(userCreditBalance);
 
@@ -412,8 +414,12 @@
 
         }
 
-        console.log("all article data list: ");
-        console.log(toRaw(this.articleDataList));
+        if (this.isDevMode) {
+
+          console.log("all article data list: ");
+          console.log(toRaw(this.articleDataList));
+
+        }
 
       }
 
