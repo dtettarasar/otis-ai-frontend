@@ -58,10 +58,8 @@
     import {mapState, mapGetters, mapActions} from 'vuex';
     import { toRaw } from 'vue';
     import { Modal } from 'bootstrap';
-    import axios from 'axios';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
     import KeywordsList from './KeywordsList.vue';
-    import Cookies from 'js-cookie';
 
     export default {
 
