@@ -134,13 +134,7 @@
                 return process.env.NODE_ENV !== 'production';
 
             },
-
-            retrieveArticleBackendUrl() {
-
-                return this.$backendUrl + 'front-api/retrieve-article-data';
-
-            },
-
+            
         },
 
         mounted() {

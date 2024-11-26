@@ -1,2 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { createStore } from 'vuex';
+import { describe, it, expect, vi } from "vitest";
+import { mount } from "@vue/test-utils";
+import ArticleViewer from "@/components/ArticleViewer.vue";
+
