@@ -98,6 +98,14 @@ describe("ArticleViewer.vue", () => {
         // check that article title is correctly rendered
         expect(wrapper.find(".article-title").text()).toBe(mockArticleData.title);
 
+        // Vérifie que les dates sont formatées
+        expect(wrapper.find(".date-text").text()).toContain("creation date: 1/1/2024");
+
+        // Vérifie que les mots-clés sont affichés
+        const keywords = wrapper.findAll(".keyword-bdge");
+        expect(keywords).toHaveLength(mockArticleData.keywordArr.length);
+        expect(keywords[0].text()).toBe("test");
+
     });
 
 });
