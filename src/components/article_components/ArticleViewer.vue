@@ -44,7 +44,7 @@
 
         <div class="d-flex flex-column justify-content-center">
             <p class="text-center display-6"><i class="bi bi-exclamation-triangle-fill"></i></p>
-            <p class="display-6 text-center"><strong>Article not found</strong></p>
+            <p class="err-not-found display-6 text-center"><strong>Article not found</strong></p>
         </div>
 
     </div>

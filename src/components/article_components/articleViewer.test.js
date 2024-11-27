@@ -108,4 +108,55 @@ describe("ArticleViewer.vue", () => {
 
     });
 
+    it("renders error message when article is not found", async () => {
+
+
+        // Build a modified store without article Data in it
+        const mockVuexStoreEmptyArticle = createStore({
+
+            state: {
+                articleDataList: [], // Ajoutez d'autres propriétés si nécessaire
+            },
+              getters: {
+    
+                getArticleBySlug(state) {
+                    return (slug) => state.articleDataList.find(article => article.slug === slug);
+                },
+    
+            },
+                actions: {
+                setDeleteArticleId: vi.fn(),
+            },
+    
+        });
+
+        //Build the wrapper with the modified store
+        const wrapper = mount(ArticleViewer, {
+            ...mountOptions,
+            global: {
+                plugins: [mockVuexStoreEmptyArticle],
+
+                mocks: {
+                    $route: {
+                        params: { slug: 'test-article' },
+                    },
+                },
+    
+                stubs: {
+                    'router-link': {
+                      template: '<a><slot /></a>', // Remplace simplement le router-link par un <a>
+                    },
+                },
+                
+            }
+        });
+
+        await flushPromises();
+
+        //console.log(wrapper.html());
+
+        expect(wrapper.find(".err-not-found").text()).toBe("Article not found");
+
+    });
+
 });
