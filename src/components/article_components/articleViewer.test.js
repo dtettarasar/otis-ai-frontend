@@ -15,6 +15,10 @@ describe("ArticleViewer.vue", () => {
         };
     });
 
+    const mockRouter = {
+        push: vi.fn(), // Mock la méthode push
+    };
+
     const mockArticleData = {
         retrievedStatus: true,
         id: 1,
@@ -63,6 +67,7 @@ describe("ArticleViewer.vue", () => {
                 $route: {
                     params: { slug: 'test-article' },
                 },
+                $router: mockRouter, // Pour tester la redirection après la supression d'un article
             },
 
             stubs: {
@@ -175,6 +180,38 @@ describe("ArticleViewer.vue", () => {
 
         // Vérifie que le modal a été affiché
         expect(showMock).toHaveBeenCalled();
+
+    });
+
+    it("navigates to user account after deletion", async () => {
+
+        const mockRouter = {
+            push: vi.fn(), // Mock la méthode push
+        };
+
+        const wrapper = mount(ArticleViewer, mountOptions);
+
+        await flushPromises();
+
+        // Mock hide pour tester la redirection
+        const hideMock = vi.fn();
+        wrapper.vm.deleteArticleModalInstance = { hide: hideMock };
+
+         // Vérifie que l'instance est bien définie
+        expect(wrapper.vm.deleteArticleModalInstance).toBeDefined();
+        expect(wrapper.vm.deleteArticleModalInstance.hide).toBeInstanceOf(Function);
+
+        // Active les fake timers pour gérer le setTimeout
+        vi.useFakeTimers();
+
+        // Appelle la méthode articleDeleted
+        wrapper.vm.articleDeleted();
+
+        // Avance les timers de 2000ms pour simuler la fin du timeout
+        vi.advanceTimersByTime(2000);
+
+        // Vérifie que le modal a été caché
+        expect(hideMock).toHaveBeenCalled();
 
     });
 
