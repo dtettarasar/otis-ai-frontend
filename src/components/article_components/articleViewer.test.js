@@ -159,4 +159,23 @@ describe("ArticleViewer.vue", () => {
 
     });
 
+    it("calls deleteArticle and shows modal", async () => {
+
+        const wrapper = mount(ArticleViewer, mountOptions);
+
+        // attend la résolution des promesses (pour faire en sorte que les données de l'article soient bien récupérés avant de commencer les tests)
+        await flushPromises();
+
+        // Mock la méthode show du modal
+        const showMock = vi.fn();
+        wrapper.vm.deleteArticleModalInstance = { show: showMock };
+
+        // Clique sur le bouton delete
+        await wrapper.find("button.btn-danger").trigger("click");
+
+        // Vérifie que le modal a été affiché
+        expect(showMock).toHaveBeenCalled();
+
+    });
+
 });
