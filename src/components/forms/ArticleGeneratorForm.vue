@@ -1,19 +1,6 @@
 <template>
-    
+
     <div>
-
-      <div v-if="articleObj.retrievedStatus" >
-        <p v-if="isEditMode && articleObj">Editing Article ID: {{ articleObj.id }}</p>
-        <p v-if="isViewMode && articleObj">Viewing Article ID: {{ articleObj.id }}</p>
-      </div>
-
-      <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
-      
-    </div>
-
-    <!--Article in Generate mode-->
-
-    <div v-if="!this.isViewMode">
 
       <p>Creating a New Article</p>
 
@@ -61,13 +48,15 @@
 
             <p v-if="articleObj.keywordArr.length > 0" >Keyword(s) counter: <strong> {{ articleObj.keywordArr.length }} / {{ keywordsLimit }} </strong></p>
 
+            <p v-if="this.noKeywordAlert" class="text-danger mt-2">The keyword field should not be empty</p>
+
             <button v-on:click="addKeywords" type="button" class="btn btn-secondary">Add keywords</button>
 
           </div>
 
         </div>
 
-        <div v-if="!this.isViewMode" class="bg-dark-subtle rounded mt-4 mb-4 p-5">
+        <div class="bg-dark-subtle rounded mt-4 mb-4 p-5">
 
           <h2>Generate Text with AI</h2>
 
@@ -78,7 +67,12 @@
             <div v-if="credit">
 
               <p class="text-primary mt-2">You have <strong>{{ credit }}</strong> credit(s).</p>
+
               <button type="submit" class="btn btn-success">Use 1 credit to generate an article</button>
+
+              <p v-if="this.noParamsAlert" class="text-danger mt-2">
+                Give a description between <strong>1 and {{this.descriptionMaxLength}} character(s)</strong> or give between <strong>1 & {{this.keywordsLimit}} keyword(s)</strong>.
+              </p>
 
             </div>
 
@@ -103,100 +97,25 @@
 
     </div>
 
-    <!--Article in View mode-->
-
-    <div v-if="isViewMode && articleObj.retrievedStatus" >
-
-      <div class="mt-2 p-5 bg-dark-subtle rounded" v-if="isViewMode && articleObj.retrievedStatus" >
-
-        <h1>{{ articleObj.title }}</h1>
-
-        <p class="fs-5 date-text"><strong>creation date:</strong> {{ formattedDates.creationDate }}</p>
-        <p class="fs-5 date-text"><strong>last modification date:</strong> {{ formattedDates.lastModifDate }}</p>
-
-        <div>
-
-            <p class="fs-5">keywords:</p>
-
-            <div class="mb-2 d-flex justify-content-start flex-wrap">
-
-              <div class="badge m-1 p-1 bg-primary keyword-bdge d-flex flex-row" v-for="(keyword, index) in articleObj.keywordArr" :key="index">
-                <p class="fs-6 m-1 align-self-center">{{keyword}}</p>
-              </div>
-
-            </div>
-
-            <div class="d-flex flex-row">
-
-              <!--
-              <button v-on:click="switchToEditMode" class="btn btn-success m-1 p-2"><i class="bi bi-pen-fill"></i> Edit Mode</button>
-              <button v-on:click="switchToViewMode" class="btn btn-primary m-1 p-2"><i class="bi bi-eye-fill"></i> View Mode</button>
-              -->
-
-              <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
-              <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
-
-            </div>
-
-        </div>
-
-      </div>
-
-      <div class="mt-4">
-      
-        <div v-html="articleObj.content" ></div>
-
-      </div>
-
-    </div>
-
-    
-
-    
-
-    <!--End of Article in View mode-->
-
-    <div v-if="articleObj.retrievedStatus" >
-
-      <DeleteArticleModal :redirection=true />
-
-    </div>
-
-    <div v-if="!articleObj.retrievedStatus && !this.isGenerateMode">
-
-      <p>Error retrieving article</p>
-
-    </div>
-
   </template>
   
   <script>
 
     import { toRaw } from 'vue';
-    import { mapState, mapActions } from 'vuex';
-    import { Modal } from 'bootstrap';
+    import { mapState, mapActions, mapGetters } from 'vuex';
     import axios from 'axios';
     import Cookies from 'js-cookie';
-    import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
     import { getUserCreditBalance } from '@/custom_modules/getUserCreditBalance';
   
     export default {
         
       name: 'ArticleEditorForm.vue',
 
-      components: {
-
-        DeleteArticleModal,
-
-      },
-
       data() {
 
         return {
 
           articleObj: {
-            retrievedStatus: null,
-            id: null,
             title: '',
             description: '',
             keywordArr: [],
@@ -212,10 +131,9 @@
           keywordMaxLength: 30,
           descriptionMaxLength: 130,
           errorMessage: null,
-          isEditMode: false,
-          isViewMode: false,
-          isGenerateMode: false,
-          articleInCreation: false
+          articleInCreation: false,
+          noParamsAlert: false,
+          noKeywordAlert: false
 
         };
 
@@ -223,7 +141,11 @@
 
       computed: {
             
-            ...mapState(['credit']),
+            ...mapState(['credit', 'articleDataList']),
+
+            ...mapGetters({
+              getArticleById: 'getArticleById'
+            }),
 
             keyWordsParamOk() {
 
@@ -244,18 +166,6 @@
 
             },
 
-            retrieveArticleBackendUrl() {
-
-              return this.$backendUrl + 'front-api/retrieve-article-data';
-
-            },
-
-            retrieveUserCreditBalanceUrl() {
-
-              return this.$backendUrl + 'front-api/user-credit-balance';
-
-            },
-
             formattedDates() {
 
               return {
@@ -265,10 +175,6 @@
 
               }
 
-            },
-
-            deleteArticleModalId() {
-                return `delete-article-${this.articleObj.id}`
             },
 
             isDevMode() {
@@ -282,13 +188,6 @@
       methods: {
 
         ...mapActions(['setDeleteArticleId', 'addArticleObj', 'refreshUserCreditBalance']),
-
-        async saveArticle() {
-
-          // console.log('init save article method');
-          this.isViewMode = true;
-
-        },
 
         async generateArticle() {
 
@@ -311,7 +210,15 @@
 
           if (!this.descParamOk && !this.keyWordsParamOk) {
 
-            console.log("error: no parameters");
+            if (this.isDevMode) {
+
+              console.log(`noParamsAlert value: ${this.noParamsAlert}`);
+              console.log("error: no parameters");
+              console.log(`noParamsAlert value: ${this.noParamsAlert}`);
+
+            }            
+
+            this.noParamsAlert = true;
 
           } else {
 
@@ -329,21 +236,25 @@
                 
                 if (this.isDevMode) {
 
-                  console.log("response data:");
-                  console.log(response.data);
-                  console.log("article id: ");
-                  console.log(response.data.articleId);
+                  // console.log("response data:");
+                  // console.log(response.data);
+                  // console.log("article id: ");
+                  // console.log(response.data.articleId);
 
                 }
 
-                if (response.data.articleId) {
+                if (response.data.articleData) {
 
-                  // Récupère les données de l'article qui vient d'être créé + ajout de l'id de l'aricle dans le store
+                  console.log("article Data: ");
+                  console.log(response.data.articleData);
 
-                  await this.testRetrieveArticleData(response.data.articleId);
-                  
+                  this.addArticleObj(response.data.articleData);
+
+                  // Todo : add the article in the localStorage.
+
+                  this.addArticleinLocalStorage(response.data.articleData);
+
                   // Update credit balance here
-                  // await this.getUserCreditBalance();
 
                   const userCreditBalance = await getUserCreditBalance();
 
@@ -357,78 +268,68 @@
 
                   }
 
-                  this.addArticleObj(this.articleObj);
-                  this.isViewMode = true;
-
                 }
 
-                } catch (err) {
+              } catch (err) {
 
-                  console.error(err);
+                console.error(err);
 
-                }
+              }
 
           }
 
         },
 
-        async testRetrieveArticleData(articleId) {
+        addArticleinLocalStorage(articleObj) {
 
-          if (this.isDevMode) {
+          // console.log('init addArticleinLocalStorage method');
+          // console.log('article to add: ');
+          
+          // console.log(articleObj);
 
-            console.log('init the testRetrieveArticleData method');
+          const storedArticleDataList = localStorage.getItem('articleDataList');
 
-          }
+          if (storedArticleDataList) {
 
-          const accessToken = Cookies.get('accessToken');
+            try {
 
-          try {
+              // convert the string to an array of objects
+              const parsedArticleDataList = JSON.parse(storedArticleDataList);
 
-            const response = await axios.get(this.retrieveArticleBackendUrl, {
+              // console.log('Type after parse:', typeof parsedArticleDataList);
 
-              params : {
+              // Check that the parsing result returned an array
+              if (Array.isArray(parsedArticleDataList)) {
 
-                articleId: articleId,
-                accessToken: accessToken
+                // console.log('Content after parse:', parsedArticleDataList);
+
+                // console.log("add the new article created");
+
+                parsedArticleDataList.push(articleObj);
+
+                // console.log("article array, after new article added: ");
+
+                // console.log(parsedArticleDataList);
+
+                localStorage.setItem('articleDataList', JSON.stringify(parsedArticleDataList));
+                this.$router.push(`/view-article/${articleObj.slug}`);
+
+
+              } else {
+
+                // console.log("parsed datas didn't returned an array");
+                return false;
 
               }
 
-            });
 
-            if (this.isDevMode) {
+            } catch (err) {
 
-              console.log('response.data: ');
-              console.log(response.data);
-
-            }
-
-            if (response.data.retrievedStatus !== null) {
-
-              this.articleObj.retrievedStatus = response.data.retrievedStatus
-              this.articleObj.id = response.data.articleId;
-              this.articleObj.title = response.data.articleTitle;
-              this.articleObj.description = response.data.articleDesc;
-              this.articleObj.content = response.data.articleContent;
-              this.articleObj.language = response.data.articleLang;
-              this.articleObj.keywordArr = response.data.articleKeywords;
-              this.articleObj.creationDate = response.data.articleCreationDate;
-              this.articleObj.lastModifDate = response.data.articleLastModifiedDate;
-
-            } else {
-
-              this.articleObj.retrievedStatus = response.data.retrievedStatus;
+              console.log('Error when trying to parse the article data: ');
+              console.log(err);
+              return false;
 
             }
-
-          } catch(err) {
-
-            console.error(err);
-
-          }
-
-          if (this.isDevMode) {
-
-            console.log('end of testRetrieveArticleData method');
 
           }
 
@@ -447,6 +348,7 @@
           } else if (!this.addKeyWrdField) {
 
             console.log('field should not be empty');
+            this.noKeywordAlert = true;
 
           } else if (this.addKeyWrdField.length > this.keywordMaxLength) {
 
@@ -457,6 +359,9 @@
             simplifiedKeyWord = this.addKeyWrdField.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
             this.articleObj.keywordArr.push(simplifiedKeyWord);
 
+            this.noKeywordAlert = false;
+
+            /*
             console.log('keyword value: ');
             console.log(this.addKeyWrdField);
 
@@ -464,6 +369,7 @@
 
             console.log('keywordArr: ');
             console.log(toRaw(this.articleObj.keywordArr));
+            */
 
             this.addKeyWrdField = '';
 
@@ -474,37 +380,18 @@
         },
 
         removeKeyword(index) {
-          console.log('init remove keyword method');
+          // console.log('init remove keyword method');
           this.articleObj.keywordArr.splice(index, 1);
-          console.log('Updated keywordArr: ');
-          console.log(toRaw(this.articleObj.keywordArr));
+          // console.log('Updated keywordArr: ');
+          // console.log(toRaw(this.articleObj.keywordArr));
         },
-
-        switchToEditMode() {
-
-          console.log("switch to edit mode");
-
-        },
-
-        switchToViewMode() {
-
-          console.log("switch to view mode");
-
-        },
-
-        async deleteArticle() {
-               
-          this.setDeleteArticleId(this.articleObj.id);
-          const myModal = new Modal(document.getElementById('deleteArticleModal'));
-          myModal.show();
-
-        }
 
       },
 
       async mounted() {
 
-        const articleId = this.$route.params.id;
+        // console.log("all article data list: ");
+        // console.log(toRaw(this.articleDataList));
 
         const userCreditBalance = await getUserCreditBalance();
 
@@ -517,28 +404,25 @@
 
           }*/
 
-          console.log('init this.refreshUserCreditBalance from article editor component');
+          // console.log('init this.refreshUserCreditBalance from article editor component');
 
           await this.refreshUserCreditBalance(userCreditBalance);
 
-          console.log(`credit saved in store: ${this.credit}`);
+          if (this.isDevMode) {
+            console.log(`credit saved in store: ${this.credit}`);
+          }
 
         }
 
-        if (articleId) {
+        if (this.isDevMode) {
 
-          this.isViewMode = true;
-          console.log('retrieving article data');
-
-          await this.testRetrieveArticleData(articleId);
-
-        } else {
-
-          this.isGenerateMode = true;
+          console.log("all article data list: ");
+          console.log(toRaw(this.articleDataList));
 
         }
 
       }
+
     };
 
   </script>

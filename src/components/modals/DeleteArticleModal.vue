@@ -155,7 +155,9 @@
                         console.log("successfully deleted article: " + response.data.articleDeletionResponse.encryptedArticleID);
                         this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
                         this.deletionDone = true;
+                        this.deletionConfirmed();
 
+                        /*
                         if (this.redirection) {
 
                             setTimeout(()=> {
@@ -163,7 +165,7 @@
                                 window.location.href = '/user-account';
                             }, 2000);
 
-                        }
+                        }*/
 
                     } else {
 
@@ -190,6 +192,10 @@
 
             resetDeletionStatus() {
                 this.deletionDone = false;
+            },
+
+            deletionConfirmed() {
+                this.$emit('deletionConfirmed', { message: 'article has been deleted from Modal', id: this.deleteArticleId });
             },
 
         },

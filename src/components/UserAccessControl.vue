@@ -82,6 +82,8 @@
         },
 
         async mounted() {
+
+            console.log('init mounted event from UserAccessControl component');
             
             await this.fetchData();
             //console.log('cookieExpTimestamp from getter (UserRestrictedContent component):', this.getCookieExpTimestamp);
@@ -117,10 +119,10 @@
 
                     if (this.loginStatus && !this.userInitialInfoSaved) {
 
-                        this.getUserInitialData(response.data.result.userIdEncryption);
-                        this.saveCookieExpTimestamp(response.data.result.exp);
-                        this.getUserArticlesIds(response.data.result.userIdEncryption);
-                        this.getUserAllArticlesData(response.data.result.userIdEncryption);
+                        await this.getUserInitialData(response.data.result.userIdEncryption);
+                        await this.saveCookieExpTimestamp(response.data.result.exp);
+                        await this.getUserArticlesIds(response.data.result.userIdEncryption);
+                        await this.getUserAllArticlesData(response.data.result.userIdEncryption);
 
                     }
 
@@ -184,13 +186,14 @@
                 await axios.get(this.getUserArticlesDatasUrl, {
                     params: reqData
                 })
-                .then(res => {
+                .then( async (res) => {
 
                     // console.log('Response from backend:', res.data.articleDataList);
 
                     if(res.data.articleDataList.length >= 1) {
 
-                        this.saveArticleDataList(res.data.articleDataList);
+                        await this.saveArticleDataList(res.data.articleDataList);
+                        await localStorage.setItem('articleDataList', JSON.stringify(res.data.articleDataList));
 
                     }
 
@@ -242,7 +245,7 @@
                 await axios.get(this.getUserDataUrl, {
                     params: reqData
                 })
-                .then(res => {
+                .then(async (res) => {
 
                     //console.log('Response from backend:', res.data);
 
@@ -252,7 +255,7 @@
                     //console.log('userDataObj from component method');
                     //console.log(userDataObj);
 
-                    this.saveUserInfo(userDataObj);
+                    await this.saveUserInfo(userDataObj);
 
                 })
                 .catch(err => {

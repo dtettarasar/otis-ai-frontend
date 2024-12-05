@@ -53,12 +53,15 @@
 
     import axios from 'axios';
     import Cookies from 'js-cookie';
+    import { toRaw } from 'vue';
+
+    import {mapGetters} from 'vuex';
 
     export default {
         name: 'ArticleCard',
         
         props: {
-            articleId: {
+            articleSlug: {
                 type: String,
                 required: true
             }
@@ -88,9 +91,17 @@
 
         computed: {
 
+            ...mapGetters({
+              getArticleBySlug: 'getArticleBySlug',
+            }),
+
+            articleFromStore() {
+                return this.getArticleBySlug(this.articleSlug);
+            },
+
             articlePageLink() {
 
-                return `/article/${this.articleId}`;
+                return `/view-article/${this.articleSlug}`;
 
             },
 
@@ -181,16 +192,37 @@
 
                 */
 
-                this.$emit('delete-article', this.articleId);
+                this.$emit('delete-article', this.articleObj.id);
             }
 
         },
 
         async mounted() {
 
+            /*
             if (this.articleId) {
 
                 await this.retrieveArticleData(this.articleId);
+
+            }
+            */
+
+            // console.log('init mounted event from article card component');
+
+            if (this.articleFromStore) {
+
+                // console.log(toRaw(this.articleFromStore));
+
+                this.articleObj.retrievedStatus = true;
+                this.articleObj.id = this.articleFromStore.id;
+                this.articleObj.title = this.articleFromStore.title;
+                this.articleObj.description = this.articleFromStore.description;
+                this.articleObj.content = this.articleFromStore.content;
+                this.articleObj.language = this.articleFromStore.language;
+                this.articleObj.keywordArr = this.articleFromStore.keywordArr;
+                this.articleObj.creationDate = this.articleFromStore.creationDate;
+                this.articleObj.lastModifDate = this.articleFromStore.lastModifDate;
+                this.articleObj.slug = this.articleFromStore.slug;
 
             }
 

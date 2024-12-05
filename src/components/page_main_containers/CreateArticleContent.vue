@@ -5,7 +5,7 @@
         <h2>{{ username }} is connected to the Create Article page</h2>
     </div>
 
-    <ArticleEditorForm></ArticleEditorForm>
+    <ArticleGeneratorForm></ArticleGeneratorForm>
     
 
 </template>
@@ -13,13 +13,13 @@
 <script>
 
     import { mapState } from 'vuex';
-    import ArticleEditorForm from '@/components/forms/ArticleEditorForm.vue';
+    import ArticleGeneratorForm from '@/components/forms/ArticleGeneratorForm.vue';
 
     export default {
         name: 'CreateArticleContent.vue',
 
         components: {
-            ArticleEditorForm
+            ArticleGeneratorForm
         },
 
         data() {
