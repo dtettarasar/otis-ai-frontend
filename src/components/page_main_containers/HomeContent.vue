@@ -1,12 +1,12 @@
 <script setup>
 
-    import HomeHeader from '../general_content_components/HomeHeader.vue';
+    import HomeBanner from '../general_content_components/HomeBanner.vue';
 
 </script>
 
 <template>
 
-    <HomeHeader></HomeHeader>    
+    <HomeBanner></HomeBanner>    
 
     <div>
         <h2>This is the homepage content</h2>
