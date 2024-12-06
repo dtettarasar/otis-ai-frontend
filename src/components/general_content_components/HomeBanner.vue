@@ -30,6 +30,18 @@ onMounted(() => {
       </button>
     </div>
 
+    <div class="d-flex flex-row flex-wrap gap-2">
+
+      <button class="btn btn-primary btn-lg px-4" type="button">
+        Call to action
+      </button>
+
+      <button class="btn btn-outline-secondary btn-lg px-4" type="button">
+        Secondary link
+      </button>
+
+    </div>
+
   </div>
 
 </div>
