@@ -6,10 +6,6 @@
 
 <template>
 
-    <HomeBanner></HomeBanner>    
-
-    <div>
-        <h2>This is the homepage content</h2>
-    </div>
+    <HomeBanner></HomeBanner>
 
 </template>
