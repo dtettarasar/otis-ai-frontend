@@ -4,9 +4,9 @@
 
     // Tableau avec les données pour chaque itération
     const howToUseData = [
-        { iconClass: 'bi bi-star', textContent: 'This is a star icon' },
-        { iconClass: 'bi bi-heart', textContent: 'This is a heart icon' },
-        { iconClass: 'bi bi-lightning', textContent: 'This is a lightning icon' },
+        { iconClass: 'bi bi-star', textContent: 'This is a star icon', iconColor: "#c0392b", textColor: "#8e44ad" },
+        { iconClass: 'bi bi-heart', textContent: 'This is a heart icon', iconColor: "#d35400", textColor: "#8e44ad" },
+        { iconClass: 'bi bi-lightning', textContent: 'This is a lightning icon', iconColor: "#f39c12" },
     ];
 
 </script>
@@ -26,7 +26,13 @@
         <div class="d-flex flex-row justify-content-evenly flex-wrap">
 
             <!-- Boucle sur les items -->
-            <IconAndText v-for="(item, index) in howToUseData" :key="index" :iconClass="item.iconClass" :textContent="item.textContent"></IconAndText>
+            <IconAndText v-for="(item, index) in howToUseData" 
+                :key="index"
+                :iconClass="item.iconClass"
+                :textContent="item.textContent"
+                :iconColor="item.iconColor"
+                :textColor="item.textColor"
+            ></IconAndText>
 
         </div>
         
