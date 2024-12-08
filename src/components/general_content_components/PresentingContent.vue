@@ -3,7 +3,7 @@
 
 <template>
 
-    <div class="p-5">
+    <div class="mt-5">
         
         <h2>About Otis AI</h2>
 
