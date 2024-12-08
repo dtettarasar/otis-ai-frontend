@@ -21,16 +21,7 @@ onMounted(() => {
       Your Digital Scribe!
     </p>
 
-    <div class="d-inline-flex gap-2 mb-5">
-      <button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="button">
-        Call to action
-      </button>
-      <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
-        Secondary link
-      </button>
-    </div>
-
-    <div class="d-flex flex-row flex-wrap gap-2">
+    <div class="d-flex justify-content-center flex-row flex-wrap gap-2">
 
       <button class="btn btn-primary btn-lg px-4" type="button">
         Call to action
