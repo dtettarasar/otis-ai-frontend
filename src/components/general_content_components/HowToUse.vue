@@ -2,6 +2,13 @@
 
     import IconAndText from './IconAndText.vue';
 
+    // Tableau avec les données pour chaque itération
+    const howToUseData = [
+        { iconClass: 'bi bi-star', textContent: 'This is a star icon' },
+        { iconClass: 'bi bi-heart', textContent: 'This is a heart icon' },
+        { iconClass: 'bi bi-lightning', textContent: 'This is a lightning icon' },
+    ];
+
 </script>
 
 <template>
@@ -18,13 +25,8 @@
 
         <div class="d-flex flex-row justify-content-evenly flex-wrap">
 
-            <IconAndText iconClass="bi bi-star" textContent="This is a star icon"></IconAndText>
-
-            <!--
-            <IconAndText></IconAndText>
-
-            <IconAndText></IconAndText>
-            -->
+            <!-- Boucle sur les items -->
+            <IconAndText v-for="(item, index) in howToUseData" :key="index" :iconClass="item.iconClass" :textContent="item.textContent"></IconAndText>
 
         </div>
         
