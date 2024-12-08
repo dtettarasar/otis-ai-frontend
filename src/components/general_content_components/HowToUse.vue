@@ -1,4 +1,7 @@
 <script setup>
+
+    import IconAndText from './IconAndText.vue';
+
 </script>
 
 <template>
@@ -11,6 +14,12 @@
             <p>
                 Build your first articles, by following the steps below:
             </p>
+        </div>
+
+        <div>
+
+            <IconAndText></IconAndText>
+
         </div>
 
     </div>
