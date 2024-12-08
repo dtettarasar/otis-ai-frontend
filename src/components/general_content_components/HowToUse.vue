@@ -18,11 +18,13 @@
 
         <div class="d-flex flex-row justify-content-evenly flex-wrap">
 
+            <IconAndText iconClass="bi bi-star" textContent="This is a star icon"></IconAndText>
+
+            <!--
             <IconAndText></IconAndText>
 
             <IconAndText></IconAndText>
-
-            <IconAndText></IconAndText>
+            -->
 
         </div>
         
