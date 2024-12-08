@@ -16,11 +16,16 @@
             </p>
         </div>
 
-        <div>
+        <div class="d-flex flex-row justify-content-evenly flex-wrap">
+
+            <IconAndText></IconAndText>
+
+            <IconAndText></IconAndText>
 
             <IconAndText></IconAndText>
 
         </div>
+        
 
     </div>
 
