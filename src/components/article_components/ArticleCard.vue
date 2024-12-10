@@ -24,8 +24,6 @@
             </div>
             
 
-            
-
             <div class="d-flex flex-row flex-wrap">
 
                 <router-link class="btn btn-dark m-1 p-2" :to=articlePageLink><i class="bi bi-eye-fill"></i> View</router-link>

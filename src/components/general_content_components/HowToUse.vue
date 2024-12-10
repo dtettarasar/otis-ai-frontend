@@ -1,6 +1,6 @@
 <script setup>
 
-    import IconAndText from './IconAndText.vue';
+    import IconAndTextVertical from './IconAndTextVertical.vue';
 
     // Tableau avec les données pour chaque itération
     const howToUseData = [
@@ -26,13 +26,13 @@
         <div class="d-flex flex-row justify-content-evenly flex-wrap">
 
             <!-- Boucle sur les items -->
-            <IconAndText v-for="(item, index) in howToUseData" 
+            <IconAndTextVertical v-for="(item, index) in howToUseData" 
                 :key="index"
                 :iconClass="item.iconClass"
                 :textContent="item.textContent"
                 :iconColor="item.iconColor"
                 :textColor="item.textColor"
-            ></IconAndText>
+            ></IconAndTextVertical>
 
         </div>
         
