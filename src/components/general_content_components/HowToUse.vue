@@ -1,6 +1,7 @@
 <script setup>
 
     import IconAndTextVertical from './IconAndTextVertical.vue';
+    import VideoPlayer from './VideoPlayer.vue';
 
     // Tableau avec les données pour chaque itération
     const howToUseData = [
@@ -57,11 +58,7 @@
                         <div class="p-2 col-md-6 col-sm-12">
                             <h3>Flex item 1</h3>
 
-                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere malesuada tincidunt. Fusce et blandit orci. Sed consectetur egestas odio id lacinia. Vivamus at est ante. Vestibulum ante lacus, euismod eget tincidunt eu, commodo id lorem. Nunc in nulla at quam aliquet fringilla. Fusce viverra hendrerit risus quis consectetur. Vestibulum magna enim, vestibulum at sagittis ac, facilisis id lacus. Nullam feugiat, neque eget pretium vehicula, eros velit posuere ipsum, ut consequat arcu orci vel leo. Nulla venenatis pretium dictum.</p>
-
-                            <p>In hac habitasse platea dictumst. Fusce a maximus nisl, a porttitor erat. Aliquam ac dolor id justo tincidunt vestibulum. Suspendisse scelerisque metus arcu, laoreet commodo metus consectetur in. Suspendisse potenti. Quisque aliquet eros quis diam faucibus fringilla. Nulla volutpat dolor eget nunc maximus congue. Sed eu risus ipsum. Suspendisse blandit tellus convallis risus malesuada bibendum. Ut non cursus mi. Quisque vel nunc ut erat lobortis interdum.</p>
-
-                            <p>Nam porttitor lacinia nisl, in accumsan enim finibus vel. Morbi fermentum lobortis magna et lobortis. Praesent lorem nulla, euismod quis elit ut, lacinia aliquet metus. Donec tincidunt velit sed ipsum efficitur ullamcorper. Nam pharetra id massa vitae sodales. Suspendisse dignissim efficitur erat eget maximus. Suspendisse libero ante, tristique sed vehicula eu, scelerisque sed enim. Fusce malesuada condimentum dolor, quis ornare nulla semper non. In eleifend suscipit orci, nec faucibus neque bibendum id.</p>
+                            <VideoPlayer :autoplay="true" :loop="true" src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
 
                         </div>
 
