@@ -42,7 +42,6 @@
         videoPlayer = videojs(document.getElementById('my-video'), {
 
             controls: true,
-            autoplay: false,
             preload: 'auto',
 
         });
