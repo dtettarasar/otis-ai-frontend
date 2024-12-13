@@ -18,7 +18,7 @@ onMounted(() => {
     <i class="main-icon bi bi-feather"></i>
     <h1 class="text-body-emphasis">Otis AI</h1>
     <p class="col-lg-8 mx-auto fs-5 text-muted">
-      Your Digital Scribe!
+      Your Digital Scribe for SEO-Ready Brilliance
     </p>
 
     <div class="d-flex justify-content-center flex-row flex-wrap gap-2">
