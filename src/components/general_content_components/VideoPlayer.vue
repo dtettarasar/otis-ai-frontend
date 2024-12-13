@@ -1,6 +1,6 @@
 <script setup>
 
-    import { onMounted } from 'vue';
+    import { ref, onMounted, onUnmounted } from 'vue';
     import videojs from 'video.js';
     import 'video.js/dist/video-js.css';
 
@@ -35,35 +35,41 @@
 
     });
 
-    let videoPlayer;
+    // Référence pour la vidéo
+    const videoRef = ref(null);
+    let videoPlayer = null;
 
+    // Initialisation et destruction de Video.js
     onMounted(() => {
-
-        videoPlayer = videojs(document.getElementById('my-video'), {
-
+        videoPlayer = videojs(videoRef.value, {
             controls: true,
+            autoplay: props.autoplay,
+            loop: props.loop,
+            muted: props.muted,
             preload: 'auto',
-
+            poster: props.poster,
         });
+    });
 
+    onUnmounted(() => {
+        if (videoPlayer) {
+            videoPlayer.dispose(); // Détruit proprement l'instance de Video.js
+            videoPlayer = null;
+        }
     });
 
 </script>
 
 <template>
-  <video
-    id="my-video"
-    class="video-js vjs-16-9"
-    controls
-    preload="auto"
-    :data-setup="{}"
-    :autoplay="autoplay" 
-    :loop="loop" 
-    :muted="muted" 
-    :poster="poster"
-  >
-    <source :src="src" :type="type" />
-  </video>
+
+    <video
+      ref="videoRef"
+      class="video-js vjs-16-9"
+      preload="auto"
+    >
+      <source :src="src" :type="type" />
+    </video>
+
 </template>
 
 <style>
