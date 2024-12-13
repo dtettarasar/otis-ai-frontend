@@ -1,10 +1,16 @@
 <template>
 
     
-    <div>
-      <p>
-        Forgot to add something to your cart? Shop around then come back to pay!
-      </p>
+    <div class="container">
+
+      <div class="row">
+
+        <p>
+          Forgot to add something to your cart? Shop around then come back to pay!
+        </p>
+
+      </div>
+
     </div>
     
 

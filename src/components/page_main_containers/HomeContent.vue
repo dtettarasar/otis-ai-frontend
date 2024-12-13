@@ -11,10 +11,12 @@
 
     <HomeBanner></HomeBanner>
 
-    <PresentingContent></PresentingContent>
+    <div class="container">
 
-    <HowToUse></HowToUse>
+        <PresentingContent></PresentingContent>
+        <HowToUse></HowToUse>
+        <TeasingContent></TeasingContent>
 
-    <TeasingContent></TeasingContent>
+    </div>
 
 </template>

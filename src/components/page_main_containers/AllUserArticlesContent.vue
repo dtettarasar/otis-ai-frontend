@@ -1,10 +1,10 @@
 <template>
 
-    <div>
-        <h2>{{ username }} is connected to the All User Articles page</h2>
-    </div>
-
     <div class="container">
+
+        <div class="row">
+            <h2>{{ username }} is connected to the All User Articles page</h2>
+        </div>
 
         <div class="row">
 

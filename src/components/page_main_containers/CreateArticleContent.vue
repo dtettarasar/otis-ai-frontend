@@ -1,11 +1,16 @@
 <template>
 
-    
-    <div>
-        <h2>{{ username }} is connected to the Create Article page</h2>
-    </div>
+    <div class="container">
 
-    <ArticleGeneratorForm></ArticleGeneratorForm>
+        <div class="row">
+            <h2>{{ username }} is connected to the Create Article page</h2>
+        </div>
+
+        <div class="row">
+            <ArticleGeneratorForm></ArticleGeneratorForm>
+        </div>
+
+    </div>
     
 
 </template>

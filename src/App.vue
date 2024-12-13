@@ -14,7 +14,7 @@ import Footer from '@/components/Footer.vue'
     </div>
   </header>
 
-  <div id="inner-content" class="container">
+  <div id="inner-content" class="container-fluid">
     <RouterView />
   </div>
 
