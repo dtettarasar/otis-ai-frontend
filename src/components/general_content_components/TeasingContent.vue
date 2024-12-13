@@ -5,7 +5,7 @@
     // Tableau avec les données pour chaque itération
     const howToUseData = [
         {   
-            iconClass: 'bi-1-circle-fill',
+            iconClass: 'bi-clipboard-data',
             textContent: `
                 <div>
                     <h3>SEO Performance Analysis</h3>
@@ -15,7 +15,7 @@
             iconColor: "#c0392b",
         },
         {   
-            iconClass: 'bi-2-circle-fill',
+            iconClass: 'bi-database-gear',
             textContent: `
                 <div>
                     <h3>Custom API Access</h3>
@@ -25,7 +25,7 @@
             iconColor: "#c0392b",
         },
         {   
-            iconClass: 'bi-3-circle-fill',
+            iconClass: 'bi-input-cursor-text',
             textContent: `
                 <div>
                     <h3>Smart Text Editor with Auto-Completion</h3>
@@ -41,7 +41,7 @@
             iconColor: "#c0392b",
         },
         {   
-            iconClass: 'bi-4-circle-fill',
+            iconClass: 'bi-rocket-takeoff',
             textContent: `
                 <div>
                     <h3>One-Click Publishing via Webhooks</h3>
