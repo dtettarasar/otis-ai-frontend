@@ -1,7 +1,7 @@
 <script setup>
 
     // Use Dompurify if we need to use text content from an external source (users data, api, etc... as the text is hardcoded here no need to use dompurify)
-    import DOMPurify from 'dompurify';
+    // import DOMPurify from 'dompurify';
 
     // Déclaration des props
     const props = defineProps({

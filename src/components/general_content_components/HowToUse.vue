@@ -1,14 +1,6 @@
 <script setup>
 
-    import IconAndTextVertical from './IconAndTextVertical.vue';
     import VideoPlayer from './VideoPlayer.vue';
-
-    // Tableau avec les données pour chaque itération
-    const howToUseData = [
-        { iconClass: 'bi bi-star', textContent: 'This is a star icon', iconColor: "#c0392b", textColor: "#8e44ad" },
-        { iconClass: 'bi bi-heart', textContent: 'This is a heart icon', iconColor: "#d35400", textColor: "#8e44ad" },
-        { iconClass: 'bi bi-lightning', textContent: 'This is a lightning icon', iconColor: "#f39c12" },
-    ];
 
 </script>
 

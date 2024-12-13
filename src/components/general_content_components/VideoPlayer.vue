@@ -41,16 +41,20 @@
 
     // Initialisation et destruction de Video.js
     onMounted(() => {
-        videoPlayer = videojs(videoRef.value, {
-            controls: true,
-            autoplay: props.autoplay,
-            loop: props.loop,
-            muted: props.muted,
-            preload: 'auto',
-            poster: props.poster,
-        });
-    });
 
+        if (videoRef.value) {
+            videoPlayer = videojs(videoRef.value, {
+                controls: true,
+                autoplay: props.autoplay,
+                loop: props.loop,
+                muted: props.muted,
+                preload: 'auto',
+                poster: props.poster,
+            });
+        }
+
+    });
+    
     onUnmounted(() => {
         if (videoPlayer) {
             videoPlayer.dispose(); // Détruit proprement l'instance de Video.js
