@@ -19,7 +19,6 @@
 
 <template>
   <main>
-    <PageTitle txtValue="Home Page"></PageTitle>
     <UserAccessControl v-bind:loginRequired="false">
       <HomeContent></HomeContent>
     </UserAccessControl>
