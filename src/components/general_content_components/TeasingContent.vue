@@ -4,7 +4,7 @@
 
     // Tableau avec les données pour chaque itération
     const howToUseData = [
-        { textContent: 'This is a star icon', iconColor: "#c0392b", textColor: "#8e44ad" },
+        { textContent: '<p>This <strong>is</strong> a star icon</p>', iconColor: "#c0392b", textColor: "#8e44ad" },
         { iconClass: 'bi-2-circle-fill', iconColor: "#d35400", textColor: "#8e44ad" },
         { iconClass: 'bi-3-circle-fill', textContent: 'This is a lightning icon', iconColor: "#f39c12" },
     ];

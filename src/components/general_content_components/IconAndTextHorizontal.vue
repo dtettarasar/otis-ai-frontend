@@ -1,5 +1,8 @@
 <script setup>
 
+    // Use Dompurify if we need to use text content from an external source (users data, api, etc... as the text is hardcoded here no need to use dompurify)
+    import DOMPurify from 'dompurify';
+
     // Déclaration des props
     const props = defineProps({
         iconClass: {
@@ -20,6 +23,7 @@
         },
     })
 
+
 </script>
 
 <template>
@@ -31,7 +35,7 @@
         </div>
 
         <div class="flex-grow-1 ms-3">
-            <p :style="{color: textColor}">{{textContent}}</p>
+            <div :style="{ color: textColor }" v-html="textContent"></div>
         </div>
 
     </div>
