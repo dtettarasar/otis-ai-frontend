@@ -5,19 +5,19 @@
 
     <div class="mt-5">
         
-        <h2>About Otis AI</h2>
+        <h2>Meet Otis!</h2>
 
         <div>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas sagittis diam, et pellentesque quam blandit et.
-                Aliquam volutpat dapibus faucibus. Pellentesque iaculis nisl ut tincidunt porttitor. Sed euismod arcu neque, sed fringilla sapien venenatis at.
-                In sollicitudin lacinia convallis. Nam ultrices dolor porta malesuada maximus. Aliquam laoreet eget mi et maximus. Curabitur pellentesque diam a turpis ultrices tristique.
-                Integer rutrum consectetur dolor quis egestas.
+                Say goodbye to writer’s block and hello to effortless SEO-friendly articles! Otis AI is the ultimate tool for businesses and content creators who want to level up their content game without breaking a sweat.
             </p>
 
             <p>
-                In eleifend sollicitudin arcu mattis vulputate. In aliquet nisl ac libero sagittis, vitae convallis neque hendrerit. Morbi aliquam ex euismod lorem ornare sodales. Pellentesque nec molestie erat, quis sodales erat.
-                Nam lacinia fringilla ligula sed commodo. Duis a efficitur dui, id rutrum mi. Curabitur maximus lectus et felis ultricies pulvinar. Nulla ac pellentesque diam, non vestibulum turpis. Nulla a ipsum a neque aliquet laoreet. 
+                All you need? A topic and some juicy keywords. That’s it. Otis takes care of the rest, whipping up polished, optimized articles faster than you can say "meta description." Once it’s ready, just grab your masterpiece and publish it on your site.
+            </p>
+
+            <p>
+                Whether you’re a seasoned marketer or a blogging newbie, Otis AI turns your ideas into click-worthy content with style, speed, and smarts. Ready to let Otis do the heavy lifting? Let’s get writing!
             </p>
         </div>
 
