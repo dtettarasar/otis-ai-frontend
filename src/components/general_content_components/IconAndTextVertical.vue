@@ -43,8 +43,4 @@
         font-size: 4rem;
     }
 
-    .icon-text-component p {
-        font-size: 1.2rem;
-    }
-
 </style>
