@@ -18,9 +18,14 @@
 
 <template>
   <main>
-    <PageTitle txtValue="View article Page"></PageTitle>
+
+    <div class="container">
+      <PageTitle txtValue="View article Page"></PageTitle>
+    </div>
+
     <UserAccessControl v-bind:loginRequired="true">
       <ViewArticleContent></ViewArticleContent>
     </UserAccessControl>
+
   </main>
 </template>

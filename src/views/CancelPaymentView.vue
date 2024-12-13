@@ -19,7 +19,9 @@
 <template>
   <main>
 
-    <PageTitle txtValue="Checkout canceled"></PageTitle>
+    <div class="container">
+      <PageTitle txtValue="Checkout canceled"></PageTitle>
+    </div>
 
     <UserAccessControl v-bind:loginRequired="true">
       <CancelPaymentContent></CancelPaymentContent>
