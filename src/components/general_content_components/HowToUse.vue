@@ -24,20 +24,6 @@
             </p>
         </div>
 
-        <!--
-        <div class="d-flex flex-row justify-content-evenly flex-wrap">
-
-            <IconAndTextVertical v-for="(item, index) in howToUseData" 
-                :key="index"
-                :iconClass="item.iconClass"
-                :textContent="item.textContent"
-                :iconColor="item.iconColor"
-                :textColor="item.textColor"
-            ></IconAndTextVertical>
-
-        </div>
-        -->
-
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="describe-tab" data-bs-toggle="tab" data-bs-target="#describe" type="button" role="tab" aria-controls="describe" aria-selected="true">Describe</button>
@@ -56,7 +42,6 @@
                     <div class="row align-items-start">
 
                         <div class="p-2 col-md-6 col-sm-12">
-                            <h3>Flex item 1</h3>
 
                             <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/demo_video_1.mp4'" type="video/mp4" />
 
@@ -64,11 +49,9 @@
 
                         <div class="p-2 col-md-6 col-sm-12">
 
-                            <h3>Flex item 2</h3>
+                            <h3>Describe Your Topic</h3>
 
-                            <p>Aenean euismod, lacus ut rhoncus euismod, libero leo tempus nunc, in finibus libero mi vitae ipsum. Sed sapien turpis, sollicitudin vel augue ac, cursus hendrerit tortor. In porttitor risus velit, suscipit sodales ante pulvinar quis. Mauris ultrices metus vel ligula posuere semper. Integer ut eros non tortor mollis ultricies ut et velit. Sed lobortis sollicitudin enim, eget feugiat sem aliquam in. Maecenas lobortis enim id placerat gravida. Aenean volutpat tempor mauris, sit amet tempor dolor semper vel. Nam ac tortor quis massa feugiat condimentum. Maecenas a augue sodales, sollicitudin lorem sed, pellentesque ex. Etiam viverra quis justo ut consequat. Vestibulum rutrum sit amet orci quis vestibulum. Vivamus in blandit nisl. Sed tincidunt neque dui, nec vehicula neque consectetur sit amet. </p>
-
-                            <p>Quisque lacinia malesuada lectus, et dictum leo. Maecenas aliquam risus at egestas consequat. In accumsan, ipsum a fringilla tincidunt, massa eros molestie mi, semper dictum libero sapien quis nisi. Quisque eget tincidunt ex. Nam leo urna, iaculis sit amet laoreet ut, luctus ac urna. Aenean purus dolor, dignissim mollis lectus id, feugiat ullamcorper elit. Etiam id dignissim nibh, nec imperdiet felis. Nullam in mattis augue. In ultrices ipsum purus, at posuere libero sodales eu. Nulla nulla magna, iaculis sed neque eget, placerat auctor lacus. Integer at neque sapien. Sed molestie risus purus, eget semper velit convallis ac. Cras ante quam, maximus vitae eros at, suscipit rhoncus felis. Morbi ultricies dapibus ligula, fermentum suscipit tortor tincidunt sed. </p>
+                            <p>Start by giving your article a title. Then, either write a brief description or simply add the keywords you want to focus on.</p>
 
                         </div>
 
@@ -85,7 +68,6 @@
                     <div class="row align-items-start">
 
                         <div class="p-2 col-md-6 col-sm-12">
-                            <h3>Flex item 1</h3>
 
                             <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/demo_video_2.mp4'" type="video/mp4" />
 
@@ -93,11 +75,10 @@
 
                         <div class="p-2 col-md-6 col-sm-12">
 
-                            <h3>Flex item 2</h3>
+                            <h3>Generate Your Article & Get Your Content</h3>
 
-                            <p>Aenean euismod, lacus ut rhoncus euismod, libero leo tempus nunc, in finibus libero mi vitae ipsum. Sed sapien turpis, sollicitudin vel augue ac, cursus hendrerit tortor. In porttitor risus velit, suscipit sodales ante pulvinar quis. Mauris ultrices metus vel ligula posuere semper. Integer ut eros non tortor mollis ultricies ut et velit. Sed lobortis sollicitudin enim, eget feugiat sem aliquam in. Maecenas lobortis enim id placerat gravida. Aenean volutpat tempor mauris, sit amet tempor dolor semper vel. Nam ac tortor quis massa feugiat condimentum. Maecenas a augue sodales, sollicitudin lorem sed, pellentesque ex. Etiam viverra quis justo ut consequat. Vestibulum rutrum sit amet orci quis vestibulum. Vivamus in blandit nisl. Sed tincidunt neque dui, nec vehicula neque consectetur sit amet. </p>
-
-                            <p>Quisque lacinia malesuada lectus, et dictum leo. Maecenas aliquam risus at egestas consequat. In accumsan, ipsum a fringilla tincidunt, massa eros molestie mi, semper dictum libero sapien quis nisi. Quisque eget tincidunt ex. Nam leo urna, iaculis sit amet laoreet ut, luctus ac urna. Aenean purus dolor, dignissim mollis lectus id, feugiat ullamcorper elit. Etiam id dignissim nibh, nec imperdiet felis. Nullam in mattis augue. In ultrices ipsum purus, at posuere libero sodales eu. Nulla nulla magna, iaculis sed neque eget, placerat auctor lacus. Integer at neque sapien. Sed molestie risus purus, eget semper velit convallis ac. Cras ante quam, maximus vitae eros at, suscipit rhoncus felis. Morbi ultricies dapibus ligula, fermentum suscipit tortor tincidunt sed. </p>
+                            <p>Hit the generate button, sit back, and let Otis work its magic!</p>
+                            <p>Your SEO-optimized article is ready to publish. That’s it – you’re done!</p>
 
                         </div>
 
