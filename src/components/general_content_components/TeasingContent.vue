@@ -4,9 +4,52 @@
 
     // Tableau avec les données pour chaque itération
     const howToUseData = [
-        { textContent: '<p>This <strong>is</strong> a star icon</p>', iconColor: "#c0392b", textColor: "#8e44ad" },
-        { iconClass: 'bi-2-circle-fill', iconColor: "#d35400", textColor: "#8e44ad" },
-        { iconClass: 'bi-3-circle-fill', textContent: 'This is a lightning icon', iconColor: "#f39c12" },
+        {   
+            iconClass: 'bi-1-circle-fill',
+            textContent: `
+                <div>
+                    <h3>SEO Performance Analysis</h3>
+                    <p>Evaluate your article’s SEO score with Otis! Get actionable recommendations like increasing word count, adding sections, incorporating more keywords, or optimizing structure to boost your rankings.</p>
+                </div>
+            `,
+            iconColor: "#c0392b",
+        },
+        {   
+            iconClass: 'bi-2-circle-fill',
+            textContent: `
+                <div>
+                    <h3>Custom API Access</h3>
+                    <p>For advanced users, Otis will offer a user-friendly API to retrieve article data in JSON format. Perfect for integrating seamlessly with custom-built websites or automating your content workflow.</p>
+                </div>
+            `,
+            iconColor: "#c0392b",
+        },
+        {   
+            iconClass: 'bi-3-circle-fill',
+            textContent: `
+                <div>
+                    <h3>Smart Text Editor with Auto-Completion</h3>
+                    <p>Edit your articles directly on Otis! Our upcoming text editor will:</p>
+                    <ul>
+                        <li>Generate content for titles or sections on the fly.</li>
+                        <li>Analyze and suggest improvements for highlighted text blocks.</li>
+                        <li>Offer auto-completion tailored to your style and SEO goals.</li>
+                        <li>Let you customize HTML elements with CSS classes for full design control.</li> 
+                    </ul>
+                </div>
+            `,
+            iconColor: "#c0392b",
+        },
+        {   
+            iconClass: 'bi-4-circle-fill',
+            textContent: `
+                <div>
+                    <h3>One-Click Publishing via Webhooks</h3>
+                    <p>Simplify publishing! Soon, you’ll be able to send articles directly from Otis to your website with just one click. For WordPress users, we’re exploring ways to tailor content for different page builders and editors.</p>
+                </div>
+            `,
+            iconColor: "#c0392b",
+        },
     ];
 
 </script>
@@ -15,15 +58,15 @@
 
     <div class="mt-5">
         
-        <h2>Otis AI is still in development</h2>
+        <h2>Otis AI is Still in Development</h2>
 
         <div>
             <p>
-                This is an early build of Otis AI. Right now the only feature available is the article generation based on a prompt and keywords. Otis AI is meant to evolve and offer more exciting features.
+                This is just the beginning! Currently, Otis AI helps you generate SEO-friendly articles based on a prompt and keywords. But we’re working on exciting new features to take your content game to the next level. Here’s what’s coming soon:
             </p>
         </div>
 
-        <div class="d-flex flex-column flex-wrap">
+        <div class="mb-2 mt-2 d-flex flex-column flex-wrap">
 
             <!-- Boucle sur les items -->
             <IconAndTextHorizontal v-for="(item, index) in howToUseData" 
@@ -34,6 +77,12 @@
                 :textColor="item.textColor"
             ></IconAndTextHorizontal>
 
+        </div>
+
+        <div>
+            <p>
+                Otis AI is evolving to give you even more tools to create, edit, and publish top-notch content effortlessly. Stay tuned—big things are coming!
+            </p>
         </div>
 
     </div>

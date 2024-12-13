@@ -27,7 +27,7 @@
 </script>
 
 <template>
-    <div class="icon-text-component d-flex align-items-center">
+    <div class="mt-2 mb-2 icon-text-component d-flex align-items-center">
 
         <div class="flex-shrink-0 p-2">
             <!-- Classe dynamique pour l'icône -->
@@ -50,7 +50,6 @@
     }
 
     .icon-text-component p {
-        font-size: 1.2rem;
         margin: 0;
     }
 
