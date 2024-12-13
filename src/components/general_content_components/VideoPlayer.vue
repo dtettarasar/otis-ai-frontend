@@ -53,7 +53,7 @@
 <template>
   <video
     id="my-video"
-    class="video-js"
+    class="video-js vjs-16-9"
     controls
     preload="auto"
     :data-setup="{}"
@@ -67,8 +67,9 @@
 </template>
 
 <style>
-.video-js {
-  width: 100%;
-  height: 400px;
-}
+
+    .video-js {
+        width: 100%;
+    }
+
 </style>

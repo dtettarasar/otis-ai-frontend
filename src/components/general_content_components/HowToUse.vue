@@ -24,7 +24,7 @@
             </p>
         </div>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav justify-content-center nav-pills" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="describe-tab" data-bs-toggle="tab" data-bs-target="#describe" type="button" role="tab" aria-controls="describe" aria-selected="true">Describe</button>
             </li>
@@ -43,7 +43,7 @@
 
                         <div class="p-2 col-md-6 col-sm-12">
 
-                            <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/demo_video_1.mp4'" type="video/mp4" />
+                            <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_1.mp4'" type="video/mp4" />
 
                         </div>
 
@@ -69,7 +69,7 @@
 
                         <div class="p-2 col-md-6 col-sm-12">
 
-                            <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/demo_video_2.mp4'" type="video/mp4" />
+                            <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_2.mp4'" type="video/mp4" />
 
                         </div>
 
