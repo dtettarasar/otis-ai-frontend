@@ -33,13 +33,13 @@
 
                     <div class="row align-items-start">
 
-                        <div class="p-2 col-md-6 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12">
 
                             <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_1.mp4'" type="video/mp4" />
 
                         </div>
 
-                        <div class="p-2 col-md-6 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12">
 
                             <h3>Describe Your Topic</h3>
 
@@ -59,13 +59,13 @@
 
                     <div class="row align-items-start">
 
-                        <div class="p-2 col-md-6 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12">
 
                             <VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_2.mp4'" type="video/mp4" />
 
                         </div>
 
-                        <div class="p-2 col-md-6 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12">
 
                             <h3>Generate Your Article & Get Your Content</h3>
 
