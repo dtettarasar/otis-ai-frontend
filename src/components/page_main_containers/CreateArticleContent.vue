@@ -1,10 +1,8 @@
 <template>
 
-    <div class="container">
+    <PageBanner></PageBanner>
 
-        <div class="row">
-            <h2>{{ username }} is connected to the Create Article page</h2>
-        </div>
+    <div class="container">
 
         <div class="row">
             <ArticleGeneratorForm></ArticleGeneratorForm>
@@ -17,14 +15,17 @@
 
 <script>
 
+
     import { mapState } from 'vuex';
     import ArticleGeneratorForm from '@/components/forms/ArticleGeneratorForm.vue';
+    import PageBanner from '@/components/general_content_components/PageBanner.vue';
 
     export default {
         name: 'CreateArticleContent.vue',
 
         components: {
-            ArticleGeneratorForm
+            ArticleGeneratorForm,
+            PageBanner
         },
 
         data() {
