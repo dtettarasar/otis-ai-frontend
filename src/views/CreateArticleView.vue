@@ -18,10 +18,6 @@
 
 <template>
   <main>
-    
-    <div class="container">
-      <PageTitle txtValue="Create article Page"></PageTitle>
-    </div>
 
     <UserAccessControl v-bind:loginRequired="true">
       <CreateArticleContent></CreateArticleContent>

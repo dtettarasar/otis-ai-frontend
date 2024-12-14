@@ -1,6 +1,6 @@
 <template>
 
-    <PageBanner></PageBanner>
+    <PageBanner title="Create your article"></PageBanner>
 
     <div class="container">
 
