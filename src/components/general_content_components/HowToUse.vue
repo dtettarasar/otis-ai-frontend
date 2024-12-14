@@ -39,7 +39,7 @@
 
                         </div>
 
-                        <div class="p-2 col-md-12 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12 mt-3">
 
                             <h3>Describe Your Topic</h3>
 
@@ -65,12 +65,12 @@
 
                         </div>
 
-                        <div class="p-2 col-md-12 col-sm-12">
+                        <div class="p-2 col-md-12 col-sm-12 mt-3">
 
                             <h3>Generate Your Article & Get Your Content</h3>
 
-                            <p>Hit the generate button, sit back, and let Otis work its magic!</p>
-                            <p>Your SEO-optimized article is ready to publish. That’s it – you’re done!</p>
+                            <p>Use one credit to generate an article. Don’t worry—when you create your account, <strong>you’ll get 5 free credits</strong> to get started and see Otis in action!</p>
+                            <p>After that, your SEO-optimized article is ready to publish. That’s it – you’re done!</p>
 
                         </div>
 
