@@ -18,10 +18,6 @@
 <template>
   <main>
 
-    <div class="container">
-      <PageTitle txtValue="All user articles Page"></PageTitle>
-    </div>
-
     <UserAccessControl v-bind:loginRequired="true">
       <AllUserArticlesContent></AllUserArticlesContent>
     </UserAccessControl>
