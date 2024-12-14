@@ -14,7 +14,13 @@
     <div class="container">
 
         <PresentingContent></PresentingContent>
+
+        <hr class="solid">
+
         <HowToUse></HowToUse>
+
+        <hr class="solid">
+
         <TeasingContent></TeasingContent>
 
     </div>
