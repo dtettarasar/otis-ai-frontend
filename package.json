@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tsparticles/vue3": "^3.0.1",
     "@vitejs/plugin-vue": "^5.0.3",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",

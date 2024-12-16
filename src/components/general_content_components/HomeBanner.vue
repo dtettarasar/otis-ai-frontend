@@ -2,6 +2,7 @@
 
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex'
+import ParticlesBackground from './ParticlesBackground.vue';
 
 const store = useStore();
 
@@ -16,6 +17,17 @@ onMounted(() => {
 </script>
 
 <template>
+
+<ParticlesBackground>
+    <header>
+      <h1>Otis AI</h1>
+      <p>Create amazing content effortlessly.</p>
+      <div>
+        <button>Create Account</button>
+        <button>Start Writing</button>
+      </div>
+    </header>
+</ParticlesBackground>
 
 <div class="container-fluid my-5">
 
