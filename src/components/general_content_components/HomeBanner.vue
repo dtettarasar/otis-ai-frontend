@@ -1,6 +1,12 @@
 <script setup>
 
-import { ref, onMounted } from 'vue'
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex'
+
+const store = useStore();
+
+const userLoggedIn = computed(() => store.state.userLoggedIn);
+
 
 // lifecycle hooks
 onMounted(() => {
@@ -23,13 +29,13 @@ onMounted(() => {
 
     <div class="d-flex justify-content-center flex-row flex-wrap gap-2">
 
-      <button class="btn btn-primary btn-lg px-4" type="button">
-        Call to action
-      </button>
+      <router-link to="/article" v-if="userLoggedIn" class="btn btn-primary btn-lg px-4" type="button">
+        <i class="bi bi-lightning-fill"></i> Let’s get writing – Generate an article!
+      </router-link>
 
-      <button class="btn btn-outline-secondary btn-lg px-4" type="button">
-        Secondary link
-      </button>
+      <router-link to="/register" v-if="!userLoggedIn" class="btn btn-primary btn-lg px-4" type="button">
+        <i class="bi bi-person-lines-fill"></i> Sign up now and start creating amazing content!
+      </router-link>
 
     </div>
 
