@@ -1,5 +1,5 @@
 <template>
-  <div class="background-wrapper container">
+  <div class="background-wrapper container-fluid rounded">
     <div id="particles-container">
       <vue-particles id="tsparticles" :options="particlesOptions" />
     </div>
@@ -69,7 +69,7 @@ const particlesOptions = reactive({
 .background-wrapper {
   position: relative;
   width: 100%;
-  height: 300px; /* Hauteur définie, ajustable */
+  height: 600px; /* Hauteur définie, ajustable */
   overflow: hidden;
   display: flex; /* Active Flexbox */
   justify-content: center; /* Centre horizontalement */
