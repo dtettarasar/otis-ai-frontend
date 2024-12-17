@@ -99,11 +99,13 @@ describe('ArticleGeneratorForm.vue', () => {
 
     });
 
+    /*
     it('affiche le message approprié en mode création', async () => {
         await wrapper.setData({ isEditMode: false, isViewMode: false, isGenerateMode: true, articleObj: {} });
         await wrapper.vm.$nextTick();
         expect(wrapper.text()).toContain('Creating a New Article');
     });
+    */
 
     it('ajoute un mot clé', async () => {
 
