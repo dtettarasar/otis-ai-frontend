@@ -1,17 +1,24 @@
 <template>
 
-    
-    <div>
-        <h2>{{ username }} is connected to the View Article page</h2>
-    </div>
-    
-    <div v-if="articleSlug">
-        <ArticleViewer :articleSlug="articleSlug"></ArticleViewer>
-    </div>
+    <div class="container">
 
-    <div v-else>
+        <div class="row">
+            <h2>{{ username }} is connected to the View Article page</h2>
+        </div>
 
-        <p>No article selected. Please choose an article to view its content.</p>
+        <div class="row">
+
+            <div v-if="articleSlug">
+                <ArticleViewer :articleSlug="articleSlug"></ArticleViewer>
+            </div>
+
+            <div v-else>
+
+                <p>No article selected. Please choose an article to view its content.</p>
+
+            </div>
+
+        </div>
 
     </div>
 

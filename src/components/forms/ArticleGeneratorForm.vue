@@ -2,8 +2,6 @@
 
     <div>
 
-      <p>Creating a New Article</p>
-
       <form @submit.prevent="generateArticle" method="post" >
 
         <div class="bg-dark-subtle rounded mt-4 mb-4 p-5">

@@ -1,13 +1,17 @@
 <template>
 
-    
-    <div>
-        <p>
-            We appreciate your business! If you have any questions, please email
-            <a href="mailto:orders@example.com">orders@example.com</a>.
-        </p>
+    <div class="container">
+
+        <div class="row">
+
+            <p>
+                We appreciate your business! If you have any questions, please email
+                <a href="mailto:orders@example.com">orders@example.com</a>.
+            </p>
+
+        </div>
+
     </div>
-    
 
 </template>
 

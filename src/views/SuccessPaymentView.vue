@@ -19,7 +19,9 @@
 <template>
   <main>
 
-    <PageTitle txtValue="Thanks for your order!"></PageTitle>
+    <div class="container">
+      <PageTitle txtValue="Thanks for your order!"></PageTitle>
+    </div>
 
     <UserAccessControl v-bind:loginRequired="true">
       <SuccessPaymentContent></SuccessPaymentContent>

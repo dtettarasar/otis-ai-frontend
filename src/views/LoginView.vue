@@ -16,9 +16,14 @@
 
 <template>
   <main>
-    <PageTitle txtValue="Login Page"></PageTitle>
 
-    <LoginForm></LoginForm>
+    <div class="container">
+
+      <PageTitle txtValue="Login Page"></PageTitle>
+
+      <LoginForm></LoginForm>
+      
+    </div>
     
   </main>
 </template>

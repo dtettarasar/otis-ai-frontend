@@ -17,9 +17,14 @@
 
 <template>
   <main>
-    <PageTitle txtValue="About Page"></PageTitle>
+
+    <div class="container">
+      <PageTitle txtValue="About Page"></PageTitle>
+    </div>
+
     <UserAccessControl v-bind:loginRequired="false">
       <AboutContent></AboutContent>
     </UserAccessControl>
+    
   </main>
 </template>

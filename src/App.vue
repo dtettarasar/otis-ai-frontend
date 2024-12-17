@@ -14,14 +14,14 @@ import Footer from '@/components/Footer.vue'
     </div>
   </header>
 
-  <div id="inner-content" class="container">
+  <div id="inner-content" class="container-fluid">
     <RouterView />
   </div>
 
   <Footer></Footer>
 </template>
 
-<style scoped>
+<style>
 
 #inner-content {
   margin-top: 40px;
@@ -30,5 +30,25 @@ import Footer from '@/components/Footer.vue'
 nav a {
   margin: 5px;
 }
+
+/* code couleur */
+
+.blue-background {
+    background-color: #2575fc;
+}
+
+.blue-text {
+  color: #2575fc;
+}
+
+.violet-text {
+  color: #6a11cb;
+}
+
+.pink-text {
+  color: #ff0080;
+}
+
+/* fin code couleur */
 
 </style>

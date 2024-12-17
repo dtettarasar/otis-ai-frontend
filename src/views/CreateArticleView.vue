@@ -18,9 +18,10 @@
 
 <template>
   <main>
-    <PageTitle txtValue="Create article Page"></PageTitle>
+
     <UserAccessControl v-bind:loginRequired="true">
       <CreateArticleContent></CreateArticleContent>
     </UserAccessControl>
+    
   </main>
 </template>
