@@ -44,7 +44,7 @@ const router = createRouter({
     },
     */
     {
-      path: '/edit-article',
+      path: '/edit-article/:slug?',
       name: 'edit article',
       component: EditArticleView
     },

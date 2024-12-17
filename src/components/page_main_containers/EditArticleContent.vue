@@ -27,9 +27,20 @@
 
             ...mapState(['username']),
 
+            articleSlug() {
+                return this.$route.params.slug;
+            }
+
         },
 
         mounted() {
+
+            if(this.articleSlug) {
+
+                console.log("article slug parameter from EditArticleContent component: ");
+                console.log(this.articleSlug);
+
+            }
 
         },
 
