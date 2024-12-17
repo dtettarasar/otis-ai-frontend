@@ -4,6 +4,8 @@
     <div>
         <h2>{{ username }} is connected to the Edit Article page</h2>
     </div>
+
+    <Editor></Editor>
     
 
 </template>
@@ -11,9 +13,14 @@
 <script>
 
     import { mapState } from 'vuex';
+    import Editor from '../article_components/Editor.vue';
 
     export default {
         name: 'EditArticleContent.vue',
+
+        components: {
+            Editor,
+        },
 
         data() {
 
