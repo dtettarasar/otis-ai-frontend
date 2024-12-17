@@ -2,7 +2,6 @@
 
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex'
-import ParticlesBackground from './ParticlesBackground.vue';
 
 const store = useStore();
 
@@ -18,20 +17,9 @@ onMounted(() => {
 
 <template>
 
-<ParticlesBackground>
-    <header>
-      <h1>Otis AI</h1>
-      <p>Create amazing content effortlessly.</p>
-      <div>
-        <button>Create Account</button>
-        <button>Start Writing</button>
-      </div>
-    </header>
-</ParticlesBackground>
-
 <div class="container-fluid my-5">
 
-  <div class="p-5 text-center bg-body-tertiary rounded-3">
+  <div id="hero" class="p-5 text-center rounded-3">
 
     <i class="main-icon bi bi-feather"></i>
     <h1 class="text-body-emphasis">Otis AI</h1>
@@ -57,7 +45,11 @@ onMounted(() => {
 
 </template>
 
-<style>
+<style scoped>
+
+#hero {
+  background-color: #ce181e;
+}
 
 .main-icon {
   font-size: 3rem;

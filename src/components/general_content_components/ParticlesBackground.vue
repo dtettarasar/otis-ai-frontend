@@ -91,6 +91,10 @@ const particlesOptions = reactive({
   height: 100%;
 }
 
+#tsparticles canvas {
+  width: 100% !important;
+}
+
 .content {
   position: relative; /* Flexbox positionne le contenu ici */
   z-index: 10; /* Contenu visible au-dessus des particules */
