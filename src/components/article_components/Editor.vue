@@ -1,63 +1,72 @@
 <template>
-    <div class="container mt-4">
-      <!-- Barre d'outils -->
-      <div class="btn-toolbar mb-2" role="toolbar">
-        <button class="btn btn-secondary" @click="execCmd('bold')">Gras</button>
-        <button class="btn btn-secondary" @click="execCmd('italic')">Italique</button>
-        <button class="btn btn-secondary" @click="execCmd('underline')">Souligné</button>
-        <button class="btn btn-secondary" @click="execCmd('insertOrderedList')">Liste Numérotée</button>
-        <button class="btn btn-secondary" @click="execCmd('insertUnorderedList')">Liste à Puces</button>
-        <button class="btn btn-secondary" @click="execCmd('removeFormat')">Supprimer Format</button>
-      </div>
+    <div class="editor-container">
+      <!-- Éditeur Quill -->
+      <div ref="quillEditor" class="quill-editor"></div>
   
-      <!-- Zone éditable -->
-      <div
-        ref="editor"
-        contenteditable="true"
-        class="border p-2"
-        style="min-height: 200px;"
-      ></div>
+      <!-- Bouton pour sauvegarder le contenu -->
+      <button @click="saveContent">Sauvegarder</button>
   
-      <!-- Bouton de sauvegarde -->
-      <button class="btn btn-primary mt-3" @click="saveContent">Sauvegarder</button>
-  
-      <!-- Affichage du contenu sauvegardé -->
-      <h5 class="mt-4">Contenu HTML :</h5>
-      <pre class="bg-light p-3">{{ savedContent }}</pre>
+      <!-- Afficher le contenu sauvegardé -->
+      <div v-html="savedContent" class="saved-content"></div>
     </div>
   </template>
   
-  <script setup>
-  import { ref, onMounted } from "vue";
+  <script>
+  import Quill from "quill"; // Importer Quill
+  import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
   
-  // Référence pour l'éditeur
-  const editor = ref(null);
+  export default {
+    name: "TextEditor",
+    data() {
+      return {
+        quill: null,            // Instance de Quill
+        savedContent: "",       // Contenu sauvegardé en HTML
+        initialContent: "<p>Hello World</p>", // Contenu initial au format HTML
+      };
+    },
+    mounted() {
+      // Initialisation de Quill après que le composant soit monté
+      this.quill = new Quill(this.$refs.quillEditor, {
+        theme: "snow", // Utiliser le thème "snow" (par défaut)
+        placeholder: "Hello World",
+        modules: {
+          toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ["bold", "italic", "underline", "strike"], // Formatage du texte
+            [{ list: "ordered" }, { list: "bullet" }], // Listes
+            [{ align: [] }],                          // Alignement
+            ["link", "clean"],                        // Liens et suppression du format
+          ],
+        },
+      });
   
-  // Contenu HTML existant (à charger dans l'éditeur)
-  const initialContent = "<p>Hello World</p><ul><li>Élément 1</li><li>Élément 2</li></ul>";
-  
-  // Contenu sauvegardé
-  const savedContent = ref("");
-  
-  // Fonction pour exécuter une commande d'édition
-  const execCmd = (command) => {
-    document.execCommand(command, false, null);
+      // Charger le contenu initial dans l'éditeur
+      this.quill.root.innerHTML = this.initialContent;
+    },
+    methods: {
+      // Fonction pour sauvegarder le contenu de l'éditeur
+      saveContent() {
+        this.savedContent = this.quill.root.innerHTML;
+        console.log("Contenu sauvegardé :", this.savedContent);
+      },
+    },
   };
-  
-  // Fonction pour sauvegarder le contenu HTML
-  const saveContent = () => {
-    savedContent.value = editor.value.innerHTML;
-  };
-  
-  // Charger le contenu HTML existant lors du montage du composant
-  onMounted(() => {
-    editor.value.innerHTML = initialContent; // Insère le contenu HTML initial
-  });
   </script>
   
   <style scoped>
-  .border {
+  .editor-container {
+    margin: 20px;
+  }
+  
+  .quill-editor {
+    height: 300px; /* Taille de l'éditeur */
+  }
+  
+  .saved-content {
+    margin-top: 20px;
     border: 1px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
   }
   </style>
   
