@@ -55,7 +55,11 @@
 
             </div>
 
-            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <!--<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>-->
+            <div class="text-to-login">
+                <p style="display:inline-block">Already have an account? </p>
+                <router-link to="/login"> Login here!</router-link>
+            </div>
 
             <button type="submit" class="btn btn-primary">Create account</button>
 
@@ -188,11 +192,15 @@
 
 </script>
 
-<style>
+<style scoped>
 
     .form-label,
     .btn {
             font-size: 1.3rem;
+    }
+
+    .text-to-login a {
+        text-decoration: none;
     }
 
 </style>
