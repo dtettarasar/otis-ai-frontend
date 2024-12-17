@@ -8,27 +8,27 @@
             iconClass: 'bi-clipboard-data',
             textContent: `
                 <div>
-                    <h3>SEO Performance Analysis</h3>
+                    <h3 class='blue-text'>SEO Performance Analysis</h3>
                     <p>Evaluate your article’s SEO score with Otis! Get actionable recommendations like increasing word count, adding sections, incorporating more keywords, or optimizing structure to boost your rankings.</p>
                 </div>
             `,
-            iconColor: "#c0392b",
+            iconColor: "#6a11cb",
         },
         {   
             iconClass: 'bi-database-gear',
             textContent: `
                 <div>
-                    <h3>Custom API Access</h3>
+                    <h3 class='blue-text'>Custom API Access</h3>
                     <p>For advanced users, Otis will offer a user-friendly API to retrieve article data in JSON format. Perfect for integrating seamlessly with custom-built websites or automating your content workflow.</p>
                 </div>
             `,
-            iconColor: "#c0392b",
+            iconColor: "#6a11cb",
         },
         {   
             iconClass: 'bi-input-cursor-text',
             textContent: `
                 <div>
-                    <h3>Smart Text Editor with Auto-Completion</h3>
+                    <h3 class='blue-text'>Smart Text Editor with Auto-Completion</h3>
                     <p>Edit your articles directly on Otis! Our upcoming text editor will:</p>
                     <ul>
                         <li>Generate content for titles or sections on the fly.</li>
@@ -38,17 +38,17 @@
                     </ul>
                 </div>
             `,
-            iconColor: "#c0392b",
+            iconColor: "#6a11cb",
         },
         {   
             iconClass: 'bi-rocket-takeoff',
             textContent: `
                 <div>
-                    <h3>One-Click Publishing via Webhooks</h3>
+                    <h3 class='blue-text'>One-Click Publishing via Webhooks</h3>
                     <p>Simplify publishing! Soon, you’ll be able to send articles directly from Otis to your website with just one click. For WordPress users, we’re exploring ways to tailor content for different page builders and editors.</p>
                 </div>
             `,
-            iconColor: "#c0392b",
+            iconColor: "#6a11cb",
         },
     ];
 
