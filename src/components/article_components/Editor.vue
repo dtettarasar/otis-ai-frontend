@@ -71,6 +71,7 @@
   
   import {mapState, mapGetters, mapActions} from 'vuex';
   import { toRaw } from 'vue';
+  import DOMPurify from "dompurify";
   import Quill from "quill"; // Importer Quill
   import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
   
@@ -198,8 +199,24 @@
 
       // Fonction pour sauvegarder le contenu de l'éditeur
       saveContent() {
-        this.previewContent = this.quill.root.innerHTML;
-        console.log("Contenu sauvegardé :", this.previewContent);
+        this.articleObj.content = this.quill.root.innerHTML;
+
+        try {
+
+          // Nettoyage du contenu avec DOMPurify
+          const cleanHtml = DOMPurify.sanitize(this.articleObj.content);
+
+          console.log("cleanHTML");
+          console.log(cleanHtml);
+
+
+        } catch (error) {
+
+          console.error("Error saving article:", error);
+
+        }
+
+        console.log("Contenu sauvegardé :", this.articleObj.content);
       },
 
       async retrieveArticleData() {
