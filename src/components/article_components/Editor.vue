@@ -4,7 +4,13 @@
       <div ref="quillEditor" class="quill-editor"></div>
   
       <!-- Bouton pour sauvegarder le contenu -->
-      <button @click="saveContent">Sauvegarder</button>
+
+      <div class="d-flex flex-row">
+
+        <button type="button" class="btn btn-success" @click="saveContent">Save</button>
+        <button type="button" class="btn btn-primary">Cancel</button>
+
+      </div>
   
       <!-- Afficher le contenu sauvegardé -->
       <div v-html="savedContent" class="saved-content"></div>
@@ -16,7 +22,17 @@
   import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
   
   export default {
-    name: "TextEditor",
+    name: "Editor",
+
+    props: {
+
+      articleSlug: {
+        type: String,
+        required: true
+      }
+
+    },
+
     data() {
       return {
         quill: null,            // Instance de Quill
@@ -25,19 +41,35 @@
       };
     },
     mounted() {
+
+      if (this.articleSlug) {
+
+        console.log("article slug parameter from Editor component: ");
+        console.log(this.articleSlug);
+
+      }
+
       // Initialisation de Quill après que le composant soit monté
       this.quill = new Quill(this.$refs.quillEditor, {
+
         theme: "snow", // Utiliser le thème "snow" (par défaut)
+
         placeholder: "Hello World",
+
         modules: {
+
           toolbar: [
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ["bold", "italic", "underline", "strike"], // Formatage du texte
-            [{ list: "ordered" }, { list: "bullet" }], // Listes
-            [{ align: [] }],                          // Alignement
-            ["link", "clean"],                        // Liens et suppression du format
+
+            [{ header: [1, 2, 3, 4, 5, 6, false] }], // Titres 
+            ["bold", "italic", "underline", "strike"],// Formatage du texte
+            [{ list: "ordered" }, { list: "bullet" }],// Listes
+            [{ align: [] }],// Alignement
+            ["link", "clean"], // Liens et suppression du format
+
           ],
+
         },
+
       });
   
       // Charger le contenu initial dans l'éditeur

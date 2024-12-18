@@ -1,12 +1,28 @@
 <template>
 
-    
-    <div>
-        <h2>{{ username }} is connected to the Edit Article page</h2>
-    </div>
+    <div class="container">
 
-    <Editor></Editor>
-    
+        <div class="row">
+            <h2>{{ username }} is connected to the Edit Article page</h2>
+        </div>
+
+        <div class="row">
+
+            <div v-if="articleSlug">
+
+                <Editor :articleSlug="articleSlug"> </Editor>
+
+            </div> 
+
+            <div v-else>
+
+                <p>No article selected. Please choose an article to edit its content.</p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </template>
 
