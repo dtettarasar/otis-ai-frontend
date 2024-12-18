@@ -1,5 +1,39 @@
 <template>
 
+    <div v-if="articleObj.retrievedStatus" class="mt-2 p-5 bg-dark-subtle rounded" >
+
+      <h1 class="article-title">{{ articleObj.title }}</h1>
+
+      <p class="fs-5 date-text"><strong>creation date:</strong> {{ formattedDates.creationDate }}</p>
+      <p class="fs-5 date-text"><strong>last modification date:</strong> {{ formattedDates.lastModifDate }}</p>
+
+      <div>
+
+          <p class="fs-5">keywords:</p>
+
+          <div class="mb-2 d-flex justify-content-start flex-wrap">
+
+              <div class="badge m-1 p-1 bg-primary keyword-bdge d-flex flex-row" v-for="(keyword, index) in articleObj.keywordArr" :key="index">
+                  <p class="fs-6 m-1 align-self-center">{{keyword}}</p>
+              </div>
+
+          </div>
+
+          <!--<KeywordsList :articleId="articleId"/>-->
+
+          <div class="d-flex flex-row">
+
+              <!--<button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>-->
+              <button type="button" class="btn btn-success m-1 p-2" @click="saveContent"><i class="bi bi-file-richtext-fill"> </i>Save</button>
+              <router-link class="btn btn-primary m-1 p-2" :to=articlePageLink><i class="bi bi-file-richtext-fill"> </i>Cancel</router-link>
+              <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
+
+          </div>
+
+      </div>
+
+    </div>
+
 
     <div v-if="articleObj.retrievedStatus">
 
@@ -11,8 +45,7 @@
 
         <div class="d-flex flex-row">
 
-          <button type="button" class="btn btn-success" @click="saveContent">Save</button>
-          <button type="button" class="btn btn-primary">Cancel</button>
+        
 
         </div>
     
@@ -89,8 +122,16 @@
       }),
 
       articleFromStore() {
+
         return this.getArticleBySlug(this.articleSlug);
+
       },
+
+      articlePageLink() {
+
+        return `/view-article/${this.articleSlug}`;
+
+      },  
 
       formattedDates() {
 
