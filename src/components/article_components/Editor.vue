@@ -181,7 +181,8 @@
           });
 
           // Charger le contenu initial dans l'éditeur
-          this.quill.root.innerHTML = this.initialContent;
+          this.quill.root.innerHTML = this.articleObj.content;
+          this.savedContent = this.articleObj.content;
 
         }
 
