@@ -8,7 +8,7 @@
 
             <input class="form-control mb-2" v-model.number="creditQuantity" type="number" id="quantity" name="quantity" min="1" max="20">
 
-            <button v-if="!hideSubmitBtn" class="btn btn-primary" type="submit">Buy</button>
+            <button v-if="!hideSubmitBtn" class="btn btn-primary" type="submit"><i class="bi bi-cart-plus-fill"></i> Buy</button>
 
             <div v-if="showError" class="alert mt-3 alert-danger" role="alert">
                 <i class="bi bi-exclamation-circle"></i> <strong>An unknown error has occured.</strong>
