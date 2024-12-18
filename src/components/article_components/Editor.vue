@@ -37,20 +37,19 @@
 
     <div v-if="articleObj.retrievedStatus">
 
-      <div class="editor-container">
-        <!-- Éditeur Quill -->
-        <div ref="quillEditor" class="quill-editor"></div>
-    
-        <!-- Bouton pour sauvegarder le contenu -->
+      <div class="editor-container row">
 
-        <div class="d-flex flex-row">
-
-        
-
+        <div class="col-md-6 col-sm-12">
+          <!-- Éditeur Quill -->
+          <div ref="quillEditor" class="quill-editor"></div>
         </div>
-    
-        <!-- Afficher le contenu sauvegardé -->
-        <div v-html="savedContent" class="saved-content"></div>
+        
+        <div class="col-md-6 col-sm-12">
+          <!-- Afficher le contenu sauvegardé -->
+           <h3>Preview</h3>
+          <div v-html="previewContent" class="saved-content"></div>
+        </div>
+        
 
       </div>
 
@@ -108,7 +107,7 @@
         },
 
         quill: null,            // Instance de Quill
-        savedContent: "",       // Contenu sauvegardé en HTML
+        previewContent: "",       // Contenu sauvegardé en HTML
         initialContent: "<p>Hello World</p>", // Contenu initial au format HTML
 
       };
@@ -182,7 +181,12 @@
 
           // Charger le contenu initial dans l'éditeur
           this.quill.root.innerHTML = this.articleObj.content;
-          this.savedContent = this.articleObj.content;
+          this.previewContent = this.articleObj.content;
+
+          // Écouter les changements de texte
+          this.quill.on("text-change", () => {
+            this.previewContent = this.quill.root.innerHTML;
+          });
 
         }
 
@@ -194,8 +198,8 @@
 
       // Fonction pour sauvegarder le contenu de l'éditeur
       saveContent() {
-        this.savedContent = this.quill.root.innerHTML;
-        console.log("Contenu sauvegardé :", this.savedContent);
+        this.previewContent = this.quill.root.innerHTML;
+        console.log("Contenu sauvegardé :", this.previewContent);
       },
 
       async retrieveArticleData() {
@@ -306,12 +310,9 @@
   </script>
   
   <style scoped>
+
   .editor-container {
     margin: 20px;
-  }
-  
-  .quill-editor {
-    height: 300px; /* Taille de l'éditeur */
   }
   
   .saved-content {
