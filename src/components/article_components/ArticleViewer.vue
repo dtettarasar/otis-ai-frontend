@@ -144,7 +144,7 @@
             // console.log('test getArticleBySlug');
             // console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
             // console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
-            const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
+            // const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
             // console.log(toRaw(articleFoundBySlug));
 
             if (this.articleSlug) {

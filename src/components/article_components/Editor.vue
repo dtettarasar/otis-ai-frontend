@@ -1,4 +1,5 @@
 <template>
+
     <div class="editor-container">
       <!-- Éditeur Quill -->
       <div ref="quillEditor" class="quill-editor"></div>
@@ -15,9 +16,13 @@
       <!-- Afficher le contenu sauvegardé -->
       <div v-html="savedContent" class="saved-content"></div>
     </div>
+
   </template>
   
   <script>
+  
+  import {mapState, mapGetters, mapActions} from 'vuex';
+  import { toRaw } from 'vue';
   import Quill from "quill"; // Importer Quill
   import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
   
@@ -34,18 +39,64 @@
     },
 
     data() {
+
       return {
+
+        articleObj: {
+
+          retrievedStatus: null,
+          id: null,
+          title: '',
+          description: '',
+          keywordArr: [],
+          language: '',
+          content: '',
+          creationDate: null,
+          lastModifDate: null,
+          errorMessages: null,
+          slug: null,
+
+        },
+
         quill: null,            // Instance de Quill
         savedContent: "",       // Contenu sauvegardé en HTML
         initialContent: "<p>Hello World</p>", // Contenu initial au format HTML
+
       };
+
     },
+
+    computed: {
+
+      ...mapGetters({
+        getArticleBySlug: 'getArticleBySlug',
+      }),
+
+      articleFromStore() {
+        return this.getArticleBySlug(this.articleSlug);
+      },
+
+      formattedDates() {
+
+        return {
+
+            creationDate: this.articleObj.creationDate ? new Date(this.articleObj.creationDate).toLocaleDateString() : '',
+            lastModifDate: this.articleObj.lastModifDate ? new Date(this.articleObj.lastModifDate).toLocaleDateString() : '',
+
+        }
+
+      },
+
+    },
+
     mounted() {
 
       if (this.articleSlug) {
 
         console.log("article slug parameter from Editor component: ");
         console.log(this.articleSlug);
+
+        this.retrieveArticleData();
 
       }
 
@@ -75,14 +126,120 @@
       // Charger le contenu initial dans l'éditeur
       this.quill.root.innerHTML = this.initialContent;
     },
+
     methods: {
+
       // Fonction pour sauvegarder le contenu de l'éditeur
       saveContent() {
         this.savedContent = this.quill.root.innerHTML;
         console.log("Contenu sauvegardé :", this.savedContent);
       },
+
+      retrieveArticleData() {
+
+        if (this.articleSlug) {
+
+          const articlefromLocalStorage = this.retrieveArticleFromLocalStorage(this.articleSlug);
+
+          if (!articlefromLocalStorage && this.articleFromStore) {
+
+            this.articleObj.retrievedStatus = true;
+            this.articleObj.id = this.articleFromStore.id;
+            this.articleObj.title = this.articleFromStore.title;
+            this.articleObj.description = this.articleFromStore.description;
+            this.articleObj.content = this.articleFromStore.content;
+            this.articleObj.language = this.articleFromStore.language;
+            this.articleObj.keywordArr = this.articleFromStore.keywordArr;
+            this.articleObj.creationDate = this.articleFromStore.creationDate;
+            this.articleObj.lastModifDate = this.articleFromStore.lastModifDate;
+            this.articleObj.slug = this.articleFromStore.slug;
+
+          }
+
+        } else {
+
+          console.log('test getArticleBySlug after page reload');
+          console.log(`slug: ${this.articleSlug}`);
+          const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
+          console.log(toRaw(articleFoundBySlug));
+
+        }
+
+      },
+
+      retrieveArticleFromLocalStorage(slug) {
+
+        console.log('init retrieveArticleFromLocalStorage method');
+
+        console.log("article slug prop: ");
+        console.log(slug);
+
+        const storedArticleDataList = localStorage.getItem('articleDataList');
+
+        if (storedArticleDataList) {
+
+            try {
+
+                // convert the string to an array of objects
+                const parsedArticleDataList = JSON.parse(storedArticleDataList);
+                
+                console.log('Type after parse:', typeof parsedArticleDataList);
+                console.log('Content after parse:', parsedArticleDataList);
+
+                // Check that the parsing result returned an array
+                if (Array.isArray(parsedArticleDataList)) {
+
+                    // Find the article matching the slug
+                    const articleFound = parsedArticleDataList.find(article => article.slug === slug);
+
+                    if (articleFound) {
+
+                        console.log('Found article:', articleFound);
+                        
+                        this.articleObj.retrievedStatus = true;
+                        this.articleObj.id = articleFound.id;
+                        this.articleObj.title = articleFound.title;
+                        this.articleObj.description = articleFound.description;
+                        this.articleObj.content = articleFound.content;
+                        this.articleObj.language = articleFound.language;
+                        this.articleObj.keywordArr = articleFound.keywordArr;
+                        this.articleObj.creationDate = articleFound.creationDate;
+                        this.articleObj.lastModifDate = articleFound.lastModifDate;
+                        this.articleObj.slug = articleFound.slug;
+
+                        return true;
+
+                    } else {
+
+                        console.log('no article found');
+                        return null;
+
+                    }
+
+
+                } else {
+
+                    console.log("parsed datas didn't returned an array");
+                    return null
+
+                }
+
+            } catch(err) {
+
+                console.log('Error when trying to parse the article data: '); 
+                console.log(err);
+                return null;
+
+            }
+
+        }
+
+      },
+
     },
+
   };
+
   </script>
   
   <style scoped>
