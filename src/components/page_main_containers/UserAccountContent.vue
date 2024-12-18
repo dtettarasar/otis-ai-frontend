@@ -1,10 +1,10 @@
 <template>
 
-    <UserAccountBanner></UserAccountBanner>
-
     <div class="container mt-4 mb-4">
 
-        <div class="row">
+        <UserAccountBanner></UserAccountBanner>
+
+        <div class="row mt-4">
             <div class="col-12">
 
                 <h2>Your last articles</h2>
