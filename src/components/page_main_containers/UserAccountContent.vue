@@ -1,5 +1,7 @@
 <template>
 
+    <PageBanner title="Your dashboard" iconClass="bi-speedometer"></PageBanner>
+
     <div class="container mt-4 mb-4">
 
         <UserAccountBanner></UserAccountBanner>
@@ -36,6 +38,7 @@
     import { Modal } from 'bootstrap';
 
     import UserAccountBanner from '@/components/page_banners/UserAccountBanner.vue';
+    import PageBanner from '@/components/general_content_components/PageBanner.vue';
     import CreditSection from '@/components/user_account_components/CreditSection.vue';
     import ArticleCard from '@/components/article_components/ArticleCard.vue';
     import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
@@ -48,6 +51,7 @@
             CreditSection,
             ArticleCard,
             DeleteArticleModal,
+            PageBanner,
         },
 
         data() {
