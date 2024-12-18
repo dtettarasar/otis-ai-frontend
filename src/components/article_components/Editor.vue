@@ -1,21 +1,37 @@
 <template>
 
-    <div class="editor-container">
-      <!-- Éditeur Quill -->
-      <div ref="quillEditor" class="quill-editor"></div>
-  
-      <!-- Bouton pour sauvegarder le contenu -->
 
-      <div class="d-flex flex-row">
+    <div v-if="articleObj.retrievedStatus">
 
-        <button type="button" class="btn btn-success" @click="saveContent">Save</button>
-        <button type="button" class="btn btn-primary">Cancel</button>
+      <div class="editor-container">
+        <!-- Éditeur Quill -->
+        <div ref="quillEditor" class="quill-editor"></div>
+    
+        <!-- Bouton pour sauvegarder le contenu -->
+
+        <div class="d-flex flex-row">
+
+          <button type="button" class="btn btn-success" @click="saveContent">Save</button>
+          <button type="button" class="btn btn-primary">Cancel</button>
+
+        </div>
+    
+        <!-- Afficher le contenu sauvegardé -->
+        <div v-html="savedContent" class="saved-content"></div>
 
       </div>
-  
-      <!-- Afficher le contenu sauvegardé -->
-      <div v-html="savedContent" class="saved-content"></div>
+
     </div>
+
+    <div class="mt-2 p-5 bg-dark-subtle rounded" v-if="!articleObj.retrievedStatus">
+
+      <div class="d-flex flex-column justify-content-center">
+            <p class="text-center display-6"><i class="bi bi-exclamation-triangle-fill"></i></p>
+            <p class="err-not-found display-6 text-center"><strong>Article not found</strong></p>
+        </div>
+
+    </div>
+
 
   </template>
   
@@ -89,42 +105,47 @@
 
     },
 
-    mounted() {
+    async mounted() {
 
       if (this.articleSlug) {
 
         console.log("article slug parameter from Editor component: ");
         console.log(this.articleSlug);
 
-        this.retrieveArticleData();
+        await this.retrieveArticleData();
+
+        if (this.articleObj.retrievedStatus) {
+
+          // Initialisation de Quill après que le composant soit monté
+          this.quill = new Quill(this.$refs.quillEditor, {
+
+            theme: "snow", // Utiliser le thème "snow" (par défaut)
+
+            placeholder: "Hello World",
+
+            modules: {
+
+              toolbar: [
+
+                [{ header: [1, 2, 3, 4, 5, 6, false] }], // Titres 
+                ["bold", "italic", "underline", "strike"], // Formatage du texte
+                [{ list: "ordered" }, { list: "bullet" }], // Listes
+                [{ align: [] }],// Alignement
+                ["link", "clean"], // Liens et suppression du format
+
+              ],
+
+            },
+
+          });
+
+          // Charger le contenu initial dans l'éditeur
+          this.quill.root.innerHTML = this.initialContent;
+
+        }
 
       }
-
-      // Initialisation de Quill après que le composant soit monté
-      this.quill = new Quill(this.$refs.quillEditor, {
-
-        theme: "snow", // Utiliser le thème "snow" (par défaut)
-
-        placeholder: "Hello World",
-
-        modules: {
-
-          toolbar: [
-
-            [{ header: [1, 2, 3, 4, 5, 6, false] }], // Titres 
-            ["bold", "italic", "underline", "strike"],// Formatage du texte
-            [{ list: "ordered" }, { list: "bullet" }],// Listes
-            [{ align: [] }],// Alignement
-            ["link", "clean"], // Liens et suppression du format
-
-          ],
-
-        },
-
-      });
-  
-      // Charger le contenu initial dans l'éditeur
-      this.quill.root.innerHTML = this.initialContent;
+      
     },
 
     methods: {
@@ -135,7 +156,7 @@
         console.log("Contenu sauvegardé :", this.savedContent);
       },
 
-      retrieveArticleData() {
+      async retrieveArticleData() {
 
         if (this.articleSlug) {
 
