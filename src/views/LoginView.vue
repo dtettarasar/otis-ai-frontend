@@ -18,7 +18,7 @@
 
 <template>
 
-  <PageBanner title="Let’s pick up where you left off." iconClass="bi-file-richtext-fill"></PageBanner>
+  <PageBanner title="Let’s pick up where you left off." iconClass="bi-send-arrow-down-fill"></PageBanner>
 
   <main>
 

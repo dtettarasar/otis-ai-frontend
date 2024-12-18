@@ -18,7 +18,7 @@
 
 <template>
 
-  <PageBanner title="Your adventure starts here." iconClass="bi-file-richtext-fill"></PageBanner>
+  <PageBanner title="Your adventure starts here." iconClass="bi-person-fill-add"></PageBanner>
 
   <main>
     
