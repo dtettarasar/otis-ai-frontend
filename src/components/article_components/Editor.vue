@@ -23,9 +23,9 @@
 
           <div class="d-flex flex-row">
 
-              <!--<button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>-->
-              <button type="button" class="btn btn-success m-1 p-2" @click="saveContent"><i class="bi bi-file-richtext-fill"> </i>Save</button>
-              <router-link class="btn btn-primary m-1 p-2" :to=articlePageLink><i class="bi bi-file-richtext-fill"> </i>Cancel</router-link>
+              <button type="button" class="btn btn-success m-1 p-2" @click="saveContent"><i class="bi bi-floppy-fill"></i> Save</button>
+              <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
+              <router-link class="btn btn-primary m-1 p-2" :to=articlePageLink><i class="bi bi-x-square-fill"></i> Cancel</router-link>
               <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
 
           </div>
@@ -64,6 +64,8 @@
 
     </div>
 
+    <DeleteArticleModal @deletionConfirmed="articleDeleted" :redirection=true />
+
 
   </template>
   
@@ -71,9 +73,13 @@
   
   import {mapState, mapGetters, mapActions} from 'vuex';
   import { toRaw } from 'vue';
+
+  import { Modal } from 'bootstrap';
   import DOMPurify from "dompurify";
   import Quill from "quill"; // Importer Quill
   import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
+
+  import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
   
   export default {
     name: "Editor",
@@ -84,6 +90,12 @@
         type: String,
         required: true
       }
+
+    },
+
+    components: {
+
+      DeleteArticleModal,
 
     },
 
@@ -110,6 +122,8 @@
         quill: null,            // Instance de Quill
         previewContent: "",       // Contenu sauvegardé en HTML
         initialContent: "<p>Hello World</p>", // Contenu initial au format HTML
+
+        deleteArticleModalInstance: null, // store the instance of the modal here
 
       };
 
@@ -192,10 +206,47 @@
         }
 
       }
+
+      // init the instance of the modal here : 
+      this.deleteArticleModalInstance = new Modal(document.getElementById('deleteArticleModal'));
       
     },
 
     methods: {
+
+      ...mapActions(['setDeleteArticleId']),
+
+      // article deletion methods
+
+      async deleteArticle() {
+               
+        this.setDeleteArticleId(this.articleObj.id);
+        console.log("init delete article method");
+        console.log(this.articleObj.id);
+        //const myModal = new Modal(document.getElementById('deleteArticleModal'));
+        // myModal.show();
+
+        this.deleteArticleModalInstance.show();
+     
+      },
+
+      articleDeleted(data) {
+
+        console.log(data);
+
+        setTimeout(()=> {
+
+          //this.$router.push('/user-account');
+          //window.location.href = '/user-account';
+          // const myModal = new Modal(document.getElementById('deleteArticleModal'));
+          // myModal.hide();
+                    
+          this.deleteArticleModalInstance.hide();
+          this.$router.push('/user-account');
+
+        }, 2000);
+
+      },
 
       // Fonction pour sauvegarder le contenu de l'éditeur
       saveContent() {
