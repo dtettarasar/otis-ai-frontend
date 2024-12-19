@@ -207,8 +207,9 @@
             ...mapActions(['setDeleteArticleId']),
 
             async deleteArticle() {
-               
+
                this.setDeleteArticleId(this.articleObj.id);
+
                //const myModal = new Modal(document.getElementById('deleteArticleModal'));
                // myModal.show();
 

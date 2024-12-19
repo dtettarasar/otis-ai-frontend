@@ -66,6 +66,8 @@
 
     export default {
 
+        // Todo : try to grab the data from the local storage and with the slug (like for the article viewer), to get the text elements for the template
+
         name: 'DeleteArticleModal',
 
         props: {
