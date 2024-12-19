@@ -1,6 +1,6 @@
 <template>
 
-    <PageBanner title="View all your articles"></PageBanner>
+    <PageBanner title="View all your articles" iconClass="bi-file-richtext-fill"></PageBanner>
 
     <div class="container">
 

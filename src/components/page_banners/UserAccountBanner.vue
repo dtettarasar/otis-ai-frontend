@@ -5,14 +5,14 @@
         <div class="d-flex flex-column">
 
             <h2 class="display-4">Hello, {{ username }}!</h2>
-            <p class="display-6">& welcome to your account :)</p>
+            <!--<p class="display-6">& welcome to your account :)</p>-->
             
         </div>
 
         <div class="d-flex flex-wrap flex-row bd-highlight mb-3">
 
             <div class="p-2 bd-highlight">
-                <a href="/article" class="btn btn-success">Create an article</a>
+                <a href="/article" class="btn btn-success"><i class="bi bi-pen-fill"></i> Create an article</a>
             </div>
 
             <!--
