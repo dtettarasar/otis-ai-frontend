@@ -310,6 +310,7 @@
 
           const response = await axios.post(this.updateArticleBackendUrl, {
             accessToken: accessToken,
+            articleObj: this.articleObj,
           });
 
           console.log(response.data);
