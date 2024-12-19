@@ -78,6 +78,8 @@
   import DOMPurify from "dompurify";
   import Quill from "quill"; // Importer Quill
   import "quill/dist/quill.snow.css"; // Importer le thème par défaut "snow"
+  import axios from 'axios';
+  import Cookies from 'js-cookie';
 
   import DeleteArticleModal from '@/components/modals/DeleteArticleModal.vue';
   
@@ -116,6 +118,7 @@
           lastModifDate: null,
           errorMessages: null,
           slug: null,
+          sanitizedHtml: null,
 
         },
 
@@ -155,6 +158,18 @@
             lastModifDate: this.articleObj.lastModifDate ? new Date(this.articleObj.lastModifDate).toLocaleDateString() : '',
 
         }
+
+      },
+
+      updateArticleBackendUrl() {
+
+        return this.$backendUrl + 'front-api/user-update-article';
+
+      },
+
+      isDevMode() {
+
+        return process.env.NODE_ENV !== 'production';
 
       },
 
@@ -250,15 +265,15 @@
 
       // Fonction pour sauvegarder le contenu de l'éditeur
       saveContent() {
+
         this.articleObj.content = this.quill.root.innerHTML;
 
         try {
 
           // Nettoyage du contenu avec DOMPurify
-          const cleanHtml = DOMPurify.sanitize(this.articleObj.content);
+          this.articleObj.sanitizedHtml = DOMPurify.sanitize(this.articleObj.content);
 
-          console.log("cleanHTML");
-          console.log(cleanHtml);
+          this.updateArticle();
 
 
         } catch (error) {
@@ -267,7 +282,44 @@
 
         }
 
-        console.log("Contenu sauvegardé :", this.articleObj.content);
+        //console.log("Contenu sauvegardé :", this.articleObj.content);
+
+      },
+
+      // send the updated article to the backend
+      async updateArticle() {
+        
+        if (this.isDevMode) {
+
+          console.log('init updateArticle method');
+          console.log('articleObj: ');
+          console.log(toRaw(this.articleObj));
+
+        }
+
+        const accessToken = Cookies.get('accessToken');
+
+        if (this.isDevMode) {
+
+          console.log("accessToken:");
+          console.log(accessToken);
+
+        }
+
+        try {
+
+          const response = await axios.post(this.updateArticleBackendUrl, {
+            accessToken: accessToken,
+          });
+
+          console.log(response.data);
+
+        } catch (error) {
+
+          console.error(error);
+
+        }
+
       },
 
       async retrieveArticleData() {
