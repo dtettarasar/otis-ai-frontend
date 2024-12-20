@@ -138,6 +138,8 @@
         getArticleBySlug: 'getArticleBySlug',
       }),
 
+      ...mapState(['articleDataList']),
+
       articleFromStore() {
 
         return this.getArticleBySlug(this.articleSlug);
@@ -327,6 +329,8 @@
 
               // Save the updated content and last modified date in the local storage and in the vuex store.
 
+              this.updateStores();
+
             } else {
 
               console.error("warning: article slug from the backend isn't the same");
@@ -340,6 +344,58 @@
           console.error(error);
 
         }
+
+      },
+
+      async updateStores() {
+
+        // This method will update the vuex store and the local storage, with the article new infos.
+
+        console.log("init the updateStores methods");
+
+        console.log('article list from the store: '); 
+        console.log(toRaw(this.articleDataList));
+
+        const storedArticleDataList = localStorage.getItem('articleDataList');
+        let parsedArticleDataList = null;
+
+        if (storedArticleDataList) {
+
+          try {
+
+            // convert the string to an array of objects
+            parsedArticleDataList = JSON.parse(storedArticleDataList);
+
+            // Check that the parsing result returned an array
+            if (Array.isArray(parsedArticleDataList)) {
+
+              console.log("article list from the local storage");
+              console.log(parsedArticleDataList);
+
+              // Instructions à executer pour mettre à jour les deux listes d'articles
+              /*
+              await this.saveArticleDataList(res.data.articleDataList);
+              await localStorage.setItem('articleDataList', JSON.stringify(res.data.articleDataList));
+              */
+
+            } else {
+
+              console.log("parsed datas didn't returned an array");
+              return null;
+
+            }
+
+          } catch(err) {
+
+            console.error(err); 
+            return null;
+
+          }
+
+
+        }
+
+
 
       },
 
