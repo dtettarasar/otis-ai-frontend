@@ -376,6 +376,9 @@
               if (JSON.stringify(this.articleDataList) === JSON.stringify(parsedArticleDataList)) {
 
                 console.log("Lists are consistent.");
+                const index = parsedArticleDataList.findIndex(article => article.slug === this.articleObj.slug);
+                console.log("index of the article to update:");
+                console.log(index);
 
               }
 
