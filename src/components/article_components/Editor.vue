@@ -231,7 +231,7 @@
 
     methods: {
 
-      ...mapActions(['setDeleteArticleId']),
+      ...mapActions(['setDeleteArticleId', 'saveArticleDataList']),
 
       // article deletion methods
 
@@ -380,13 +380,42 @@
                 console.log("index of the article to update:");
                 console.log(index);
 
-              }
+                if (index !== -1) {
 
-              // Instructions à executer pour mettre à jour les deux listes d'articles
-              /*
-              await this.saveArticleDataList(res.data.articleDataList);
-              await localStorage.setItem('articleDataList', JSON.stringify(res.data.articleDataList));
-              */
+                  parsedArticleDataList[index].content = this.articleObj.content;
+                  parsedArticleDataList[index].lastModifDate = this.articleObj.lastModifDate;
+
+                  // console.log("article list after update in the method:");
+                  // console.log(parsedArticleDataList);
+
+                  try {
+
+                    await this.saveArticleDataList(parsedArticleDataList);
+                    await localStorage.setItem('articleDataList', JSON.stringify(parsedArticleDataList));
+                    console.log('article list updated in stores');
+
+                  } catch(err) {
+
+                    console.error("error trying to save article data list in stores");
+                    console.error(err);
+                    return null;
+
+                  }
+
+
+                } else {
+
+                  console.error("article not found");
+                  return null;
+
+                }
+
+              } else {
+
+                console.error("article lists aren't equal");
+                return null;
+
+              }
 
             } else {
 
