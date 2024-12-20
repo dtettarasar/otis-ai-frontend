@@ -372,6 +372,13 @@
               console.log("article list from the local storage");
               console.log(parsedArticleDataList);
 
+              // Compare the two lists
+              if (JSON.stringify(this.articleDataList) === JSON.stringify(parsedArticleDataList)) {
+
+                console.log("Lists are consistent.");
+
+              }
+
               // Instructions à executer pour mettre à jour les deux listes d'articles
               /*
               await this.saveArticleDataList(res.data.articleDataList);
