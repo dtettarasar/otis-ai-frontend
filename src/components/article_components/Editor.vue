@@ -315,6 +315,26 @@
 
           console.log(response.data);
 
+          if(response.data.articleUpdateResponse.updateStatus) {
+
+            console.log("article is updated");
+            this.articleObj.content = response.data.articleUpdateResponse.updatedContent;
+            this.articleObj.lastModifDate = response.data.articleUpdateResponse.lastModifiedAt;
+
+            if (response.data.articleUpdateResponse.articleSlug === this.articleObj.slug) {
+
+              console.log("article slug from the received data is valid");
+
+              // Save the updated content and last modified date in the local storage and in the vuex store.
+
+            } else {
+
+              console.error("warning: article slug from the backend isn't the same");
+
+            }
+
+          }
+
         } catch (error) {
 
           console.error(error);
