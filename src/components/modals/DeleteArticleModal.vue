@@ -220,6 +220,24 @@
                                 console.log("index of the article to remove:");
                                 console.log(index);
 
+                                if (index !== -1) {
+
+                                    // create a copy of the array
+                                    const updatedList = [...parsedArticleDataList];
+
+                                    updatedList.splice(index, 1);
+                                    
+                                    console.log("updatedList: ");
+                                    console.log(updatedList);
+
+
+                                } else {
+
+                                    console.error("article not found");
+                                    return null;
+
+                                }
+
 
                             } else {
 
