@@ -63,6 +63,7 @@
     import Cookies from 'js-cookie';
     import axios from 'axios';
     import { mapState, mapActions, mapGetters } from 'vuex';
+    import { toRaw } from 'vue';
 
     export default {
 
@@ -88,7 +89,7 @@
 
         computed: {
 
-            ...mapState(['deleteArticleId']),
+            ...mapState(['deleteArticleId', 'articleDataList']),
 
             ...mapGetters(['getArticleById']),
 
@@ -153,7 +154,8 @@
                     if (response.data.articleDeletionResponse.deletionStatus === true) {
 
                         console.log("successfully deleted article: " + response.data.articleDeletionResponse.encryptedArticleID);
-                        this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
+                        // this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
+                        this.updateStores();
                         this.deletionDone = true;
                         this.deletionConfirmed();
 
@@ -182,6 +184,19 @@
                     this.clearDeleteArticleId();
 
                 }
+
+            },
+
+            async updateStores() {
+
+                // This method will update the vuex store and the local storage, we remove here the deleted article from the stores.
+
+                console.log("init the updateStores methods");
+                console.log('article list from the store: '); 
+
+                console.log(toRaw(this.articleDataList));
+
+
 
             },
 
