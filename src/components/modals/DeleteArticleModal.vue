@@ -124,7 +124,7 @@
 
         methods: {
 
-            ...mapActions(['deleteArticleObjFromStore','clearDeleteArticleId']),
+            ...mapActions(['deleteArticleObjFromStore','clearDeleteArticleId', 'saveArticleDataList']),
 
             async initArticleDeletion() {
 
@@ -155,7 +155,7 @@
 
                         console.log("successfully deleted article: " + response.data.articleDeletionResponse.encryptedArticleID);
                         // this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
-                        this.updateStores();
+                        await this.updateStores();
                         this.deletionDone = true;
                         this.deletionConfirmed();
 
@@ -229,6 +229,21 @@
                                     
                                     console.log("updatedList: ");
                                     console.log(updatedList);
+
+                                    try {
+
+                                        await this.saveArticleDataList(updatedList);
+                                        await localStorage.setItem('articleDataList', JSON.stringify(updatedList));
+                                        console.log('article list updated in stores');
+                                        return true;
+
+                                    } catch (err) {
+
+                                        console.error("error trying to save article data list in stores");
+                                        console.error(err);
+                                        return null;
+
+                                    }
 
 
                                 } else {
