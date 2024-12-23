@@ -196,7 +196,55 @@
 
                 console.log(toRaw(this.articleDataList));
 
+                const storedArticleDataList = localStorage.getItem('articleDataList');
+                let parsedArticleDataList = null;
 
+                if (storedArticleDataList) {
+
+                    try {
+
+                        // convert the string to an array of objects
+                        parsedArticleDataList = JSON.parse(storedArticleDataList);
+
+                        // Check that the parsing result returned an array
+                        if (Array.isArray(parsedArticleDataList)) {
+
+                            console.log("article list from the local storage");
+                            console.log(parsedArticleDataList);
+
+                            // Compare the two lists (vuex store vs local storage)
+                            if (JSON.stringify(this.articleDataList) === JSON.stringify(parsedArticleDataList)) {
+
+                                console.log("Lists are consistent.");
+                                const index = parsedArticleDataList.findIndex(article => article.id === this.deleteArticleId);
+                                console.log("index of the article to remove:");
+                                console.log(index);
+
+
+                            } else {
+
+                                console.error("article lists aren't equal");
+                                return null;
+
+
+                            }
+
+
+                        } else {
+
+                            console.error("parsed datas didn't returned an array");
+                            return null;
+
+                        }
+
+                    } catch (error) {
+
+                        console.error(error);
+                        return null;
+
+                    }
+
+                }
 
             },
 
