@@ -25,7 +25,7 @@
 
               <button type="button" class="btn btn-success m-1 p-2" @click="saveContent"><i class="bi bi-floppy-fill"></i> Save</button>
               <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
-              <router-link class="btn btn-primary m-1 p-2" :to=articlePageLink><i class="bi bi-x-square-fill"></i> Cancel</router-link>
+              <router-link class="btn btn-primary m-1 p-2" :to=articlePageLink><i class="bi bi-eye-fill"></i> View</router-link>
               <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
 
           </div>
