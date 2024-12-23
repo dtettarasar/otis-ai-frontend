@@ -329,7 +329,9 @@
 
               // Save the updated content and last modified date in the local storage and in the vuex store.
 
-              this.updateStores();
+              await this.updateStores();
+
+              window.alert("Your article is saved!");
 
             } else {
 
