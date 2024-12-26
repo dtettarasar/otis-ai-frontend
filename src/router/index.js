@@ -19,11 +19,13 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
+    /*
     {
       path: '/about',
       name: 'about',
       component: AboutView
     },
+    */
     {
       path: '/all-user-article',
       name: 'all user article',
@@ -34,13 +36,15 @@ const router = createRouter({
       name: 'view article',
       component: ArticleView
     },
+    /*
     {
       path: '/create-article/:id',
       name: 'create article',
       component: CreateArticleView
     },
+    */
     {
-      path: '/edit-article',
+      path: '/edit-article/:slug?',
       name: 'edit article',
       component: EditArticleView
     },

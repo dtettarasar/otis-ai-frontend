@@ -26,6 +26,7 @@
             <div class="d-flex flex-row">
 
                 <button v-on:click="deleteArticle()" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
+                <router-link class="btn btn-success m-1 p-2" :to=editArticlePageLink><i class="bi bi-pen-fill"></i> Edit</router-link>
                 <router-link class="btn btn-dark m-1 p-2" to="/all-user-article"><i class="bi bi-file-richtext-fill"></i> All my articles</router-link>
 
             </div>
@@ -129,6 +130,12 @@
 
             },
 
+            editArticlePageLink() {
+
+                return `/edit-article/${this.articleObj.slug}`;
+
+            },
+
             isDevMode() {
 
                 return process.env.NODE_ENV !== 'production';
@@ -144,7 +151,7 @@
             // console.log('test getArticleBySlug');
             // console.log(`slug (from this.articleObj.slug) : ${this.articleObj.slug}`);
             // console.log(`slug (from this.articleSlug) : ${this.articleSlug}`);
-            const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
+            // const articleFoundBySlug = this.getArticleBySlug(this.articleSlug);
             // console.log(toRaw(articleFoundBySlug));
 
             if (this.articleSlug) {
@@ -207,8 +214,9 @@
             ...mapActions(['setDeleteArticleId']),
 
             async deleteArticle() {
-               
+
                this.setDeleteArticleId(this.articleObj.id);
+
                //const myModal = new Modal(document.getElementById('deleteArticleModal'));
                // myModal.show();
 

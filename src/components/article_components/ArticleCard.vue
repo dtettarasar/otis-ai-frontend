@@ -27,7 +27,7 @@
             <div class="d-flex flex-row flex-wrap">
 
                 <router-link class="btn btn-dark m-1 p-2" :to=articlePageLink><i class="bi bi-eye-fill"></i> View</router-link>
-                <!--<button class="btn btn-success m-1 p-2"><i class="bi bi-pen-fill"></i> Edit</button>-->
+                <router-link class="btn btn-success m-1 p-2" :to=editArticlePageLink><i class="bi bi-pen-fill"></i> Edit</router-link>
                 <button v-on:click="confirmDelete" class="btn btn-danger m-1 p-2"><i class="bi bi-trash-fill"></i> Delete</button>
 
             </div>
@@ -100,6 +100,12 @@
             articlePageLink() {
 
                 return `/view-article/${this.articleSlug}`;
+
+            },
+
+            editArticlePageLink() {
+
+                return `/edit-article/${this.articleSlug}`;
 
             },
 
