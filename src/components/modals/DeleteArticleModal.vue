@@ -63,6 +63,7 @@
     import Cookies from 'js-cookie';
     import axios from 'axios';
     import { mapState, mapActions, mapGetters } from 'vuex';
+    import { toRaw } from 'vue';
 
     export default {
 
@@ -90,7 +91,7 @@
 
         computed: {
 
-            ...mapState(['deleteArticleId']),
+            ...mapState(['deleteArticleId', 'articleDataList']),
 
             ...mapGetters(['getArticleById']),
 
@@ -125,7 +126,7 @@
 
         methods: {
 
-            ...mapActions(['deleteArticleObjFromStore','clearDeleteArticleId']),
+            ...mapActions(['deleteArticleObjFromStore','clearDeleteArticleId', 'saveArticleDataList']),
 
             async initArticleDeletion() {
 
@@ -155,7 +156,8 @@
                     if (response.data.articleDeletionResponse.deletionStatus === true) {
 
                         console.log("successfully deleted article: " + response.data.articleDeletionResponse.encryptedArticleID);
-                        this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
+                        // this.deleteArticleObjFromStore(response.data.articleDeletionResponse.encryptedArticleID);
+                        await this.updateStores();
                         this.deletionDone = true;
                         this.deletionConfirmed();
 
@@ -182,6 +184,100 @@
                 } finally {
 
                     this.clearDeleteArticleId();
+
+                }
+
+            },
+
+            async updateStores() {
+
+                // This method will update the vuex store and the local storage, we remove here the deleted article from the stores.
+
+                console.log("init the updateStores methods");
+                console.log('article list from the store: '); 
+
+                console.log(toRaw(this.articleDataList));
+
+                const storedArticleDataList = localStorage.getItem('articleDataList');
+                let parsedArticleDataList = null;
+
+                if (storedArticleDataList) {
+
+                    try {
+
+                        // convert the string to an array of objects
+                        parsedArticleDataList = JSON.parse(storedArticleDataList);
+
+                        // Check that the parsing result returned an array
+                        if (Array.isArray(parsedArticleDataList)) {
+
+                            console.log("article list from the local storage");
+                            console.log(parsedArticleDataList);
+
+                            // Compare the two lists (vuex store vs local storage)
+                            if (JSON.stringify(this.articleDataList) === JSON.stringify(parsedArticleDataList)) {
+
+                                console.log("Lists are consistent.");
+                                const index = parsedArticleDataList.findIndex(article => article.id === this.deleteArticleId);
+                                console.log("index of the article to remove:");
+                                console.log(index);
+
+                                if (index !== -1) {
+
+                                    // create a copy of the array
+                                    const updatedList = [...parsedArticleDataList];
+
+                                    updatedList.splice(index, 1);
+                                    
+                                    console.log("updatedList: ");
+                                    console.log(updatedList);
+
+                                    try {
+
+                                        await this.saveArticleDataList(updatedList);
+                                        await localStorage.setItem('articleDataList', JSON.stringify(updatedList));
+                                        console.log('article list updated in stores');
+                                        return true;
+
+                                    } catch (err) {
+
+                                        console.error("error trying to save article data list in stores");
+                                        console.error(err);
+                                        return null;
+
+                                    }
+
+
+                                } else {
+
+                                    console.error("article not found");
+                                    return null;
+
+                                }
+
+
+                            } else {
+
+                                console.error("article lists aren't equal");
+                                return null;
+
+
+                            }
+
+
+                        } else {
+
+                            console.error("parsed datas didn't returned an array");
+                            return null;
+
+                        }
+
+                    } catch (error) {
+
+                        console.error(error);
+                        return null;
+
+                    }
 
                 }
 
