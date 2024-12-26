@@ -2,12 +2,14 @@
 
   import PageTitle from '@/components/PageTitle.vue'
   import LoginForm from '@/components/forms/LoginForm.vue'
+  import PageBanner from '@/components/general_content_components/PageBanner.vue';
 
   export default {
     name: 'LoginView',
     components: {
       PageTitle,
-      LoginForm
+      LoginForm,
+      PageBanner
     }
 
   };
@@ -15,11 +17,14 @@
 </script>
 
 <template>
+
+  <PageBanner title="Let’s pick up where you left off." iconClass="bi-send-arrow-down-fill"></PageBanner>
+
   <main>
 
     <div class="container">
 
-      <PageTitle txtValue="Login Page"></PageTitle>
+      <PageTitle txtValue="Access your dashboard"></PageTitle>
 
       <LoginForm></LoginForm>
       
